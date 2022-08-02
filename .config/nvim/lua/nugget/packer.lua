@@ -28,4 +28,9 @@ return require('packer').startup(function(use)
             require("nugget.config.explorer") 
         end
     }
+    
+    use 'tpope/vim-fugitive'
+    use 'tpope/vim-rails'
+    use 'tpope/vim-sleuth'
+    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 end)
