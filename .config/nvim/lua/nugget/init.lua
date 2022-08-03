@@ -1,3 +1,3 @@
 require("nugget.opts")
-require("nugget.packer")
 require("nugget.keybinds")
+require("nugget.packer")

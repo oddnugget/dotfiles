@@ -1,65 +1,85 @@
-vim.cmd[[packadd packer.nvim]]
+vim.cmd([[packadd packer.nvim]])
 
-return require('packer').startup(function(use)
+return require("packer").startup(function(use)
   -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+  use("wbthomason/packer.nvim")
 
-    use {
-        'nvim-telescope/telescope.nvim', 
-        requires = {{ 'nvim-lua/plenary.nvim' }},
-        config = function()
-            require("nugget.config.telescope")
-        end
-    }
+  use({
+    "nvim-telescope/telescope.nvim",
+    requires = { { "nvim-lua/plenary.nvim" } },
+    config = function()
+      require("nugget.config.telescope")
+    end,
+  })
 
-    use {
-        'folke/tokyonight.nvim', 
-        config = function() 
-            require("nugget.config.colorscheme") 
-        end 
-    }
+  use({
+    "folke/tokyonight.nvim",
+    config = function()
+      require("nugget.config.colorscheme")
+    end,
+  })
 
-    use {
-        'kyazdani42/nvim-tree.lua',
-        requires = {
-            'kyazdani42/nvim-web-devicons', -- optional, for file icons
-        },
-        config = function() 
-            require("nugget.config.explorer") 
-        end
-    }
-    
-    use 'tpope/vim-fugitive'
-    use 'tpope/vim-rails'
-    use 'tpope/vim-sleuth'
-    use 'tpope/vim-surround'
+  use({
+    "kyazdani42/nvim-tree.lua",
+    requires = {
+      "kyazdani42/nvim-web-devicons", -- optional, for file icons
+    },
+    config = function()
+      require("nugget.config.explorer")
+    end,
+  })
 
-    use {
-        'nvim-treesitter/nvim-treesitter', 
-        run = ':TSUpdate', 
-        config = function() 
-            require("nugget.config.treesitter") 
-        end
-    }
+  use("tpope/vim-fugitive")
+  use("tpope/vim-rails")
+  use("tpope/vim-sleuth")
+  use("tpope/vim-surround")
+  use("tpope/vim-commentary")
 
-    use {
-        "neovim/nvim-lspconfig", 
-        config = function () 
-            require("nugget.config.lspconfig") 
-        end
-    }
+  use({
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+    config = function()
+      require("nugget.config.treesitter")
+    end,
+  })
 
+  use({
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("nugget.config.lspconfig")
+    end,
+  })
 
-    use { 
-        "williamboman/nvim-lsp-installer" ,
-        config = function () 
-            require("nugget.config.lspinstaller")
-        end
-    }
+  use({
+    "williamboman/nvim-lsp-installer",
+    config = function()
+      require("nugget.config.lspinstaller")
+    end,
+  })
 
-    use {
-    	"windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
-    }
+  use({
+    "windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  })
 
+  use({ "hrsh7th/cmp-nvim-lsp" })
+  use({ "hrsh7th/cmp-buffer" })
+  use({ "hrsh7th/cmp-path" })
+  use({ "hrsh7th/cmp-cmdline" })
+  use({
+    "hrsh7th/nvim-cmp",
+    config = function()
+      require("nugget.config.cmp")
+    end,
+  })
+  use({ "L3MON4D3/LuaSnip" })
+  use({ "saadparwaiz1/cmp_luasnip" })
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    config = function()
+      require("nugget.config.null-ls")
+    end,
+  })
 end)
