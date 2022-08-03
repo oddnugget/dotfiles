@@ -32,5 +32,28 @@ return require('packer').startup(function(use)
     use 'tpope/vim-fugitive'
     use 'tpope/vim-rails'
     use 'tpope/vim-sleuth'
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+    use 'tpope/vim-surround'
+
+    use {
+        'nvim-treesitter/nvim-treesitter', 
+        run = ':TSUpdate', 
+        config = function() 
+            require("nugget.config.treesitter") 
+        end
+    }
+
+    use {
+        "neovim/nvim-lspconfig", 
+        config = function () 
+            require("nugget.config.lspconfig") 
+        end
+    }
+
+
+    use { 
+        "williamboman/nvim-lsp-installer" ,
+        config = function () 
+            require("nugget.config.lspinstaller")
+        end
+    }
 end)
