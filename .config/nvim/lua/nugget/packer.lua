@@ -53,14 +53,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  -- use({
-  --   "neovim/nvim-lspconfig",
-  --   after = "nvim-lsp-installer",
-  --   config = function()
-  --     require("nugget.config.lspconfig")
-  --   end,
-  -- })
-
   use({
     "windwp/nvim-autopairs",
     config = function()
