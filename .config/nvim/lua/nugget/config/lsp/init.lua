@@ -2,10 +2,6 @@ local lspconfig = require("lspconfig")
 local required_servers = require("nugget.lsp_servers")
 local M = {}
 
-require("nvim-lsp-installer").setup({
-  ensure_installed = required_servers,
-})
-
 local opts = { noremap = true, silent = true }
 
 vim.keymap.set("n", "<leader>de", vim.diagnostic.open_float, opts)
@@ -40,6 +36,7 @@ local on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
     client.resolved_capabilities.document_range_formatting = false
   end
+
   local bufopts = { noremap = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -50,7 +47,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-  vim.keymap.set("n", "<leader>f", vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set("n", "<leader>fm", vim.lsp.buf.formatting, bufopts)
 end
 
 local settings = {
@@ -67,6 +64,11 @@ local settings = {
         maxPreload = 100000,
         preloadFileSize = 10000,
       },
+    },
+  },
+  solargraph = {
+    Solargraph = {
+      root_dir = lspconfig.util.root_pattern("Gemfile", ".git")(fname) or vim.fn.getcwd(),
     },
   },
 }
