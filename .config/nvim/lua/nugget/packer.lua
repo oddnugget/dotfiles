@@ -45,17 +45,21 @@ return require("packer").startup(function(use)
 
   use({
     "neovim/nvim-lspconfig",
+    event = "BufReadPre",
+    wants = { "nvim-lsp-installer" },
+    requires = { "williamboman/nvim-lsp-installer" },
     config = function()
-      require("nugget.config.lspconfig")
+      require("nugget.config.lsp").setup()
     end,
   })
 
-  use({
-    "williamboman/nvim-lsp-installer",
-    config = function()
-      require("nugget.config.lspinstaller")
-    end,
-  })
+  -- use({
+  --   "neovim/nvim-lspconfig",
+  --   after = "nvim-lsp-installer",
+  --   config = function()
+  --     require("nugget.config.lspconfig")
+  --   end,
+  -- })
 
   use({
     "windwp/nvim-autopairs",
