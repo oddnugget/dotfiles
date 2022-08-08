@@ -5,6 +5,7 @@ inoremap("jk", "<Esc>")
 
 -- Explorer
 nnoremap("<leader>e", "<cmd>NvimTreeToggle<CR>")
+nnoremap("<leader>E", "<cmd>NvimTreeFindFile<CR>")
 
 -- Window jump
 nnoremap("<C-j>", "<C-w>j")
