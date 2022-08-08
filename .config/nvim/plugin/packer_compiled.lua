@@ -180,6 +180,11 @@ _G.packer_plugins = {
     path = "/home/odyrag/.local/share/nvim/site/pack/packer/start/vim-commentary",
     url = "https://github.com/tpope/vim-commentary"
   },
+  ["vim-dispatch"] = {
+    loaded = true,
+    path = "/home/odyrag/.local/share/nvim/site/pack/packer/start/vim-dispatch",
+    url = "https://github.com/tpope/vim-dispatch"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "/home/odyrag/.local/share/nvim/site/pack/packer/start/vim-fugitive",
@@ -194,6 +199,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/odyrag/.local/share/nvim/site/pack/packer/start/vim-sleuth",
     url = "https://github.com/tpope/vim-sleuth"
+  },
+  ["vim-slim"] = {
+    loaded = true,
+    path = "/home/odyrag/.local/share/nvim/site/pack/packer/start/vim-slim",
+    url = "https://github.com/slim-template/vim-slim"
   },
   ["vim-surround"] = {
     loaded = true,

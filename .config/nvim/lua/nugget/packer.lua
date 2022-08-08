@@ -37,6 +37,7 @@ return require("packer").startup(function(use)
   use("tpope/vim-fugitive")
   use("tpope/vim-rails")
   use("tpope/vim-sleuth")
+  use("tpope/vim-dispatch")
   use("tpope/vim-surround")
   use("tpope/vim-commentary")
 
@@ -83,4 +84,5 @@ return require("packer").startup(function(use)
       require("nugget.config.null-ls")
     end,
   })
+  use({ "slim-template/vim-slim" })
 end)

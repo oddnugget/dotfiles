@@ -1,4 +1,5 @@
 require("nvim-tree").setup({
+  remove_keymaps = { "<C-k>" },
   view = {
     adaptive_size = true,
     mappings = {
