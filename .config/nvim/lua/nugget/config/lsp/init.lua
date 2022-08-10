@@ -1,5 +1,5 @@
-local lspconfig = require("lspconfig")
-local required_servers = require("nugget.lsp_servers")
+vim.lsp.set_log_level("debug")
+
 local M = {}
 
 local opts = { noremap = true, silent = true }
@@ -49,43 +49,35 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>fm", vim.lsp.buf.formatting, bufopts)
 end
 
-local settings = {
-  sumneko_lua = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" },
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-        },
-        maxPreload = 100000,
-        preloadFileSize = 10000,
-      },
-    },
-  },
-  solargraph = {
-    Solargraph = {
-      root_dir = lspconfig.util.root_pattern("Gemfile", ".git")(fname) or vim.fn.getcwd(),
-    },
-  },
-}
-
 function M.setup()
-  require("nvim-lsp-installer").setup({
-    ensure_installed = required_servers,
+  require("nvim-lsp-installer").setup()
+  local lspconfig = require("lspconfig")
+  lspconfig.solargraph.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = { solargraph = { diagnostics = true } },
+    init_options = { formatting = true },
   })
 
-  for _, server in ipairs(required_servers) do
-    local server_opts = {
-      on_attach = on_attach,
-      settings = settings[server] or nil,
-      capabilities = capabilities,
-    }
-
-    lspconfig[server].setup(server_opts)
-  end
+  lspconfig.sumneko_lua.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" },
+        },
+        workspace = {
+          library = {
+            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+            [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
+          },
+          maxPreload = 100000,
+          preloadFileSize = 10000,
+        },
+      },
+    },
+  })
 end
 
 return M

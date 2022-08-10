@@ -52,8 +52,8 @@ return require("packer").startup(function(use)
   use({
     "neovim/nvim-lspconfig",
     event = "BufReadPre",
-    wants = { "nvim-lsp-installer" },
-    requires = { "williamboman/nvim-lsp-installer" },
+    wants = "nvim-lsp-installer",
+    requires = "williamboman/nvim-lsp-installer",
     config = function()
       require("nugget.config.lsp").setup()
     end,
