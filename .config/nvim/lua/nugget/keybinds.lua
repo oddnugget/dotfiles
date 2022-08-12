@@ -1,6 +1,9 @@
 local nnoremap = require("nugget.utils").bindkey.nnoremap
 local inoremap = require("nugget.utils").bindkey.inoremap
 
+nnoremap("j", "gj")
+nnoremap("k", "gk")
+
 inoremap("jk", "<Esc>")
 
 -- Explorer

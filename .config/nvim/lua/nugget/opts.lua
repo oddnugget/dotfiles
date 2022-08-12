@@ -11,7 +11,10 @@ vim.opt.incsearch = true
 
 vim.opt.smartindent = true
 
-vim.opt.wrap = false
+vim.opt.wrap = true
+vim.opt.wrapmargin = 5
 
 vim.g.mapleader = " "
 vim.g.termguicolors = true
+
+vim.cmd([[set clipboard+=unnamedplus]])
