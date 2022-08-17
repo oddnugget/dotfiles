@@ -40,6 +40,7 @@ return require("packer").startup(function(use)
   use("tpope/vim-dispatch")
   use("tpope/vim-surround")
   use("tpope/vim-commentary")
+  use("christoomey/vim-tmux-navigator")
 
   use({
     "nvim-treesitter/nvim-treesitter",
