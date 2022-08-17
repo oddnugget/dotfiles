@@ -55,7 +55,7 @@ function M.setup()
   lspconfig.solargraph.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    settings = { solargraph = { diagnostics = true } },
+    settings = { solargraph = { diagnostics = false } },
     init_options = { formatting = true },
   })
 
