@@ -1,1 +1,2 @@
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias nvim-config='nvim $HOME/.config/nvim'

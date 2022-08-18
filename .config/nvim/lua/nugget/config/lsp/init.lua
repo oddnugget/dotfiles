@@ -37,6 +37,11 @@ local on_attach = function(client, bufnr)
     client.resolved_capabilities.document_range_formatting = false
   end
 
+  if client.name == "rust-analyzer" then
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end
+
   local bufopts = { noremap = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
@@ -58,6 +63,8 @@ function M.setup()
     settings = { solargraph = { diagnostics = false } },
     init_options = { formatting = true },
   })
+
+  lspconfig.rust_analyzer.setup({})
 
   lspconfig.sumneko_lua.setup({
     on_attach = on_attach,
