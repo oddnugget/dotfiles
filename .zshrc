@@ -104,5 +104,7 @@ source $ZSH/oh-my-zsh.sh
 
 source $HOME/.zsh/aliases
 source $HOME/.profile
+source $HOME/.zsh/completion.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
