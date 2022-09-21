@@ -29,6 +29,13 @@ return require("packer").startup(function(use)
   })
 
   use({
+    "tanvirtin/monokai.nvim",
+    config = function()
+      require("nugget.config.colorscheme")
+    end,
+  })
+
+  use({
     "kyazdani42/nvim-tree.lua",
     requires = {
       "kyazdani42/nvim-web-devicons", -- optional, for file icons

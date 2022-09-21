@@ -13,6 +13,7 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("fzf")
+
 nnoremap("<Leader>ff", "<cmd> Telescope find_files<CR>")
 nnoremap("<Leader>fw", "<cmd> Telescope live_grep<CR>")
 nnoremap("<Leader>fW", "<cmd> Telescope grep_string<CR>")

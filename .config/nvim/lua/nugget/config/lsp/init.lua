@@ -1,5 +1,3 @@
-vim.lsp.set_log_level("debug")
-
 local M = {}
 
 local opts = { noremap = true, silent = true }
@@ -29,18 +27,14 @@ capabilities.textDocument.completion.completionItem = {
   },
 }
 
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-  if client.name ~= "null-ls" then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  end
+-- Which LSP are going to use formatting?
+local servers_with_native_formatting = { "rust-analyzer", "solargraph", "null-ls" }
 
-  if client.name == "rust-analyzer" then
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
-  end
+local on_attach = function(client, bufnr)
+  local enable_fmt = servers_with_native_formatting[client.name] ~= nil
+
+  client.resolved_capabilities.document_formatting = enable_fmt
+  client.resolved_capabilities.document_range_formatting = enable_fmt
 
   local bufopts = { noremap = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -57,14 +51,20 @@ end
 function M.setup()
   require("nvim-lsp-installer").setup()
   local lspconfig = require("lspconfig")
+
   lspconfig.solargraph.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    settings = { solargraph = { diagnostics = false } },
+    settings = { solargraph = { diagnostics = true } },
     init_options = { formatting = true },
   })
 
   lspconfig.rust_analyzer.setup({})
+  lspconfig.elixirls.setup({
+    cmd = { "/home/odyrag/.local/bin/elixir/language_server.sh" },
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
 
   lspconfig.sumneko_lua.setup({
     on_attach = on_attach,
