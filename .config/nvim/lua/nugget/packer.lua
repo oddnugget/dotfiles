@@ -21,20 +21,26 @@ return require("packer").startup(function(use)
     })
   end
 
-  use { "catppuccin/nvim", as = "catppuccin" }
   use({
-    "folke/tokyonight.nvim",
+    "catppuccin/nvim",
+    as = "catppuccin",
     config = function()
       require("nugget.config.colorscheme")
     end,
   })
+  -- use({
+  --   "folke/tokyonight.nvim",
+  --   config = function()
+  --     require("nugget.config.colorscheme")
+  --   end,
+  -- })
 
-  use({
-    "tanvirtin/monokai.nvim",
-    config = function()
-      require("nugget.config.colorscheme")
-    end,
-  })
+  -- use({
+  --   "tanvirtin/monokai.nvim",
+  --   config = function()
+  --     require("nugget.config.colorscheme")
+  --   end,
+  -- })
 
   use({
     "kyazdani42/nvim-tree.lua",
