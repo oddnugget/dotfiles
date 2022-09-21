@@ -8,6 +8,8 @@ null_ls.setup({
     -- null_ls.builtins.diagnostics.rubocop.with({
     --   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
     -- }),
+    --
+    null_ls.builtins.formatting.rustfmt,
 
     null_ls.builtins.formatting.prettier.with({
       prefer_local = "node_modules/.bin",
