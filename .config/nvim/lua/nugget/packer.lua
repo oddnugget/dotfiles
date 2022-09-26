@@ -28,19 +28,20 @@ return require("packer").startup(function(use)
       require("nugget.config.colorscheme")
     end,
   })
-  -- use({
-  --   "folke/tokyonight.nvim",
-  --   config = function()
-  --     require("nugget.config.colorscheme")
-  --   end,
-  -- })
 
-  -- use({
-  --   "tanvirtin/monokai.nvim",
-  --   config = function()
-  --     require("nugget.config.colorscheme")
-  --   end,
-  -- })
+  use({
+    "nvim-lualine/lualine.nvim",
+    requires = { "kyazdani42/nvim-web-devicons", opt = true },
+    config = {
+      require("lualine").setup({
+        options = {
+          theme = "catppuccin",
+        },
+      }),
+    },
+  })
+
+  use({ "kyazdani42/nvim-web-devicons" })
 
   use({
     "kyazdani42/nvim-tree.lua",
