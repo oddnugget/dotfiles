@@ -24,3 +24,4 @@ vim.g.termguicolors = true
 vim.g.clipboard = "unnamedplus"
 vim.opt.scrolloff = 4
 
+vim.opt.cursorline = true

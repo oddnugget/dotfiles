@@ -12,6 +12,8 @@ return require("packer").startup(function(use)
     end,
   })
 
+  use({ "karb94/neoscroll.nvim", config = { require("neoscroll").setup() } })
+
   if vim.fn.has("macunix") then
     use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" })
   else
@@ -39,6 +41,13 @@ return require("packer").startup(function(use)
         },
       }),
     },
+  })
+
+  use({ "ggandor/lightspeed.nvim" })
+
+  use({
+    "romgrk/barbar.nvim",
+    requires = { "kyazdani42/nvim-web-devicons" },
   })
 
   use({ "kyazdani42/nvim-web-devicons" })
