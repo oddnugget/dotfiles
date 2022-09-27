@@ -3,7 +3,6 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export SERVER_IP="95.216.156.86"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -96,14 +95,10 @@ source $ZSH/oh-my-zsh.sh
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
+PATH=$PATH:$HOME/.local/bin/
+source ~/.zsh/aliases
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-#
-
-source $HOME/.zsh/aliases
-source $HOME/.profile
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
+alias luamake=/home/odyrag/.local/lua-language-server/3rd/luamake/luamake
