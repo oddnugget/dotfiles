@@ -30,8 +30,18 @@ capabilities.textDocument.completion.completionItem = {
 -- Which LSP are going to use formatting?
 local servers_with_native_formatting = { "rust-analyzer", "solargraph", "null-ls" }
 
+local function has_key(table, key)
+  for _, value in ipairs(table) do
+    if value == key then
+      return true
+    end
+  end
+
+  return false
+end
+
 local on_attach = function(client, bufnr)
-  local enable_fmt = servers_with_native_formatting[client.name] ~= nil
+  local enable_fmt = has_key(servers_with_native_formatting, client.name)
 
   client.resolved_capabilities.document_formatting = enable_fmt
   client.resolved_capabilities.document_range_formatting = enable_fmt
