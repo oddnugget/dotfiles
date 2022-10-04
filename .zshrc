@@ -104,3 +104,4 @@ source ~/.zsh/aliases
 alias luamake=/home/odyrag/.local/lua-language-server/3rd/luamake/luamake
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.profile

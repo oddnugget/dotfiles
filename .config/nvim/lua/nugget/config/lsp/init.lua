@@ -11,6 +11,7 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 capabilities.textDocument.completion.completionItem = {
+
   documentationFormat = { "markdown", "plaintext" },
   snippetSupport = true,
   preselectSupport = true,
@@ -29,7 +30,7 @@ capabilities.textDocument.completion.completionItem = {
 }
 
 -- Which LSP are going to use formatting?
-local servers_with_native_formatting = { "rust_analyzer", "solargraph", "null-ls" }
+local servers_with_native_formatting = { "rust_analyzer", "null-ls", "solargraph" }
 
 local format_sync = function(bufnr)
   vim.lsp.buf.format({
@@ -40,8 +41,19 @@ local format_sync = function(bufnr)
   })
 end
 
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
   local bufopts = { noremap = true, buffer = bufnr }
+
+  if client.supports_method("textDocument/formatting") then
+    vim.api.nvim_clear_autocmds({ group = format_augroup, buffer = bufnr })
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      group = format_augroup,
+      buffer = bufnr,
+      callback = function()
+        format_sync(bufnr)
+      end,
+    })
+  end
 
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
