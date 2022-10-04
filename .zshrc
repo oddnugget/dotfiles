@@ -102,3 +102,5 @@ source ~/.zsh/aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias luamake=/home/odyrag/.local/lua-language-server/3rd/luamake/luamake
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

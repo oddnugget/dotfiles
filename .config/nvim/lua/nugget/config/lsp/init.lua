@@ -43,8 +43,8 @@ end
 local on_attach = function(client, bufnr)
   local enable_fmt = has_key(servers_with_native_formatting, client.name)
 
-  client.resolved_capabilities.document_formatting = enable_fmt
-  client.resolved_capabilities.document_range_formatting = enable_fmt
+  client.server_capabilities.documentFormattingProvider = enable_fmt
+  client.server_capabilities.documentRangeFormattingProvider  = enable_fmt
 
   local bufopts = { noremap = true, buffer = bufnr }
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
