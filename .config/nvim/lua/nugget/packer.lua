@@ -29,17 +29,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  use({
-    "nvim-lualine/lualine.nvim",
-    requires = { "kyazdani42/nvim-web-devicons", opt = true },
-    config = {
-      require("lualine").setup({
-        options = {
-          theme = "catppuccin",
-        },
-      }),
-    },
-  })
 
   use({ "ggandor/lightspeed.nvim" })
 
@@ -78,9 +67,6 @@ return require("packer").startup(function(use)
 
   use({
     "neovim/nvim-lspconfig",
-    event = "BufReadPre",
-    wants = "nvim-lsp-installer",
-    requires = "williamboman/nvim-lsp-installer",
     config = function()
       require("nugget.config.lsp").setup()
     end,
@@ -108,7 +94,7 @@ return require("packer").startup(function(use)
   use({
     "jose-elias-alvarez/null-ls.nvim",
     config = function()
-      require("nugget.config.null-ls")
+      require("nugget.config.lsp").null_ls()
     end,
   })
   use({ "slim-template/vim-slim" })

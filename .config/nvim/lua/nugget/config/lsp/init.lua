@@ -28,7 +28,7 @@ capabilities.textDocument.completion.completionItem = {
 }
 
 -- Which LSP are going to use formatting?
-local servers_with_native_formatting = { "rust-analyzer", "solargraph", "null-ls" }
+local servers_with_native_formatting = { "rust_analyzer", "solargraph", "null-ls" }
 
 local function has_key(table, key)
   for _, value in ipairs(table) do
@@ -42,11 +42,13 @@ end
 
 local on_attach = function(client, bufnr)
   local enable_fmt = has_key(servers_with_native_formatting, client.name)
+  print(client.name .. " has formatting: " .. tostring(enable_fmt))
 
   client.server_capabilities.documentFormattingProvider = enable_fmt
   client.server_capabilities.documentRangeFormattingProvider  = enable_fmt
 
   local bufopts = { noremap = true, buffer = bufnr }
+
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
   vim.keymap.set("n", "gh", vim.lsp.buf.hover, bufopts)
@@ -59,7 +61,6 @@ local on_attach = function(client, bufnr)
 end
 
 function M.setup()
-  require("nvim-lsp-installer").setup()
   local lspconfig = require("lspconfig")
 
   lspconfig.solargraph.setup({
@@ -115,6 +116,24 @@ function M.setup()
           preloadFileSize = 10000,
         },
       },
+    },
+  })
+end
+
+function M.null_ls()
+  local null_ls = require("null-ls")
+
+  null_ls.setup({
+    debug = true,
+    on_attach = on_attach,
+    sources = {
+      null_ls.builtins.formatting.stylua,
+      null_ls.builtins.formatting.dprint.with({
+        disabled_filetypes = { "rust" },
+      }),
+
+      null_ls.builtins.diagnostics.credo,
+      null_ls.builtins.formatting.mix,
     },
   })
 end
