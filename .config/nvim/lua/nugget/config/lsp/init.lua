@@ -42,7 +42,6 @@ end
 
 local on_attach = function(client, bufnr)
   local enable_fmt = has_key(servers_with_native_formatting, client.name)
-  print(client.name .. " has formatting: " .. tostring(enable_fmt))
 
   client.server_capabilities.documentFormattingProvider = enable_fmt
   client.server_capabilities.documentRangeFormattingProvider  = enable_fmt
@@ -68,6 +67,12 @@ function M.setup()
     capabilities = capabilities,
     settings = { solargraph = { diagnostics = true } },
     init_options = { formatting = true },
+  })
+
+
+  lspconfig.tsserver.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
   })
 
   lspconfig.rust_analyzer.setup({
