@@ -6,6 +6,7 @@ return {
 		"JetBrains Mono Nerd Font Regular",
 	}),
 	font_size = 14.0,
+	window_background_opacity = 0.95,
 	use_dead_keys = false,
 	enable_tab_bar = false,
 	enable_kitty_keyboard = false,
