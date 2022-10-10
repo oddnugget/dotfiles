@@ -29,7 +29,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-
   use({ "ggandor/lightspeed.nvim" })
 
   use({
@@ -97,5 +96,6 @@ return require("packer").startup(function(use)
       require("nugget.config.lsp").null_ls()
     end,
   })
+  use("windwp/nvim-ts-autotag")
   use({ "slim-template/vim-slim" })
 end)

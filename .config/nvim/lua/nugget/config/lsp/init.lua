@@ -1,3 +1,4 @@
+local has_key = require("nugget.utils").has_key
 local M = {}
 
 local opts = { noremap = true, silent = true }
@@ -30,22 +31,16 @@ capabilities.textDocument.completion.completionItem = {
 -- Which LSP are going to use formatting?
 local servers_with_native_formatting = { "rust_analyzer", "solargraph", "null-ls" }
 
-local function has_key(table, key)
-  for _, value in ipairs(table) do
-    if value == key then
-      return true
-    end
-  end
-
-  return false
+local format_sync = function(bufnr)
+  vim.lsp.buf.format({
+    filter = function(client)
+      return has_key(servers_with_native_formatting, client.name)
+    end,
+    bufnr = bufnr,
+  })
 end
 
-local on_attach = function(client, bufnr)
-  local enable_fmt = has_key(servers_with_native_formatting, client.name)
-
-  client.server_capabilities.documentFormattingProvider = enable_fmt
-  client.server_capabilities.documentRangeFormattingProvider  = enable_fmt
-
+local on_attach = function(_, bufnr)
   local bufopts = { noremap = true, buffer = bufnr }
 
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
@@ -56,7 +51,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, bufopts)
   vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
   vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-  vim.keymap.set("n", "<leader>fm", vim.lsp.buf.formatting, bufopts)
+  vim.keymap.set("n", "<leader>fm", format_sync, bufopts)
 end
 
 function M.setup()
@@ -68,7 +63,6 @@ function M.setup()
     settings = { solargraph = { diagnostics = true } },
     init_options = { formatting = true },
   })
-
 
   lspconfig.tsserver.setup({
     on_attach = on_attach,
@@ -123,20 +117,33 @@ function M.setup()
       },
     },
   })
+
+  lspconfig.emmet_ls.setup({
+    -- on_attach = on_attach,
+    capabilities = capabilities,
+    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+    init_options = {
+      html = {
+        options = {
+          -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+          ["bem.enabled"] = true,
+        },
+      },
+    },
+  })
 end
 
 function M.null_ls()
   local null_ls = require("null-ls")
 
   null_ls.setup({
-    debug = true,
     on_attach = on_attach,
     sources = {
       null_ls.builtins.formatting.stylua,
       null_ls.builtins.formatting.dprint.with({
         disabled_filetypes = { "rust" },
       }),
-
+      null_ls.builtins.formatting.prettierd,
       null_ls.builtins.diagnostics.credo,
       null_ls.builtins.formatting.mix,
     },
