@@ -41,6 +41,8 @@ local format_sync = function(bufnr)
   })
 end
 
+local format_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 local on_attach = function(client, bufnr)
   local bufopts = { noremap = true, buffer = bufnr }
 
@@ -125,6 +127,7 @@ function M.setup()
           },
           maxPreload = 100000,
           preloadFileSize = 10000,
+          checkThirdParty = false,
         },
       },
     },
