@@ -19,4 +19,3 @@ nnoremap("<C-l>", "<C-w>l")
 -- QF List Jump
 nnoremap("<leader>qn", ":cnext<CR>")
 nnoremap("<leader>qp", ":cprev<CR>")
-

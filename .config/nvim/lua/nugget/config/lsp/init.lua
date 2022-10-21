@@ -71,12 +71,12 @@ end
 function M.setup()
   local lspconfig = require("lspconfig")
 
-  lspconfig.solargraph.setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-    settings = { solargraph = { diagnostics = true } },
-    init_options = { formatting = true },
-  })
+  -- lspconfig.solargraph.setup({
+  --   on_attach = on_attach,
+  --   capabilities = capabilities,
+  --   settings = { solargraph = { diagnostics = true } },
+  --   init_options = { formatting = true },
+  -- })
 
   lspconfig.tsserver.setup({
     on_attach = on_attach,
@@ -133,6 +133,11 @@ function M.setup()
     },
   })
 
+  lspconfig.elmls.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+
   lspconfig.emmet_ls.setup({
     -- on_attach = on_attach,
     capabilities = capabilities,
@@ -158,9 +163,12 @@ function M.null_ls()
       null_ls.builtins.formatting.dprint.with({
         disabled_filetypes = { "rust" },
       }),
+
+      null_ls.builtins.formatting.rubocop,
       null_ls.builtins.formatting.prettierd,
       null_ls.builtins.diagnostics.credo,
       null_ls.builtins.formatting.mix,
+      null_ls.builtins.formatting.elm_format,
     },
   })
 end

@@ -1,3 +1,5 @@
+local nnoremap = require("nugget.utils").bindkey.nnoremap
+
 local yank_hl_grp = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
   command = "silent! lua vim.highlight.on_yank()",
@@ -7,6 +9,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_exec(
   [[
 function! Copy()
+  echo "foobar"
   let c = join(v:event.regcontents,"\n")
   let c64 = system("base64", c)
   let s = "\e]52;c;" . trim(c64) . "\x07"
