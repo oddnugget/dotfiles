@@ -48,6 +48,13 @@ return require("packer").startup(function(use)
     end,
   })
 
+  use({
+    "lewis6991/gitsigns.nvim",
+    tag = "release",
+    config = function()
+      require("nugget.config.gitsigns")
+    end,
+  })
   use("tpope/vim-fugitive")
   use("tpope/vim-rails")
   use("tpope/vim-sleuth")

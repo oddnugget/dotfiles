@@ -163,6 +163,7 @@ function M.null_ls()
       null_ls.builtins.formatting.dprint.with({
         disabled_filetypes = { "rust" },
       }),
+      null_ls.builtins.code_actions.gitsigns,
 
       null_ls.builtins.formatting.rubocop,
       null_ls.builtins.formatting.prettierd,
