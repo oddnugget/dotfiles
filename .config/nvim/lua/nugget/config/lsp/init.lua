@@ -107,7 +107,7 @@ function M.setup()
   })
 
   lspconfig.elixirls.setup({
-    cmd = { "/home/odyrag/.local/bin/elixir/language_server.sh" },
+    cmd = { "/home/odyrag/.local/bin/elixir-ls/language_server.sh" },
     on_attach = on_attach,
     capabilities = capabilities,
   })

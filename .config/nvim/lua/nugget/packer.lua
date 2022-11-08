@@ -29,6 +29,14 @@ return require("packer").startup(function(use)
     end,
   })
 
+  use({
+    "echasnovski/mini.nvim",
+    branch = "stable",
+    config = function()
+      require("nugget.config.mini")
+    end,
+  })
+
   use({ "ggandor/lightspeed.nvim" })
 
   use({
