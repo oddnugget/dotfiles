@@ -139,9 +139,9 @@ function M.setup()
   })
 
   lspconfig.emmet_ls.setup({
-    -- on_attach = on_attach,
+    on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "handlebars" },
     init_options = {
       html = {
         options = {
@@ -164,7 +164,6 @@ function M.null_ls()
         disabled_filetypes = { "rust" },
       }),
       null_ls.builtins.code_actions.gitsigns,
-
       null_ls.builtins.formatting.rubocop,
       null_ls.builtins.formatting.prettierd,
       null_ls.builtins.diagnostics.credo,

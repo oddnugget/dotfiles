@@ -36,6 +36,8 @@ return require("packer").startup(function(use)
     requires = { "kyazdani42/nvim-web-devicons" },
   })
 
+  use({ "mustache/vim-mustache-handlebars" })
+
   use({ "kyazdani42/nvim-web-devicons" })
 
   use({
@@ -103,6 +105,8 @@ return require("packer").startup(function(use)
       require("nugget.config.lsp").null_ls()
     end,
   })
+
+  use("rafamadriz/friendly-snippets")
   use("windwp/nvim-ts-autotag")
   use({ "slim-template/vim-slim" })
 end)
