@@ -110,6 +110,12 @@ function M.setup()
     cmd = { "/home/odyrag/.local/bin/elixir-ls/language_server.sh" },
     on_attach = on_attach,
     capabilities = capabilities,
+    settings = {
+      elixirLS = {
+        dialyzerEnabled = true,
+        fetchDeps = false,
+      },
+    },
   })
 
   lspconfig.sumneko_lua.setup({
