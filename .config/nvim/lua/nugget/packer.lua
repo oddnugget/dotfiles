@@ -36,7 +36,12 @@ return require("packer").startup(function(use)
       require("nugget.config.mini")
     end,
   })
-
+  use({
+    "declancm/cinnamon.nvim",
+    config = function()
+      require("cinnamon").setup()
+    end,
+  })
   use({ "ggandor/lightspeed.nvim" })
 
   use({

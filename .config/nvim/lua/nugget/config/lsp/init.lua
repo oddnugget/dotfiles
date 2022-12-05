@@ -166,12 +166,12 @@ function M.null_ls()
     on_attach = on_attach,
     sources = {
       null_ls.builtins.formatting.stylua,
-      null_ls.builtins.formatting.dprint.with({
-        disabled_filetypes = { "rust" },
-      }),
+      -- null_ls.builtins.formatting.dprint.with({
+      --   disabled_filetypes = { "rust", "css", "scss" },
+      -- }),
       null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.formatting.rubocop,
-      null_ls.builtins.formatting.prettierd,
+      -- null_ls.builtins.formatting.prettierd,
       null_ls.builtins.diagnostics.credo,
       null_ls.builtins.formatting.mix,
       null_ls.builtins.formatting.elm_format,
