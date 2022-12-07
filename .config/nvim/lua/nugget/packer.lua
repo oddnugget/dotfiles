@@ -20,6 +20,7 @@ return require("packer").startup(function(use)
       run = "make -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
     })
   end
+  use({ "mg979/vim-visual-multi", branch = "master" })
 
   use({
     "catppuccin/nvim",
