@@ -71,12 +71,12 @@ end
 function M.setup()
   local lspconfig = require("lspconfig")
 
-  -- lspconfig.solargraph.setup({
-  --   on_attach = on_attach,
-  --   capabilities = capabilities,
-  --   settings = { solargraph = { diagnostics = true } },
-  --   init_options = { formatting = true },
-  -- })
+  lspconfig.solargraph.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = { solargraph = { diagnostics = true } },
+    init_options = { formatting = true },
+  })
 
   lspconfig.tsserver.setup({
     on_attach = on_attach,

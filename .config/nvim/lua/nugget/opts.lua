@@ -24,3 +24,8 @@ vim.g.termguicolors = true
 vim.opt.scrolloff = 4
 
 vim.opt.cursorline = true
+
+vim.opt.swapfile = false
+
+vim.opt.splitright = true
+vim.opt.splitbelow = true
