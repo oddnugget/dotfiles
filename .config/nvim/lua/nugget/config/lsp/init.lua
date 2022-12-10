@@ -1,5 +1,6 @@
 local has_key = require("nugget.utils").has_key
 local M = {}
+local pid = vim.fn.getpid()
 
 local opts = { noremap = true, silent = true }
 
@@ -33,6 +34,7 @@ capabilities.textDocument.completion.completionItem = {
 local servers_with_native_formatting = { "rust_analyzer", "null-ls", "solargraph" }
 
 local format_sync = function(bufnr)
+  print("format")
   vim.lsp.buf.format({
     filter = function(client)
       return has_key(servers_with_native_formatting, client.name)
@@ -81,7 +83,17 @@ function M.setup()
   lspconfig.tsserver.setup({
     on_attach = on_attach,
     capabilities = capabilities,
+    filetypes = {
+      "javascript",
+      "javascriptreact",
+      "javascript.jsx",
+      "typescript",
+      "typescriptreact",
+      "typescript.tsx",
+    },
   })
+
+  lspconfig.astro.setup({ on_attach = on_attach, capabilities = capabilities })
 
   lspconfig.rust_analyzer.setup({
     on_attach = on_attach,
@@ -144,10 +156,58 @@ function M.setup()
     capabilities = capabilities,
   })
 
+  lspconfig.tailwindcss.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+
+  local omnisharp_bin = "/usr/local/bin/omnisharp-roslyn/OmniSharp"
+
+  lspconfig.omnisharp.setup({
+    cmd = { omnisharp_bin, "--languageserver", "--hostPID", tostring(pid) },
+    on_attach = on_attach,
+    capabilities = capabilities,
+
+    -- Enables support for reading code style, naming convention and analyzer
+    -- settings from .editorconfig.
+    enable_editorconfig_support = true,
+
+    -- If true, MSBuild project system will only load projects for files that
+    -- were opened in the editor. This setting is useful for big C# codebases
+    -- and allows for faster initialization of code navigation features only
+    -- for projects that are relevant to code that is being edited. With this
+    -- setting enabled OmniSharp may load fewer projects and may thus display
+    -- incomplete reference lists for symbols.
+    enable_ms_build_load_projects_on_demand = false,
+
+    -- Enables support for roslyn analyzers, code fixes and rulesets.
+    enable_roslyn_analyzers = false,
+
+    -- Specifies whether 'using' directives should be grouped and sorted during
+    -- document formatting.
+    organize_imports_on_format = false,
+
+    -- Enables support for showing unimported types and unimported extension
+    -- methods in completion lists. When committed, the appropriate using
+    -- directive will be added at the top of the current file. This option can
+    -- have a negative impact on initial completion responsiveness,
+    -- particularly for the first few completion sessions after opening a
+    -- solution.
+    enable_import_completion = false,
+
+    -- Specifies whether to include preview versions of the .NET SDK when
+    -- determining which version to use for project loading.
+    sdk_include_prereleases = true,
+
+    -- Only run analyzers against open files when 'enableRoslynAnalyzers' is
+    -- true
+    analyze_open_documents_only = false,
+  })
+
   lspconfig.emmet_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "handlebars" },
+    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "handlebars", "astro" },
     init_options = {
       html = {
         options = {
@@ -171,7 +231,9 @@ function M.null_ls()
       -- }),
       null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.formatting.rubocop,
-      -- null_ls.builtins.formatting.prettierd,
+      null_ls.builtins.formatting.prettierd.with({
+        extra_filetypes = { "astro" },
+      }),
       null_ls.builtins.diagnostics.credo,
       null_ls.builtins.formatting.mix,
       null_ls.builtins.formatting.elm_format,
