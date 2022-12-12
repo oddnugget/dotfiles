@@ -21,3 +21,5 @@ nnoremap("<leader>qn", ":cnext<CR>")
 nnoremap("<leader>qp", ":cprev<CR>")
 
 nnoremap("<leader>uf", ":call CopyFilepath()<cr>")
+
+nnoremap(":G", ":aboveleft G")
