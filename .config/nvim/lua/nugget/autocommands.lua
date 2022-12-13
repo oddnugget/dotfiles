@@ -12,6 +12,7 @@ function! Copy()
   let s = "\e]52;c;" . trim(c64) . "\x07"
   call chansend(v:stderr, s)
 endfunction
+autocmd TextYankPost * call Copy()
 ]],
   false
 )
@@ -24,7 +25,6 @@ function! CopyFilepath()
   let s = "\e]52;c;" . trim(c64) . "\x07"
   call chansend(v:stderr, s)
 endfunction
-autocmd TextYankPost * call CopyFilepath()
 ]],
   false
 )

@@ -22,6 +22,7 @@ vim.g.mapleader = " "
 vim.g.termguicolors = true
 
 vim.opt.scrolloff = 4
+vim.opt.clipboard = "unnamedplus"
 
 vim.opt.cursorline = true
 

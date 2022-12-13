@@ -1,6 +1,7 @@
 local nnoremap = require("nugget.utils").bindkey.nnoremap
+local telescope = require("telescope")
 
-require("telescope").setup({
+telescope.setup({
   extensions = {
     fzf = {
       fuzzy = true, -- false will only do exact matching
@@ -12,10 +13,11 @@ require("telescope").setup({
   },
 })
 
-require("telescope").load_extension("fzf")
+telescope.load_extension("fzf")
+telescope.load_extension("live_grep_args")
 
 nnoremap("<Leader>ff", "<cmd> Telescope find_files<CR>")
-nnoremap("<Leader>fw", "<cmd> Telescope live_grep<CR>")
+nnoremap("<Leader>fw", ':lua require("telescope").extensions.live_grep_args.live_grep_args()<CR>')
 nnoremap("<Leader>fW", "<cmd> Telescope grep_string<CR>")
 nnoremap("<Leader>fb", "<cmd> Telescope buffers<CR>")
 nnoremap("<Leader>f<Leader>", "<cmd> Telescope resume<CR>")
