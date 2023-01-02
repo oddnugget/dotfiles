@@ -2,6 +2,9 @@ local nnoremap = require("nugget.utils").bindkey.nnoremap
 local telescope = require("telescope")
 
 telescope.setup({
+  defaults = {
+    layout_strategy = "center",
+  },
   extensions = {
     fzf = {
       fuzzy = true, -- false will only do exact matching
@@ -9,6 +12,9 @@ telescope.setup({
       override_file_sorter = true, -- override the file sorter
       case_mode = "smart_case", -- or "ignore_case" or "respect_case"
       -- the default case_mode is "smart_case"
+    },
+    live_grep_args = {
+      auto_quoting = false,
     },
   },
 })

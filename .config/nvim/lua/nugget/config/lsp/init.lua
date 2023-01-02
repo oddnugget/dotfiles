@@ -147,7 +147,12 @@ function M.setup()
   lspconfig.emmet_ls.setup({
     on_attach = on_attach,
     capabilities = capabilities,
-    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "handlebars" },
+    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "handlebars", "heex" },
+    cmd = {
+      "node",
+      "/opt/devbox/dependencies/node-19.3.0/lib/node_modules/emmet-ls/out/server.js",
+      "--stdio",
+    },
     init_options = {
       html = {
         options = {
@@ -155,6 +160,15 @@ function M.setup()
           ["bem.enabled"] = true,
         },
       },
+    },
+  })
+
+  lspconfig.tailwindcss.setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = {
+      "/opt/devbox/dependencies/node-19.3.0/lib/node_modules/@tailwindcss/language-server/bin/tailwindcss-language-server",
+      "--stdio",
     },
   })
 end
@@ -169,11 +183,14 @@ function M.null_ls()
       -- null_ls.builtins.formatting.dprint.with({
       --   disabled_filetypes = { "rust", "css", "scss" },
       -- }),
+
       null_ls.builtins.code_actions.gitsigns,
       null_ls.builtins.formatting.rubocop,
       -- null_ls.builtins.formatting.prettierd,
       null_ls.builtins.diagnostics.credo,
-      null_ls.builtins.formatting.mix,
+      null_ls.builtins.formatting.mix.with({
+        extra_filetypes = { "heex" },
+      }),
       null_ls.builtins.formatting.elm_format,
     },
   })
