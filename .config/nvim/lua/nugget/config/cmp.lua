@@ -57,10 +57,13 @@ local options = {
     }),
     ["<TAB>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
+        print("cmp")
         cmp.select_next_item()
       elseif require("luasnip").expand_or_jumpable() then
+        print("luasnip")
         vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true), "")
       else
+        print("fallback")
         fallback()
       end
     end, {
