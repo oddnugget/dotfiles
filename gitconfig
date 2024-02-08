@@ -1,0 +1,7 @@
+[core]
+	hooksPath = /devbox/support/default_githooks
+[user]
+	name = Odysseas Ragnarson
+	email = odysseas.ragnarson@auctionet.com
+[init]
+	defaultBranch = main
