@@ -22,6 +22,28 @@ return {
 					and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 			end
 
+			local tab = function(fallback)
+				if cmp.visible() then
+					cmp.select_next_item()
+				elseif luasnip.expand_or_locally_jumpable() then
+					luasnip.expand_or_jump()
+				elseif has_words_before() then
+					cmp.complete()
+				else
+					fallback()
+				end
+			end
+
+			local shift_tab = function(fallback)
+				if cmp.visible() then
+					cmp.select_prev_item()
+				elseif luasnip.jumpable(-1) then
+					luasnip.jump(-1)
+				else
+					fallback()
+				end
+			end
+
 			cmp.setup({
 				completion = {
 					completeopt = "menu,menuone,noinsert",
@@ -37,34 +59,10 @@ return {
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<C-e>"] = cmp.mapping.abort(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<C-n>"] = cmp.mapping.select_next_item(),
-					["<C-p>"] = cmp.mapping.select_prev_item(),
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
-						elseif has_words_before() then
-							cmp.complete()
-						else
-							fallback()
-						end
-					end, {
-						"i",
-						"s",
-					}),
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							fallback()
-						end
-					end, {
-						"i",
-						"s",
-					}),
+					["<C-n>"] = cmp.mapping(tab, { "i", "s", "c" }),
+					["<C-p>"] = cmp.mapping(shift_tab, { "i", "s", "c" }),
+					["<Tab>"] = { i = tab, s = tab },
+					["<S-Tab>"] = { i = shift_tab, s = shift_tab },
 				},
 				sources = cmp.config.sources({
 					{ name = "nvim_lsp_signature_help" },
@@ -103,36 +101,9 @@ return {
 
 			-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline({ "/", "?" }, {
-				mapping = {
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
-						elseif has_words_before() then
-							cmp.complete()
-						else
-							fallback()
-						end
-					end, {
-						"i",
-						"s",
-					}),
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							fallback()
-						end
-					end, {
-						"i",
-						"s",
-					}),
+				mapping = cmp.mapping.preset.cmdline(),
+				completion = {
+					completeopt = "menuone,noselect",
 				},
 				sources = {
 					{ name = "buffer" },
@@ -141,42 +112,18 @@ return {
 
 			-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 			cmp.setup.cmdline(":", {
-				mapping = {
-					["<C-Space>"] = cmp.mapping.complete(),
-					["<C-e>"] = cmp.mapping.abort(),
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_next_item()
-						elseif luasnip.expand_or_jumpable() then
-							luasnip.expand_or_jump()
-						elseif has_words_before() then
-							cmp.complete()
-						else
-							fallback()
-						end
-					end, {
-						"i",
-						"s",
-					}),
-					["<S-Tab>"] = cmp.mapping(function(fallback)
-						if cmp.visible() then
-							cmp.select_prev_item()
-						elseif luasnip.jumpable(-1) then
-							luasnip.jump(-1)
-						else
-							fallback()
-						end
-					end, {
-						"i",
-						"s",
-					}),
+				mapping = cmp.mapping.preset.cmdline(),
+				completion = {
+					completeopt = "menuone,noselect",
 				},
-				sources = cmp.config.sources({
-					{ name = "path" },
-				}, {
-					{ name = "cmdline" },
-				}),
+				sources = {
+					{
+						name = "cmdline",
+						option = {
+							ignore_cmds = { "Man", "!" },
+						},
+					},
+				},
 			})
 		end,
 	},

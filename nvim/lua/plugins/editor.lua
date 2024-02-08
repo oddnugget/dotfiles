@@ -29,13 +29,13 @@ return {
 		opts = {},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = true,
 		keys = {
 			{
 				"<leader>e",
 				function()
 					local oil = require("oil")
-					vim.cmd([[vertical leftabove split | vertical resize 60]])
-					oil.open(oil.get_current_dir())
+					oil.open_float(oil.get_current_dir())
 				end,
 				desc = "oil: open(edit)",
 			},
@@ -59,9 +59,6 @@ return {
 				-- This will not install any breaking changes.
 				-- For major updates, this must be adjusted manually.
 				version = "^1.0.0",
-			},
-			{
-				"nvim-telescope/telescope-file-browser.nvim",
 			},
 		},
 		keys = {
@@ -98,7 +95,7 @@ return {
 			local telescope = require("telescope")
 
 			local function navigate_to_directory(path)
-				local files = require("mini.files")
+				local files = require("oil")
 
 				files.open(path)
 			end
