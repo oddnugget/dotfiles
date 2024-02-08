@@ -24,13 +24,21 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.files",
-		version = "*",
-		config = function()
-			require("mini.files").setup()
-		end,
+		"stevearc/oil.nvim",
+		cmd = { "Oil" },
+		opts = {},
+		-- Optional dependencies
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 		keys = {
-			{ "<leader>e", "<cmd>lua MiniFiles.open(vim.api.nvim_buf_get_name(0), false)<cr>", desc = "Mini Files" },
+			{
+				"<leader>e",
+				function()
+					local oil = require("oil")
+					vim.cmd([[vertical leftabove split | vertical resize 60]])
+					oil.open(oil.get_current_dir())
+				end,
+				desc = "oil: open(edit)",
+			},
 		},
 	},
 	{
@@ -100,7 +108,7 @@ return {
 					find_files = {
 						mappings = {
 							n = {
-								["<leader>o"] = function(prompt_bufnr)
+								["<leader>o"] = function(_prompt_bufnr)
 									local entry = require("telescope.actions.state").get_selected_entry()
 									navigate_to_directory(entry.path)
 									-- require("telescope.actions").close(prompt_bufnr)
@@ -126,7 +134,6 @@ return {
 				},
 			})
 
-			telescope.load_extension("file_browser")
 			telescope.load_extension("live_grep_args")
 		end,
 	},
