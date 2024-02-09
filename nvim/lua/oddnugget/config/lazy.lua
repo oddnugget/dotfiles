@@ -14,7 +14,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Configure lazy.nvim
-require("lazy").setup("plugins", {
+require("lazy").setup("oddnugget.plugins", {
 	defaults = { lazy = true, version = nil },
 	install = { missing = true, colorscheme = { "kanagawa" } },
 	checker = { enabled = true },

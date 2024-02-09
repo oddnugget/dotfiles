@@ -1,10 +1,10 @@
-require("config.options")
-require("config.lazy")
+require("oddnugget.config.options")
+require("oddnugget.config.lazy")
 
 vim.api.nvim_create_autocmd("User", {
   pattern = "VeryLazy",
   callback = function()
-    require("config.autocmds")
-    require("config.keymaps")
+    require("oddnugget.config.autocmds")
+    require("oddnugget.config.keymaps")
   end,
 })
