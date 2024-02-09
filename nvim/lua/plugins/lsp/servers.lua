@@ -53,6 +53,7 @@ end
 
 function M.setup(_)
 	lsp_attach(function(client, buffer)
+		print("Attaching to " .. client.name)
 		require("plugins.lsp.format").on_attach(client, buffer)
 		require("plugins.lsp.keymaps").on_attach(client, buffer)
 	end)
@@ -69,6 +70,11 @@ function M.setup(_)
 			local opts = servers[server] or {}
 			opts.capabilities = lsp_capabilities()
 			rt.setup({ server = opts })
+		end,
+		["lexical"] = function(server)
+			local opts = servers[server] or {}
+			opts.capabilities = lsp_capabilities()
+			require("lspconfig")[server].setup(opts)
 		end,
 	})
 end

@@ -14,6 +14,19 @@ return {
 			"hrsh7th/cmp-nvim-lsp-signature-help",
 		},
 		config = function(plugin)
+			local configs = require("lspconfig.configs")
+
+			if not configs.lexical then
+				configs.lexical = {
+					default_config = {
+						cmd = { "/projects/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
+						filetypes = { "elixir", "eelixir", "heex", "surface" },
+						root_dir = require("lspconfig").util.root_pattern("mix.exs", ".git"),
+						settings = {},
+					},
+				}
+			end
+
 			require("plugins.lsp.servers").setup(plugin)
 		end,
 	},
@@ -42,44 +55,14 @@ return {
 		config = function()
 			require("conform").setup({
 				log_level = vim.log.levels.DEBUG,
-				-- Conform will notify you when a formatter errors
 				notify_on_error = true,
 				formatters_by_ft = {
 					lua = { "stylua" },
 					-- Use a sub-list to run only the first available formatter
 					javascript = { { "prettierd", "prettier" } },
 					scss = { { "prettierd", "prettier" } },
-					elixir = { "mix" },
-					heex = { "mix" },
 				},
 			})
 		end,
-	},
-	{
-		"elixir-tools/elixir-tools.nvim",
-		version = "*",
-		event = { "BufReadPre", "BufNewFile" },
-		config = function()
-			local elixir = require("elixir")
-			local elixirls = require("elixir.elixirls")
-
-			elixir.setup({
-				nextls = { enable = false },
-				credo = { enable = false },
-				elixirls = {
-					enable = true,
-					settings = elixirls.settings({
-						dialyzerEnabled = true,
-						-- enableTestLenses = true,
-					}),
-					on_attach = function(client, bufnr)
-						require("plugins.lsp.keymaps").on_attach(client, bufnr)
-					end,
-				},
-			})
-		end,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
 	},
 }
