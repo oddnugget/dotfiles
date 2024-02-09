@@ -2,17 +2,12 @@ local servers = require("oddnugget.servers")
 local lsp = require("lspconfig")
 
 local function setup_keymaps()
-	vim.keymap.set("n","gd", "Telescope lsp_definitions", { desc = "Goto Definition" })
-	vim.keymap.set("n","gr", "Telescope lsp_references", { desc = "References" })
-	vim.keymap.set("n","gD", "Telescope lsp_declarations", { desc = "Goto Declaration" })
-	vim.keymap.set("n","gI", "Telescope lsp_implementations", { desc = "Goto Implementation" })
-	vim.keymap.set("n","gb", "Telescope lsp_type_definitions", { desc = "Goto Type Definition" })
+	vim.keymap.set("n","gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
+	vim.keymap.set("n","gr", vim.lsp.buf.references, { desc = "References" })
 	vim.keymap.set("n","gh", vim.lsp.buf.hover, { desc = "Hover" })
 	vim.keymap.set("n","gK", vim.lsp.buf.signature_help, { desc = "Signature Help", has = "signatureHelp" })
 	vim.keymap.set("n","<leader>de", vim.diagnostic.open_float, { desc = "Open diagnostic float" })
 	vim.keymap.set("n","<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action", mode = { "n", "v" }, has = "codeAction" })
-	vim.keymap.set("n","<leader>cs", require("telescope.builtin").lsp_document_symbols, { desc = "Document Symbols" })
-	vim.keymap.set("n","<leader>cS", require("telescope.builtin").lsp_dynamic_workspace_symbols, { desc = "Workspace Symbols" })
 end
 
 
