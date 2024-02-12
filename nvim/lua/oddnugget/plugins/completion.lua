@@ -10,11 +10,13 @@ return {
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 			"hrsh7th/cmp-cmdline",
+			"windwp/nvim-autopairs",
 		},
 		config = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 			local icons = require("oddnugget.config.icons")
+			local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 			local has_words_before = function()
 				local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -98,6 +100,8 @@ return {
 					end,
 				},
 			})
+
+			cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 		end,
 	},
 	{

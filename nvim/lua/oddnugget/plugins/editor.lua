@@ -26,7 +26,15 @@ return {
 	{
 		"stevearc/oil.nvim",
 		cmd = { "Oil" },
-		opts = {},
+		opts = {
+			keymaps = {
+				["<CR>"] = function()
+					local oil = require("oil")
+
+					oil.select({ vertical = true })
+				end,
+			},
+		},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = true,
@@ -35,7 +43,9 @@ return {
 				"<leader>e",
 				function()
 					local oil = require("oil")
-					oil.open_float(oil.get_current_dir())
+					vim.g.on_close_oil_return_buffer = vim.api.nvim_get_current_buf()
+					vim.cmd([[vertical leftabove split | vertical resize 60]])
+					oil.open(oil.get_current_dir())
 				end,
 				desc = "oil: open(edit)",
 			},
@@ -96,10 +106,9 @@ return {
 					find_files = {
 						mappings = {
 							n = {
-								["<leader>o"] = function(_prompt_bufnr)
+								["<leader>o"] = function(_)
 									local entry = require("telescope.actions.state").get_selected_entry()
 									navigate_to_directory(entry.path)
-									-- require("telescope.actions").close(prompt_bufnr)
 								end,
 							},
 						},

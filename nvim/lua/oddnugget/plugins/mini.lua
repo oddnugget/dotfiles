@@ -1,13 +1,5 @@
 return {
 	{
-		"echasnovski/mini.jump",
-		opts = {},
-		keys = { "f", "F", "t", "T" },
-		config = function(_, opts)
-			require("mini.jump").setup(opts)
-		end,
-	},
-	{
 		"echasnovski/mini.ai",
 		keys = {
 			{ "a", mode = { "x", "o" } },
@@ -41,20 +33,4 @@ return {
 			ai.setup(opts)
 		end,
 	},
-	{
-		"echasnovski/mini.pairs",
-		event = "VeryLazy",
-		config = function(_, opts)
-			require("mini.pairs").setup(opts)
-		end,
-	},
-	-- {
-	-- 	"echasnovski/mini.bufremove",
-	-- 	version = "*",
-	-- 	config = function()
-	-- 		require("mini.bufremove").setup()
-	-- 		vim.api.nvim_create_user_command("BD", "lua MiniBufremove.delete()", {})
-	-- 	end,
-	-- 	event = "VeryLazy",
-	-- },
 }
