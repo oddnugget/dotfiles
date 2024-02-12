@@ -206,4 +206,20 @@ return {
 			})
 		end,
 	},
+	{
+		"ggandor/leap.nvim",
+		event = "VeryLazy",
+		config = function()
+			vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)")
+			vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
+		end,
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup()
+		end,
+	},
 }

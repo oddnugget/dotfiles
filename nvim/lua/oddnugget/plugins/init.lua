@@ -6,7 +6,6 @@ return {
 	{ "tpope/vim-rails", ft = { "ruby", "slim" } },
 	{ "tpope/vim-projectionist", lazy = false },
 	{ "tpope/vim-dispatch", lazy = false },
-	{ "tpope/vim-surround", lazy = false },
 	{
 		"tpope/vim-commentary",
 		lazy = false,
