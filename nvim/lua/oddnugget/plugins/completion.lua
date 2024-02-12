@@ -67,8 +67,9 @@ return {
 					["<S-Tab>"] = { i = shift_tab, s = shift_tab },
 				},
 				sources = cmp.config.sources({
-					{ name = "nvim_lsp_signature_help" },
-					{ name = "nvim_lsp" },
+					{
+						name = "nvim_lsp",
+					},
 					{ name = "luasnip" },
 					{ name = "buffer" },
 					{ name = "path" },
@@ -112,9 +113,12 @@ return {
 				require("luasnip.loaders.from_vscode").lazy_load()
 			end,
 		},
-		config = {
+		opts = {
 			history = true,
 			delete_check_events = "TextChanged",
 		},
+		config = function(_, opts)
+			require("luasnip").setup(opts)
+		end,
 	},
 }

@@ -100,19 +100,23 @@ return {
 	},
 	{
 		"stevearc/conform.nvim",
-		opts = {},
-		event = "BufReadPre",
-		config = function()
-			require("conform").setup({
-				log_level = vim.log.levels.DEBUG,
-				notify_on_error = true,
-				formatters_by_ft = {
-					lua = { "stylua" },
-					-- Use a sub-list to run only the first available formatter
-					javascript = { { "prettierd", "prettier" } },
-					scss = { { "prettierd", "prettier" } },
-				},
-			})
+		event = { "BufReadPre", "BufNewFile", "BufWritePre" },
+		opts = {
+			log_level = vim.log.levels.DEBUG,
+			notify_on_error = true,
+			formatters_by_ft = {
+				["*"] = { "trim_whitespace", "trim_newlines" },
+				lua = { "stylua" },
+				-- Use a sub-list to run only the first available formatter
+				javascript = { "prettier" },
+				scss = { "prettier" },
+				json = { "prettier", "fixjson" },
+				jsonc = { "prettier", "fixjson" },
+				html = { "prettier" },
+			},
+		},
+		config = function(_, opts)
+			require("conform").setup(opts)
 		end,
 	},
 }
