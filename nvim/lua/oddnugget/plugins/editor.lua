@@ -27,11 +27,14 @@ return {
 		"stevearc/oil.nvim",
 		cmd = { "Oil" },
 		opts = {
-			keymaps = {
-				["<CR>"] = function()
-					local oil = require("oil")
-
-					oil.select({ vertical = true })
+			float = {
+				border = "rounded",
+				max_width = 60,
+				override = function(config)
+					config.row = 0
+					config.col = 0
+					config.height = vim.api.nvim_win_get_height(0) - 1
+					return config
 				end,
 			},
 		},
@@ -43,9 +46,7 @@ return {
 				"<leader>e",
 				function()
 					local oil = require("oil")
-					vim.g.on_close_oil_return_buffer = vim.api.nvim_get_current_buf()
-					vim.cmd([[vertical leftabove split | vertical resize 60]])
-					oil.open(oil.get_current_dir())
+					oil.toggle_float()
 				end,
 				desc = "oil: open(edit)",
 			},
