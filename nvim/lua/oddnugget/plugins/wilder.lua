@@ -22,7 +22,7 @@ return {
 						fuzzy = 1,
 						set_pcre2_pattern = 1,
 					}),
-					wilder.python_search_pipeline({
+					wilder.search_pipeline({
 						pattern = "fuzzy",
 					})
 				),
