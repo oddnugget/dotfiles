@@ -110,6 +110,7 @@ return {
 				-- Use a sub-list to run only the first available formatter
 				javascript = { "prettier" },
 				scss = { "prettier" },
+				css = { "prettier" },
 				json = { "prettier", "fixjson" },
 				jsonc = { "prettier", "fixjson" },
 				html = { "prettier" },

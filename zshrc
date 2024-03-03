@@ -110,6 +110,9 @@ export EDITOR="$VISUAL"
 
 
 PATH=$PATH:$HOME/.local/bin/
+PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH
+export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@15/lib/pkgconfig"
+
 source ~/.zsh/aliases
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"

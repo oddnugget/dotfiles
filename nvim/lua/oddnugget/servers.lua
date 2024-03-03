@@ -96,11 +96,10 @@ M.list = {
 			provideFormatter = false,
 		},
 	},
-	lexical = {
-		settings = {
-			dialyzerEnabled = true,
-		},
-	},
+	-- lexical = {
+	-- 	settings = {
+	-- 		dialyzerEnabled = true,
+	-- 	},
 }
 
 M.unofficial = {
