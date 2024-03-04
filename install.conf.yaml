@@ -2,8 +2,15 @@
 
 - link:
     ~/.gitconfig: gitconfig
-    ~/.tmux.conf: tmux.conf
+    ~/.tmux.conf: 
+      path: .tmux.conf
+      force: true
+      
     ~/.zshrc: zshrc
+    ~/.wezterm.lua: 
+      path: .wezterm.lua
+      create: true
+    
     ~/.config/nvim: 
       path: nvim
       force: true

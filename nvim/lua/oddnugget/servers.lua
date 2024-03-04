@@ -96,16 +96,19 @@ M.list = {
 			provideFormatter = false,
 		},
 	},
-	-- lexical = {
-	-- 	settings = {
-	-- 		dialyzerEnabled = true,
-	-- 	},
+	lexical = {
+		settings = {
+			dialyzerEnabled = true,
+		},
+	},
 }
 
 M.unofficial = {
 	lexical = function()
+		local path = "/Users/odyrag/dev/projects/lexical/_build/dev/package/lexical/bin/start_lexical.sh"
 		local configs = require("lspconfig.configs")
-		local exists = utils.file_exists("/projects/lexical/_build/dev/package/lexical/bin/start_lexical.sh")
+		local exists = utils.file_exists(path)
+
 		if not exists then
 			vim.notify("Lexical server not found, skipping setup")
 			return
@@ -114,7 +117,7 @@ M.unofficial = {
 		if not configs.lexical then
 			configs.lexical = {
 				default_config = {
-					cmd = { "/projects/lexical/_build/dev/package/lexical/bin/start_lexical.sh" },
+					cmd = { path },
 					filetypes = { "elixir", "eelixir", "heex", "surface" },
 					root_dir = require("lspconfig").util.root_pattern("mix.exs", ".git"),
 					settings = {},

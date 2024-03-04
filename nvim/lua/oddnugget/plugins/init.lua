@@ -1,7 +1,19 @@
 return {
 	"nvim-lua/plenary.nvim",
 	"MunifTanjim/nui.nvim",
-	{ "christoomey/vim-tmux-navigator", lazy = false },
+	-- { "christoomey/vim-tmux-navigator", lazy = false },
+	{
+		lazy = false,
+		"numToStr/Navigator.nvim",
+		config = function()
+			require("Navigator").setup()
+			local opts = { noremap = true, silent = true }
+			vim.keymap.set({ "n", "t" }, "<C-h>", "<CMD>NavigatorLeft<CR>", opts)
+			vim.keymap.set({ "n", "t" }, "<C-l>", "<CMD>NavigatorRight<CR>", opts)
+			vim.keymap.set({ "n", "t" }, "<C-j>", "<CMD>NavigatorDown<CR>", opts)
+			vim.keymap.set({ "n", "t" }, "<C-k>", "<CMD>NavigatorUp<CR>", opts)
+		end,
+	},
 	{ "tpope/vim-fugitive", lazy = false },
 	{ "tpope/vim-rails", ft = { "ruby", "slim" } },
 	{ "tpope/vim-projectionist", lazy = false },
