@@ -7,7 +7,8 @@ return {
 		"numToStr/Navigator.nvim",
 		config = function()
 			require("Navigator").setup()
-			local opts = { noremap = true, silent = true }
+			local opts = { noremap = true }
+
 			vim.keymap.set({ "n", "t" }, "<C-h>", "<CMD>NavigatorLeft<CR>", opts)
 			vim.keymap.set({ "n", "t" }, "<C-l>", "<CMD>NavigatorRight<CR>", opts)
 			vim.keymap.set({ "n", "t" }, "<C-j>", "<CMD>NavigatorDown<CR>", opts)

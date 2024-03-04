@@ -1,4 +1,6 @@
 # shellcheck shell=bash
+#
+echo "Installing wezterm shell integration"
 
 # This file hooks up shell integration for wezterm.
 # It is suitable for zsh and bash.
@@ -554,4 +556,5 @@ if [[ -z "${WEZTERM_SHELL_SKIP_CWD}" ]] ; then
   fi
 fi
 
+echo "Finished installing wezterm shell integration"
 true
