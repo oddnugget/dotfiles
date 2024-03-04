@@ -96,6 +96,21 @@ M.list = {
 			provideFormatter = false,
 		},
 	},
+	solargraph = {
+		cmd = { "./tmp/devbox/binwrappers/solargraph", "stdio" },
+		root_dir = require("lspconfig").util.root_pattern("Gemfile", ".git"),
+		settings = {
+			solargraph = {
+				autoformat = false,
+				completion = true,
+				diagnostic = true,
+				folding = true,
+				references = true,
+				rename = true,
+				symbols = true,
+			},
+		},
+	},
 	lexical = {
 		settings = {
 			dialyzerEnabled = true,

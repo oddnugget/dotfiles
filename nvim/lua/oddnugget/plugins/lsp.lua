@@ -114,6 +114,7 @@ return {
 				json = { "prettier", "fixjson" },
 				jsonc = { "prettier", "fixjson" },
 				html = { "prettier" },
+				ruby = { "rubocop" },
 			},
 		},
 		config = function(_, opts)

@@ -7,6 +7,11 @@ return {
 			require("kanagawa").setup({
 				theme = "wave",
 				transparent = "true",
+				overrides = function(colors)
+					return {
+						["@module.elixir"] = { fg = colors.palette.waveAqua2 },
+					}
+				end,
 				colors = {
 					theme = {
 						all = {
@@ -21,3 +26,5 @@ return {
 		end,
 	},
 }
+
+-- "@module.elixir"

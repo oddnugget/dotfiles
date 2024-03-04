@@ -223,4 +223,28 @@ return {
 			require("nvim-surround").setup()
 		end,
 	},
+	{
+		"jpalardy/vim-slime",
+		config = function()
+			vim.g.slime_target = "tmux"
+		end,
+		event = "BufReadPost",
+	},
+	{
+		"nvim-pack/nvim-spectre",
+		cmd = "Spectre",
+		config = true,
+		opts = {
+			open_cmd = "vertical aboveleft 80new",
+		},
+		keys = {
+			{
+				"<leader>rw",
+				function()
+					-- open left side as a 60 widht panel
+					require("spectre").toggle()
+				end,
+			},
+		},
+	},
 }
