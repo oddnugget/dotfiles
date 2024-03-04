@@ -7,7 +7,9 @@ local function isViProcess(pane)
 end
 
 local function conditionalActivatePane(window, pane, pane_direction, vim_direction)
+	wezterm.log_info(pane:get_user_vars())
 	if isViProcess(pane) then
+		wezterm.log_info("is vi process")
 		window:perform_action(
 			-- This should match the keybinds you set in Neovim.
 			act.SendKey({ key = vim_direction, mods = "CTRL" }),
@@ -38,13 +40,12 @@ local config = {
 		window_background_opacity = 0.95,
 	}),
 	font_size = 16.0,
-	hide_tab_bar_if_only_one_tab = true,
+	hide_tab_bar_if_only_one_tab = false,
 	tab_bar_at_bottom = true,
 	use_dead_keys = false,
 	enable_tab_bar = true,
 	use_fancy_tab_bar = true,
 	window_decorations = "RESIZE",
-	-- enable_kitty_keyboard = true,
 	audible_bell = "Disabled",
 	send_composed_key_when_left_alt_is_pressed = false,
 	force_reverse_video_cursor = true,
@@ -55,11 +56,12 @@ local config = {
 	},
 }
 
+local padding = 10
 config.window_padding = {
-	left = 4,
-	right = 4,
+	left = padding,
+	right = padding,
 	bottom = 0,
-	top = 2,
+	top = padding,
 }
 
 config.window_frame = {
