@@ -1,6 +1,5 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
-local color = wezterm.color
 
 local function isViProcess(pane)
 	-- get_foreground_process_name On Linux, macOS and Windows,

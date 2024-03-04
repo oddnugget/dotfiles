@@ -110,7 +110,6 @@ export EDITOR="$VISUAL"
 
 
 PATH=$PATH:$HOME/.local/bin/
-PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH
 export PKG_CONFIG_PATH="/opt/homebrew/opt/postgresql@15/lib/pkgconfig"
 
 source ~/.zsh/aliases
@@ -127,5 +126,9 @@ eval "$(starship init zsh)"
 if [[ -n "${DEVBOX}" ]]; then
   eval "$(shadowenv init zsh)"
   source /home/odyrag/.config/broot/launcher/bash/br
+else
+  PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
+  # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+  export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
