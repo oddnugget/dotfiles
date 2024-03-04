@@ -2,6 +2,7 @@ local wezterm = require("wezterm")
 local act = wezterm.action
 
 local function isViProcess(pane)
+	print(os.getenv("WEZTERM_PROG"))
 	-- get_foreground_process_name On Linux, macOS and Windows,
 	-- the process can be queried to determine this path. Other operating systems
 	-- (notably, FreeBSD and other unix systems) are not currently supported

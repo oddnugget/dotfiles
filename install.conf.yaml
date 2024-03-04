@@ -7,6 +7,9 @@
       force: true
       
     ~/.zshrc: zshrc
+    ~/.zsh/aliases: .zsh/aliases
+    ~/.zsh/wezterm-shell-integration: .zsh/wezterm-shell-integration
+
     ~/.wezterm.lua: 
       path: .wezterm.lua
       create: true
