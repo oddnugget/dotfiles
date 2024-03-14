@@ -36,6 +36,9 @@ return {
 					config.height = vim.api.nvim_win_get_height(0) - 1
 					return config
 				end,
+				win_options = {
+					conceallevel = 1,
+				},
 			},
 		},
 		-- Optional dependencies
@@ -62,6 +65,7 @@ return {
 				-- For major updates, this must be adjusted manually.
 				version = "^1.0.0",
 			},
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 		keys = {
 			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
@@ -116,6 +120,15 @@ return {
 					},
 				},
 				extensions = {
+					extensions = {
+						fzf = {
+							fuzzy = true, -- false will only do exact matching
+							override_generic_sorter = true, -- override the generic sorter
+							override_file_sorter = true, -- override the file sorter
+							case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+							-- the default case_mode is "smart_case"
+						},
+					},
 					live_grep_args = {
 						-- define mappings, e.g.
 						mappings = { -- extend mappings
@@ -124,6 +137,7 @@ return {
 								["<S-C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
 							},
 						},
+
 						-- ... also accepts theme settings, for example:
 						-- theme = "dropdown", -- use dropdown theme
 						-- theme = { }, -- use own theme spec
@@ -132,6 +146,7 @@ return {
 				},
 			})
 
+			telescope.load_extension("fzf")
 			telescope.load_extension("live_grep_args")
 		end,
 	},
@@ -230,6 +245,7 @@ return {
 		end,
 		event = "BufReadPost",
 	},
+	{ "kassio/neoterm", event = "VeryLazy" },
 	{
 		"nvim-pack/nvim-spectre",
 		cmd = "Spectre",
