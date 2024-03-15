@@ -1,11 +1,14 @@
 local M = {}
 
-M.file_exists = function (path)
-  local file = io.open(path, "rb")
+M.file_exists = function(path)
+	local file = io.open(path, "rb")
 
-  if file then file:close() end
+	if file then
+		file:close()
+	end
 
-  return file ~= nil
+	return file ~= nil
 end
+
 
 return M

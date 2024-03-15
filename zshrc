@@ -132,4 +132,5 @@ else
   export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
+source $HOME/.zsh/user-env
 source $HOME/.zsh/wezterm-shell-integration

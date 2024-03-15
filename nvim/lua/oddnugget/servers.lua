@@ -120,7 +120,7 @@ M.list = {
 
 M.unofficial = {
 	lexical = function()
-		local path = "/Users/odyrag/dev/projects/lexical/_build/dev/package/lexical/bin/start_lexical.sh"
+		local path = os.getenv("NVIM_LEXICAL_PATH")
 		local configs = require("lspconfig.configs")
 		local exists = utils.file_exists(path)
 

@@ -1,4 +1,7 @@
-- clean: ['~']
+- clean:
+    ~/:
+      force: true
+
 
 - link:
     ~/.gitconfig: gitconfig
@@ -6,7 +9,9 @@
       path: .tmux.conf
       force: true
       
-    ~/.zshrc: zshrc
+    ~/.zshrc: 
+      path: zshrc
+      force: true
     ~/.zsh/aliases: .zsh/aliases
     ~/.zsh/wezterm-shell-integration: .zsh/wezterm-shell-integration
 
