@@ -13,23 +13,35 @@
       path: zshrc
       force: true
     ~/.zsh/aliases: .zsh/aliases
-    ~/.zsh/wezterm-shell-integration: .zsh/wezterm-shell-integration
+
+    ~/.zsh/wezterm-shell-integration: 
+      path: .zsh/wezterm-shell-integration
+      if: "[ `uname` = Darwin ]"
 
     ~/.wezterm.lua: 
       path: .wezterm.lua
+      if: "[ `uname` = Darwin ]"
       create: true
+
     
     ~/.config/nvim: 
       path: nvim
       force: true
     ~/.config/kitty:
       path: kitty
+      if: 
       force: true
 
     ~/.config/ranger: ranger
-    ~/.config/yabai: yabai
-    ~/.config/skhd: skhd
-    ~/.config/raycast: raycast
+    ~/.config/yabai: 
+      path: yabai
+      if: "[ `uname` = Darwin ]"
+    ~/.config/skhd: 
+      path: skhd
+      if: "[ `uname` = Darwin ]"
+    ~/.config/raycast:
+      path: raycast
+      if: "[ `uname` = Darwin ]"
 
 - shell:
   - [git submodule update --init --recursive, Installing Submodules]
