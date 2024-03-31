@@ -2,7 +2,17 @@ return {
 	"nvim-lua/plenary.nvim",
 	"MunifTanjim/nui.nvim",
 	{ "tpope/vim-fugitive", lazy = false },
-	{ "knubie/vim-kitty-navigator", event = "BufReadPost" },
+	{
+		"mrjones2014/smart-splits.nvim",
+		build = "./kitty/install-kittens.bash",
+		lazy = false,
+		config = function()
+			vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
+			vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
+			vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
+			vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
+		end,
+	},
 	{
 		"tpope/vim-projectionist",
 		lazy = false,
