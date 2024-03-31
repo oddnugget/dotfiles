@@ -1,0 +1,30 @@
+yabai -m config layout bsp
+
+
+yabai -m config                                 \
+    mouse_follows_focus          off            \
+    focus_follows_mouse          off            \
+    window_opacity on                           \
+    active_window_opacity 1.0                   \
+    normal_window_opacity 0.95                  \
+    split_ration 50                             \
+    window_animation_duration 0.0125            \
+    window_animation_frame_rate 60              \
+    window_origin_display cursor                \
+    insert_feedback_color 0xffd75f5f
+
+
+disabled_apps=(
+    "^System Preferences$"
+    "^System Settings$"
+    "^1Password$"
+    "^Steam$"
+    "^Slay the Spire$"
+    "^Desktop Manager$"
+    "^Finder$"
+) 
+
+for app in "${disabled_apps[@]}"; do
+    yabai -m rule --add app="$app" manage=off
+done
+

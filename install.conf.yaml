@@ -22,6 +22,14 @@
     ~/.config/nvim: 
       path: nvim
       force: true
+    ~/.config/kitty:
+      path: kitty
+      force: true
+
+    ~/.config/ranger: ranger
+    ~/.config/yabai: yabai
+    ~/.config/skhd: skhd
+    ~/.config/raycast: raycast
 
 - shell:
   - [git submodule update --init --recursive, Installing Submodules]

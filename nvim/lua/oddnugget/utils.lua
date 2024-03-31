@@ -10,5 +10,4 @@ M.file_exists = function(path)
 	return file ~= nil
 end
 
-
 return M

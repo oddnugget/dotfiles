@@ -1,5 +1,6 @@
 local indent = 2
 
+
 vim.o.formatoptions = "jcroqlnt"
 vim.o.shortmess = "filnxtToOFWIcC"
 vim.opt.breakindent = true

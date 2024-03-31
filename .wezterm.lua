@@ -1,9 +1,7 @@
 local wezterm = require("wezterm")
 
 ------------------------ smart-splits.nvim --------------------------------------------
--- if you are *NOT* lazy-loading smart-splits.nvim (recommended)
 local function is_vim(pane)
-	-- this is set by the plugin, and unset on ExitPre in Neovim
 	return pane:get_user_vars().IS_NVIM == "true"
 end
 
@@ -14,15 +12,11 @@ local direction_keys = {
 	l = "Right",
 }
 
-local log = wezterm.log_info
-
 local function split_nav(resize_or_move, key)
 	return {
 		key = key,
 		mods = resize_or_move == "resize" and "META" or "CTRL",
 		action = wezterm.action_callback(function(win, pane)
-			log(pane:get_user_vars())
-
 			if is_vim(pane) then
 				-- pass the keys through to vim/nvim
 
@@ -47,7 +41,7 @@ local config = {
 		window_background_opacity = 0.95,
 	}),
 	-- debug_key_events = true,
-	font_size = 16.0,
+	font_size = 17.0,
 	hide_tab_bar_if_only_one_tab = false,
 	tab_bar_at_bottom = true,
 	use_dead_keys = false,
@@ -61,6 +55,9 @@ local config = {
 	unix_domains = {
 		{ name = "unix" },
 		{ name = "obsidian" },
+	},
+	ssh_domains = {
+		{ name = "devbox", remote_address = "devbox", username = "odyrag" },
 	},
 }
 
@@ -85,7 +82,7 @@ config.keys = {
 
 	-- { key = '"', mods = "LEADER", action = wezterm.action({ SplitVertical = { domain = "CurrentPaneDomain" } }) },
 	-- { key = "%", mods = "LEADER", action = wezterm.action({ SplitHorizontal = { domain = "CurrentPaneDomain" } }) },
-	-- -- { key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
+	-- { key = "c", mods = "LEADER", action = wezterm.action({ SpawnTab = "CurrentPaneDomain" }) },
 	-- { key = "h", mods = "SHIFT|CMD", action = wezterm.action({ ActivatePaneDirection = "Left" }) },
 	-- { key = "j", mods = "SHIFT|CMD", action = wezterm.action({ ActivatePaneDirection = "Down" }) },
 	-- { key = "k", mods = "SHIFT|CMD", action = wezterm.action({ ActivatePaneDirection = "Up" }) },

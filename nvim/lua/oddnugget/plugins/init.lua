@@ -1,27 +1,8 @@
 return {
 	"nvim-lua/plenary.nvim",
 	"MunifTanjim/nui.nvim",
-	-- { "christoomey/vim-tmux-navigator", lazy = false },
-	{
-		"mrjones2014/smart-splits.nvim",
-		-- dir = "/projects/nvim-forks/smart-splits.nvim",
-		lazy = false,
-		config = function()
-			require("smart-splits").setup({ log_level = "trace" })
-			-- for example `10<A-h>` will `resize_left` by `(10 * config.default_amount)`
-			vim.keymap.set("n", "<SC-h>", require("smart-splits").resize_left)
-			vim.keymap.set("n", "<SC-j>", require("smart-splits").resize_down)
-			vim.keymap.set("n", "<SC-k>", require("smart-splits").resize_up)
-			vim.keymap.set("n", "<SC-l>", require("smart-splits").resize_right)
-			-- moving between splits
-			vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
-			vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
-			vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
-			vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
-		end,
-	},
 	{ "tpope/vim-fugitive", lazy = false },
-	{ "tpope/vim-rails", ft = { "ruby", "slim" } },
+	{ "knubie/vim-kitty-navigator", event = "BufReadPost" },
 	{
 		"tpope/vim-projectionist",
 		lazy = false,

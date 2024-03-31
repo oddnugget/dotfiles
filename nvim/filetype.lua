@@ -1,7 +1,7 @@
 vim.filetype.add({
 	filename = {
 		[".gitignore"] = "conf",
-		["kitty.conf"] = "kitty",
+		["kitty.conf"] = "bash",
 		[".env"] = "bash",
 		["Deskfile"] = "bash",
 		["tool-versions"] = "conf",
@@ -19,6 +19,7 @@ vim.filetype.add({
 	},
 	extension = {
 		json = "jsonc",
+		kitty = "bash",
 		eslintrc = "jsonc",
 		prettierrc = "jsonc",
 		conf = "conf",

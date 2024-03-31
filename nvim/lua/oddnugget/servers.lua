@@ -13,6 +13,17 @@ M.list = {
 			},
 		},
 	},
+	astro = {
+		settings = {
+			astro = {
+				enable = true,
+				lint = {
+					enable = true,
+					onSave = true,
+				},
+			},
+		},
+	},
 	lua_ls = {
 		settings = {
 			Lua = {
@@ -27,6 +38,7 @@ M.list = {
 			},
 		},
 	},
+  pyright = {},
 	tsserver = {
 		disable_formatting = false,
 	},
@@ -121,6 +133,11 @@ M.list = {
 M.unofficial = {
 	lexical = function()
 		local path = os.getenv("NVIM_LEXICAL_PATH")
+
+		if not path then
+			vim.notify("NVIM_LEXICAL_PATH not set, skipping")
+			return
+		end
 		local configs = require("lspconfig.configs")
 		local exists = utils.file_exists(path)
 
