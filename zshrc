@@ -132,5 +132,26 @@ else
   export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
+tlayout() {
+  # Check if inside tmux by checking the $TMUX variable
+  if [[ -z "$TMUX" ]]; then
+    echo "Not running inside tmux."
+    return 1
+  fi
+
+  # Default width for the new pane
+  local width=80
+
+  # Split the pane vertically with specified width
+  tmux split-window -h -l ${width}
+
+  # Split the new pane horizontally
+  tmux split-window -v
+}
+
+
+
+export PATH="$PATH:$HOME/.local/bin"
+eval "$(zoxide init zsh --cmd cd)"
 source $HOME/.zsh/user-env
 source $HOME/.zsh/wezterm-shell-integration

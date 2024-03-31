@@ -24,6 +24,26 @@ return {
 		end,
 	},
 	{
+		"luckasRanarison/nvim-devdocs",
+		event = "VeryLazy",
+		keys = {
+			{
+				"<leader>dd",
+				"<cmd> DevdocsOpenFloat <cr>",
+			},
+			{
+				"<leader>dt",
+				"<cmd> DevdocsToggle <cr>",
+			},
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {},
+	},
+	{
 		"stevearc/oil.nvim",
 		cmd = { "Oil" },
 		opts = {
