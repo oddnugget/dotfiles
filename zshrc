@@ -1,8 +1,13 @@
+export ZSH=$HOME/.oh-my-zsh
 export DPRINT_INSTALL="/home/odyrag/.dprint"
 export PATH="$DPRINT_INSTALL/bin:$PATH"
 export PATH="$PATH:/home/odyrag/.yarn/bin"
 
 plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+#USER CONFIG
 
 if [ -n "$NVIM_LISTEN_ADDRESS" ]; then
     export VISUAL="nvr --remote-tab-wait +'set bufhidden=delete'"

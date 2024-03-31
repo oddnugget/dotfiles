@@ -30,6 +30,9 @@ M.list = {
 				workspace = {
 					checkThirdParty = false,
 				},
+				globals = {
+					"vim",
+				},
 				completion = { callSnippet = "Replace" },
 				telemetry = { enable = false },
 				hint = {
@@ -38,7 +41,7 @@ M.list = {
 			},
 		},
 	},
-  pyright = {},
+	pyright = {},
 	tsserver = {
 		disable_formatting = false,
 	},
