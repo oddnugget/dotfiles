@@ -5,7 +5,6 @@ from kitty.key_encoding import KeyEvent, parse_shortcut
 
 
 
-
 def is_window_vim(boss, window):
     vars = boss.call_remote_control(window, ('set-user-vars', f'--match=id:{window.id}'))
     for var in vars.split('\n'):
