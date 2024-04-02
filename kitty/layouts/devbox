@@ -1,4 +1,4 @@
 #!/bin/sh
 
-kitten @ launch --cwd=current --type=tab --title=logan zsh -c "cd /projects/logan"
-kitten @ launch --cwd=current --type=tab --title=auctionet zsh -c "cd /projects/auctionet"
+kitten @ launch --cwd=current --type=tab --title=logan zsh -c "cd /projects/logan; zsh"
+kitten @ launch --cwd=current --type=tab --title=auctionet zsh -c "cd /projects/auctionet; zsh"
