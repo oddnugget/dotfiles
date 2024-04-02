@@ -33,3 +33,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "VimEnter" }, {
+	group = vim.api.nvim_create_augroup("KittySetVarVimEnter", { clear = true }),
+	callback = function()
+		io.stdout:write("\x1b]1337;SetUserVar=in_editor=MQo\007")
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "VimLeave" }, {
+	group = vim.api.nvim_create_augroup("KittyUnsetVarVimLeave", { clear = true }),
+	callback = function()
+		io.stdout:write("\x1b]1337;SetUserVar=in_editor\007")
+	end,
+})
