@@ -26,12 +26,12 @@ alias luamake=/home/odyrag/.local/lua-language-server/3rd/luamake/luamake
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source ~/.profile
-
-export PATH="$PATH:$HOME/.local/bin"
-
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd --hook prompt)"
+
+source ~/.profile
+
+
 
 if [[ -n "${DEVBOX}" ]]; then
   eval "$(shadowenv init zsh)"
@@ -42,5 +42,7 @@ else
   export PATH="$PATH:$HOME/.rvm/bin"
 fi
 
+unsetopt autocd
 source $HOME/.zsh/user-env
 # source $HOME/.zsh/wezterm-shell-integration
+export PATH="$PATH:$HOME/.local/bin"
