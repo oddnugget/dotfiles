@@ -7,11 +7,15 @@ return {
 		build = "./kitty/install-kittens.bash",
 		dev = true,
 		lazy = false,
-		config = function()
-			vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)
-			vim.keymap.set("n", "<C-j>", require("smart-splits").move_cursor_down)
-			vim.keymap.set("n", "<C-k>", require("smart-splits").move_cursor_up)
-			vim.keymap.set("n", "<C-l>", require("smart-splits").move_cursor_right)
+		-- lazy = false,
+		keys = {
+			{ "<C-j>", "<cmd>lua require('smart-splits').move_cursor_down()<CR>" },
+			{ "<C-k>", "<cmd>lua require('smart-splits').move_cursor_up()<CR>" },
+			{ "<C-h>", "<cmd>lua require('smart-splits').move_cursor_left()<CR>" },
+			{ "<C-l>", "<cmd>lua require('smart-splits').move_cursor_right()<CR>" },
+		},
+		config = function(opts)
+			require("smart-splits").setup(opts)
 		end,
 	},
 	{

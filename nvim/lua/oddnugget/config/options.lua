@@ -1,6 +1,7 @@
 local indent = 2
 vim.opt.clipboard = "unnamedplus"
 vim.o.formatoptions = "jcroqlnt"
+vim.o.foldmethod = "marker"
 vim.o.shortmess = "filnxtToOFWIcC"
 vim.opt.breakindent = true
 vim.opt.completeopt = "menuone,noselect"
