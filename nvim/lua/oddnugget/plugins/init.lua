@@ -5,6 +5,7 @@ return {
 	{
 		"mrjones2014/smart-splits.nvim",
 		build = "./kitty/install-kittens.bash",
+		dev = true,
 		lazy = false,
 		config = function()
 			vim.keymap.set("n", "<C-h>", require("smart-splits").move_cursor_left)

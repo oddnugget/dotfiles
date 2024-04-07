@@ -19,6 +19,10 @@ require("lazy").setup("oddnugget.plugins", {
 	install = { missing = true, colorscheme = { "kanagawa" } },
 	checker = { enabled = true },
 	change_detection = { enabled = false },
+	dev = {
+		path = "~/dev/projects",
+		fallback = false,
+	},
 	performance = {
 		rtp = {
 			disabled_plugins = {
