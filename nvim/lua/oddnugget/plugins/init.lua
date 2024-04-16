@@ -1,6 +1,16 @@
 return {
 	"nvim-lua/plenary.nvim",
 	"MunifTanjim/nui.nvim",
+	{
+		"NeogitOrg/neogit",
+		dependencies = {
+			"nvim-lua/plenary.nvim", -- required
+			"sindrets/diffview.nvim", -- optional - Diff integration
+			"nvim-telescope/telescope.nvim", -- optional
+		},
+		cmd = "Neogit",
+		config = true,
+	},
 	{ "tpope/vim-fugitive", lazy = false },
 	{
 		"mrjones2014/smart-splits.nvim",
