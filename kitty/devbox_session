@@ -1,0 +1,5 @@
+kitten @ launch --type=tab --title Logan --cwd current zsh -c "cd /projects/logan; clear; zsh"
+kitten @ launch --cwd current zsh
+
+kitten @ launch --type=tab --title Auctionet --cwd current zsh -c "cd /projects/auctionet; clear; zsh"
+kitten @ launch --cwd current zsh
