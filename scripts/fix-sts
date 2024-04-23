@@ -1,0 +1,7 @@
+#!/user/bin/env zsh
+
+# Fix slay the spire display scaling issue
+
+DISPLAY_CONFIG="~/Library/Application\Support/Steam/steamapps/common/SlayTheSpire/SlayTheSpire.app/Contents/Resources/info.displayconfig"
+
+nvim $DISPLAY_CONFIG
