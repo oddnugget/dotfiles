@@ -3,3 +3,4 @@ alias ls='exa -1 -F --icons $1'
 alias dot='cd $HOME/dotfiles'
 alias cat='bat $1'
 alias devssh='kitten ssh devbox'
+alias fugit="nvim -c \"G\" -c \"only\""
