@@ -10,4 +10,9 @@ M.file_exists = function(path)
 	return file ~= nil
 end
 
+M.copy_to_system_clipboard = function()
+	local osc52 = require("osc52")
+	osc52.copy(vim.fn.expand("%:."))
+end
+
 return M

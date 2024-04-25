@@ -160,6 +160,7 @@ return {
 		end,
 	},
 	{ "tpope/vim-dispatch", lazy = false },
+	{ "tpope/vim-sleuth", event = "BufReadPost" },
 	{
 		"tpope/vim-commentary",
 		lazy = false,

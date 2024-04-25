@@ -1,4 +1,5 @@
 local keymap = vim.keymap.set
+local utils = require("oddnugget.utils")
 
 -- Remap for dealing with word wrap
 keymap("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
@@ -39,7 +40,9 @@ keymap("n", "<S-Down>", "<cmd>resize -2<CR>")
 keymap("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
 keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
 
-keymap("n", "<Leader>uf", ":call CopyFilepath()<CR>")
+keymap("n", "<Leader>uf", function()
+	utils.copy_to_system_clipboard()
+end)
 keymap("n", "§j", ":cnext<CR>")
 keymap("n", "§k", ":cprev<CR>")
 
