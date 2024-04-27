@@ -2,7 +2,7 @@ return {
 	"ojroques/nvim-osc52",
 	lazy = false,
 	enabled = function()
-		return os.getenv("DEVBOX") == "true"
+		return vim.g.is_devbox
 	end,
 	config = function()
 		local osc52 = require("osc52")

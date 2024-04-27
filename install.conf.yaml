@@ -22,7 +22,6 @@
       path: .wezterm.lua
       if: "[ `uname` = Darwin ]"
       create: true
-
     
     ~/.config/nvim: 
       path: nvim
@@ -42,6 +41,18 @@
     ~/.config/raycast:
       path: raycast
       if: "[ `uname` = Darwin ]"
+
+# {{{ Obsidian
+    ~/notebook/.obsidian.vimrc:
+      path: .obsidian.vimrc
+      create: true
+      if: "[ `uname` = Darwin ]"
+
+    ~/dev/auctionet/megavault/.obsidian.vimrc:
+      path: .obsidian.vimrc
+      create: true
+      if: "[ `uname` = Darwin ]"
+# }}}
 
 - shell:
   - [git submodule update --init --recursive, Installing Submodules]

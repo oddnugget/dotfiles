@@ -15,9 +15,8 @@ return {
 	{
 		"mrjones2014/smart-splits.nvim",
 		build = "./kitty/install-kittens.bash",
-		dev = true,
+		dev = false,
 		lazy = false,
-		-- lazy = false,
 		keys = {
 			{ "<C-j>", "<cmd>lua require('smart-splits').move_cursor_down()<CR>" },
 			{ "<C-k>", "<cmd>lua require('smart-splits').move_cursor_up()<CR>" },

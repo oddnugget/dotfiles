@@ -13,6 +13,10 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.is_devbox = os.getenv("DEVBOX") == true
+
+local dev_path = vim.g.is_devbox and "~/projects/oddnugget" or "~/dev/projects/nvim"
+
 -- Configure lazy.nvim
 require("lazy").setup("oddnugget.plugins", {
 	defaults = { lazy = true, version = nil },
@@ -20,7 +24,7 @@ require("lazy").setup("oddnugget.plugins", {
 	checker = { enabled = true },
 	change_detection = { enabled = false },
 	dev = {
-		path = "~/projects/oddnugget",
+		path = dev_path,
 		fallback = false,
 	},
 	performance = {
