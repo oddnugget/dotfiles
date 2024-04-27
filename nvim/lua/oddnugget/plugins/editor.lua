@@ -44,6 +44,24 @@ return {
 		opts = {},
 	},
 	{
+		"nvim-tree/nvim-tree.lua",
+		version = "*",
+		cmd = { "NvimTreeToggle", "NvimTreeOpen" },
+		keys = { {
+			"<Leader>e",
+			"<cmd> NvimTreeToggle <cr>",
+			desc = "Toggle File Tree",
+		} },
+		opts = {
+			update_focused_file = {
+				enable = true,
+			},
+		},
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+	{
 		"stevearc/oil.nvim",
 		cmd = { "Oil" },
 		opts = {
@@ -64,16 +82,6 @@ return {
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		config = true,
-		keys = {
-			{
-				"<leader>e",
-				function()
-					local oil = require("oil")
-					oil.toggle_float()
-				end,
-				desc = "oil: open(edit)",
-			},
-		},
 	},
 	{
 		"nvim-telescope/telescope.nvim",

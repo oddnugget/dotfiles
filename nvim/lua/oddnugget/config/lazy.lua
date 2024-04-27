@@ -20,7 +20,7 @@ require("lazy").setup("oddnugget.plugins", {
 	checker = { enabled = true },
 	change_detection = { enabled = false },
 	dev = {
-		path = "~/dev/projects/nvim",
+		path = "~/projects/oddnugget",
 		fallback = false,
 	},
 	performance = {
