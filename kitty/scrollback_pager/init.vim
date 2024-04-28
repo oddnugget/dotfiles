@@ -8,7 +8,7 @@ set termguicolors
 set laststatus=0
 " set background=dark
 set ignorecase
-set scrolloff=8
+set scrolloff=12
 
 echo "$TERM"
 
