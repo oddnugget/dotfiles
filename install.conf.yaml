@@ -4,6 +4,7 @@
 
 
 - link:
+    ~/.ripgreprc: .ripgreprc
     ~/.gitconfig: gitconfig
     ~/.tmux.conf: 
       path: .tmux.conf
