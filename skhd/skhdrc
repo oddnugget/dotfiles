@@ -39,6 +39,8 @@ lcmd - 2 : yabai -m space --focus 2
 lcmd - 3 : yabai -m space --focus 3
 lcmd - 4 : yabai -m space --focus 4
 lcmd - 5 : yabai -m space --focus 5
+lcmd - 6 : yabai -m space --focus 6
+lcmd - 7 : yabai -m space --focus 7
 
 
 ## Assign Window

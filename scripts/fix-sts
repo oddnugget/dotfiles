@@ -4,4 +4,5 @@
 
 DISPLAY_CONFIG="~/Library/Application\ Support/Steam/steamapps/common/SlayTheSpire/SlayTheSpire.app/Contents/Resources/info.displayconfig"
 
-nvim $DISPLAY_CONFIG
+echo $DISPLAY_CONFIG
+cat $DISPLAY_CONFIG
