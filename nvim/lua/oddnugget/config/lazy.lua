@@ -13,9 +13,6 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-vim.g.is_devbox = os.getenv("DEVBOX") == "true"
-vim.g.is_kitty_scrollback = os.getenv("KITTY_SCROLLBACK_NVIM") == "true"
-
 local dev_path = vim.g.is_devbox and "~/projects/oddnugget" or "~/dev/projects/nvim"
 
 -- Configure lazy.nvim
