@@ -8,7 +8,7 @@ return {
 		config = function()
 			require("kitty-scrollback").setup({
 				paste_window = {
-					yank_register_enabled = true,
+					enabled = false,
 				},
 			})
 		end,
