@@ -1,4 +1,5 @@
 # vim: set ft=gitconfig
+# REF: https://jvns.ca/blog/2024/02/16/popular-git-config-options/#push-default-simple-push-default-current
 
 [core]
 	hooksPath = /devbox/support/default_githooks
@@ -32,3 +33,11 @@
 [diff]
 	colorMoved = default
 
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[rerere] 
+	enabled = true
