@@ -1,10 +1,15 @@
+# vim: set ft=gitconfig
+
 [core]
 	hooksPath = /devbox/support/default_githooks
 	pager = delta
 
 [user]
-	name = Odysseas Ragnarson
-	email = odysseas.ragnarson@auctionet.com
+	name = oddnugget
+	email = odysseas.ragnarson@outlook.com
+
+[includeIf "gitdir:/home/odyrag/projects/barsoom/"]
+	path = ~/.work.gitconfig
 
 [init]
 	defaultBranch = main

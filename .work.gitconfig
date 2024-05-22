@@ -1,0 +1,4 @@
+# vim: set ft=gitconfig
+[user]
+  name = Odysseas Ragnarson
+  email = odysseas.ragnarson@auctionet.com

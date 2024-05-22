@@ -6,6 +6,7 @@
 - link:
     ~/.ripgreprc: .ripgreprc
     ~/.gitconfig: gitconfig
+    ~/.work.gitconfig: .work.gitconfig
     ~/.tmux.conf: 
       path: .tmux.conf
       force: true
