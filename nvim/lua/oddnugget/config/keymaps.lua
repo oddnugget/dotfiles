@@ -19,20 +19,16 @@ keymap("t", "<C-j>", "<C-\\><C-n><C-w>j")
 keymap("t", "<C-k>", "<C-\\><C-n><C-w>k")
 keymap("t", "<C-l>", "<C-\\><C-n><C-w>l")
 
+-- jump buflist
+keymap("n", "<Leader>o", "<cmd>bprevious<CR>")
+keymap("n", "<Leader>i", "<cmd>bnext<CR>")
+
 -- Better indent
 keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
 
 -- Paste over currently selected text without yanking it
 keymap("v", "p", '"_dP')
-
--- Move Lines
-keymap("n", "<§-j>", ":m .+1<CR>==")
-keymap("v", "<A-j>", ":m '>+1<CR>gv=gv")
-keymap("i", "<A-j>", "<Esc>:m .+1<CR>==gi")
-keymap("n", "<A-k>", ":m .-2<CR>==")
-keymap("v", "<A-k>", ":m '<-2<CR>gv=gv")
-keymap("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 
 -- Resize window using <shift> arrow keys
 keymap("n", "<S-Up>", "<cmd>resize +2<CR>")
@@ -45,8 +41,3 @@ keymap("n", "<Leader>uf", function()
 end)
 keymap("n", "§j", ":cnext<CR>")
 keymap("n", "§k", ":cprev<CR>")
-
--- keymap("n", "<C-j>", "<C-w>j", {noremap=true})
--- keymap("n", "<C-k>", "<C-w>k",{noremap=true})
--- keymap("n", "<C-h>", "<C-w>h",{noremap=true})
--- keymap("n", "<C-l>", "<C-w>l",{noremap=true})

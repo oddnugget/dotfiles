@@ -37,6 +37,10 @@ return {
 				"<leader>f<leader>",
 				"<cmd> Telescope resume<cr>",
 			},
+			{
+				"<leader>do",
+				"<cmd> Telescope diagnostics<cr>",
+			},
 		},
 		config = function()
 			local lga_actions = require("telescope-live-grep-args.actions")
