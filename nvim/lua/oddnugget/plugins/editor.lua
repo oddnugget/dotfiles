@@ -47,43 +47,43 @@ return {
 		"ThePrimeagen/harpoon",
 		keys = {
 			{
-				"§<Space>",
+				"<Leader>bb",
 				function()
 					require("harpoon.ui").toggle_quick_menu()
 				end,
 			},
 			{
-				"§a",
+				"<Leader>ba",
 				function()
 					require("harpoon.mark").add_file()
 				end,
 			},
 			{
-				"§q",
+				"<Leader><Leader>1",
 				function()
 					require("harpoon.ui").nav_file(1)
 				end,
 			},
 			{
-				"§w",
+				"<Leader><Leader>2",
 				function()
 					require("harpoon.ui").nav_file(2)
 				end,
 			},
 			{
-				"§e",
+				"<Leader><Leader>3",
 				function()
 					require("harpoon.ui").nav_file(3)
 				end,
 			},
 			{
-				"§r",
+				"<Leader><Leader>4",
 				function()
 					require("harpoon.ui").nav_file(4)
 				end,
 			},
 			{
-				"§t",
+				"<Leader><Leader>5",
 				function()
 					require("harpoon.ui").nav_file(5)
 				end,
