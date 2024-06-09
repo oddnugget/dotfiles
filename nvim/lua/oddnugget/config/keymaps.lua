@@ -23,6 +23,9 @@ keymap("t", "<C-l>", "<C-\\><C-n><C-w>l")
 keymap("n", "<Leader>o", "<cmd>bprevious<CR>")
 keymap("n", "<Leader>i", "<cmd>bnext<CR>")
 
+keymap("n", "<Leader>cn", "<cmd>cnext<CR>")
+keymap("n", "<Leader>cp", "<cmd>cprev<CR>")
+
 -- Better indent
 keymap("v", "<", "<gv")
 keymap("v", ">", ">gv")
