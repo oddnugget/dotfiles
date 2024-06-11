@@ -2,6 +2,7 @@ return {
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
+		enabled = false,
 		cmd = { "NvimTreeToggle", "NvimTreeOpen" },
 		keys = { {
 			"<Leader>e",
@@ -20,20 +21,15 @@ return {
 	{
 		"stevearc/oil.nvim",
 		cmd = { "Oil" },
-		opts = {
-			float = {
-				border = "rounded",
-				max_width = 60,
-				override = function(config)
-					config.row = 0
-					config.col = 0
-					config.height = vim.api.nvim_win_get_height(0) - 1
-					return config
-				end,
-				win_options = {
-					conceallevel = 1,
-				},
+		keys = {
+			{
+				"<Leader>e",
+				"<cmd> Oil <cr>",
+				desc = "Toggle File Tree",
 			},
+		},
+		opts = {
+			default_file_explorer = true,
 		},
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
