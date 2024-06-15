@@ -28,7 +28,7 @@ return {
 				desc = "Colorscheme",
 			},
 			{
-				"<leader>fW",
+				"<leader>gw",
 				function()
 					require("telescope-live-grep-args.shortcuts").grep_word_under_cursor()
 				end,
