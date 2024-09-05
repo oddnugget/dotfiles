@@ -16,6 +16,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		"spectre_panel",
 		"startuptime",
 		"toggleterm",
+		"term",
 		"tsplayground",
 		"vim",
 		"oil",

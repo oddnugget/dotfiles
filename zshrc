@@ -35,6 +35,7 @@ source ~/.profile
 
 if [[ -n "${DEVBOX}" ]]; then
   eval "$(shadowenv init zsh)"
+  source /devbox/script/support/profile
   source /home/odyrag/.config/broot/launcher/bash/br
 else
   eval "$(shadowenv init zsh)"

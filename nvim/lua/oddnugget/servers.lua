@@ -42,7 +42,7 @@ M.list = {
 		},
 	},
 	pyright = {},
-	tsserver = {
+	ts_ls = {
 		disable_formatting = false,
 	},
 	dockerls = {},
@@ -126,11 +126,11 @@ M.list = {
 			},
 		},
 	},
-	lexical = {
-		settings = {
-			dialyzerEnabled = true,
-		},
-	},
+	-- lexical = {
+	-- 	settings = {
+	-- 		dialyzerEnabled = true,
+	-- 	},
+	-- },
 }
 
 M.unofficial = {

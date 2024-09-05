@@ -11,9 +11,17 @@ keymap("n", "N", "Nzzzv")
 keymap("n", "g,", "g,zvzz")
 keymap("n", "g;", "g;zvzz")
 
+keymap("n", "<leader>t", "<cmd>tabe<cr>")
+keymap("n", "<leader>tn", "<cmd>tabn<cr>")
+keymap("n", "<leader>tp", "<cmd>tabp<cr>")
+
 -- Better escape using jk in insert and terminal mode
 keymap("i", "jj", "<ESC>")
-keymap("t", "jj", "<C-\\><C-n>")
+keymap("t", "<ESC>", "<C-\\><C-n>")
+keymap("t", "<C-h>", [[<Cmd>wincmd h<CR>]])
+keymap("t", "<C-j>", [[<Cmd>wincmd j<CR>]])
+keymap("t", "<C-k>", [[<Cmd>wincmd k<CR>]])
+keymap("t", "<C-l>", [[<Cmd>wincmd l<CR>]])
 
 keymap("t", "<C-h>", "<C-\\><C-n><C-w>h")
 keymap("t", "<C-j>", "<C-\\><C-n><C-w>j")

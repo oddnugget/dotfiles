@@ -5,6 +5,7 @@ return {
 		local dashboard = require("alpha.themes.dashboard")
 		dashboard.section.header.val = require("oddnugget.plugins.dashboard.logos")["random"]
 		dashboard.section.buttons.val = {
+			dashboard.button("s", "⌛" .. " Restore session", ':lua require("persistence").load({last = true})<cr>'),
 			dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
 			dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
 			dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),

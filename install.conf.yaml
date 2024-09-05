@@ -20,6 +20,8 @@
       path: .zsh/wezterm-shell-integration
       if: "[ `uname` = Darwin ]"
 
+    ~/.config/bat/config: bat/config
+
     ~/.wezterm.lua: 
       path: .wezterm.lua
       if: "[ `uname` = Darwin ]"
