@@ -11,11 +11,12 @@ keymap("n", "N", "Nzzzv")
 keymap("n", "g,", "g,zvzz")
 keymap("n", "g;", "g;zvzz")
 
+-- Tab nav maps
 keymap("n", "<leader>t", "<cmd>tabe<cr>")
 keymap("n", "<leader>tn", "<cmd>tabn<cr>")
 keymap("n", "<leader>tp", "<cmd>tabp<cr>")
 
--- Better escape using jk in insert and terminal mode
+-- Terminal Maps
 keymap("i", "jj", "<ESC>")
 keymap("t", "<ESC>", "<C-\\><C-n>")
 keymap("t", "<C-h>", [[<Cmd>wincmd h<CR>]])

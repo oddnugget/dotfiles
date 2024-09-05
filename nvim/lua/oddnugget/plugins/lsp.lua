@@ -28,6 +28,8 @@ local function setup_keymaps(bufnr)
 	vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, opts_with_desc("Signature Help"))
 	vim.keymap.set("n", "<Leader>de", vim.diagnostic.open_float, opts_with_desc("Open Diagnostics"))
 	vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts_with_desc("Code Action"))
+	vim.keymap.set("n", "<Leader>rt", vim.lsp.codelens.run, opts_with_desc("Code lens"))
+
 	vim.keymap.set("n", "<Leader>fm", function()
 		require("conform").format({ async = false, lsp_fallback = true })
 	end, opts_with_desc("Format"))

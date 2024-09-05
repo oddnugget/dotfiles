@@ -48,3 +48,11 @@ vim.api.nvim_create_autocmd("VimLeave", {
 		io.stdout:write("\x1b]1337;SetUserVar=in_editor\007")
 	end,
 })
+
+vim.api.nvim_create_autocmd("TermOpen", {
+	pattern = { "term://*" },
+	group = vim.api.nvim_create_augroup("TerminalMappings", { clear = true }),
+	callback = function()
+		vim.keymap.set("n", "gf", "<Cmd>execute 'wincmd t | edit ' . expand('<cfile>')<cr>", { buffer = true })
+	end,
+})
