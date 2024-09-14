@@ -24,6 +24,27 @@ M.list = {
 			},
 		},
 	},
+	taplo = {
+		settings = {
+			taplo = {
+				enable = true,
+				lint = {
+					enable = true,
+					onSave = true,
+				},
+			},
+		},
+	},
+	bashls = {
+		filetypes = { "sh", "zsh", "zshrc", ".zshrc" },
+		settings = {
+			{
+				bashIde = {
+					globPattern = "*@(.sh|.inc|.zsh|.bash|.command)",
+				},
+			},
+		},
+	},
 	lua_ls = {
 		settings = {
 			Lua = {

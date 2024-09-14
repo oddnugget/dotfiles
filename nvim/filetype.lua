@@ -31,5 +31,6 @@ vim.filetype.add({
 		keymap = "keymap",
 		cts = "typescript",
 		mts = "typescript",
+		zsh = "zsh",
 	},
 })

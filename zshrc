@@ -31,8 +31,6 @@ eval "$(zoxide init zsh --cmd cd --hook prompt)"
 
 source ~/.profile
 
-
-
 if [[ -n "${DEVBOX}" ]]; then
   eval "$(shadowenv init zsh)"
   source /devbox/script/support/profile
