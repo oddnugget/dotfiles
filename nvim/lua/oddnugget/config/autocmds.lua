@@ -56,3 +56,41 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.keymap.set("n", "gf", "<Cmd>execute 'wincmd t | edit ' . expand('<cfile>')<cr>", { buffer = true })
 	end,
 })
+
+local win_focus_grp = vim.api.nvim_create_augroup("WindowFocusedEvents", { clear = true })
+local win_blur_grp = vim.api.nvim_create_augroup("WindowBlurredEvents", { clear = true })
+
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter" }, {
+	group = win_focus_grp,
+	callback = function()
+		if vim.bo.filetype ~= "help" and vim.bo.filetype ~= "TelescopePrompt" then
+			vim.wo.cursorline = true
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "VimLeave", "WinLeave" }, {
+	group = win_blur_grp,
+	callback = function()
+		vim.wo.cursorline = false
+	end,
+})
+
+local sear_hl_group = vim.api.nvim_create_augroup("SearchHighlighs", { clear = true })
+
+vim.api.nvim_create_autocmd({ "CmdlineEnter" }, {
+	group = sear_hl_group,
+	pattern = { "/", "?" },
+	callback = function()
+		vim.cmd([[:let @/ = ""]])
+		vim.opt.hlsearch = true
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "CmdlineLeave" }, {
+	group = sear_hl_group,
+	pattern = { "/", "?" },
+	callback = function()
+		vim.opt.hlsearch = false
+	end,
+})

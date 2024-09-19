@@ -177,6 +177,10 @@ return {
 				return "<cmd>" .. vim.v.count .. "ToggleTerm direction=float <cr>"
 			end, { expr = true })
 
+			vim.keymap.set("n", "<C-t><C-h>", function()
+				return "<cmd>" .. vim.v.count .. "ToggleTerm direction=horizontal<cr>"
+			end, { expr = true })
+
 			vim.keymap.set("n", "<C-t><C-v>", function()
 				return "<cmd>" .. vim.v.count .. "ToggleTerm direction=vertical <cr>"
 			end, { expr = true })
