@@ -45,3 +45,4 @@ unsetopt autocd
 source $HOME/.zsh/user-env
 # source $HOME/.zsh/wezterm-shell-integration
 export PATH="$PATH:$HOME/.local/bin"
+export PATH="$PATH:/usr/lib/python3/"

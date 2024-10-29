@@ -11,5 +11,20 @@ function psg() {
   ps aux | grep $1 | sed G
 }
 
+function ksh ()
+{
+    app=$1;
+    pod=$(kubectl get pods -l app=$app -o=jsonpath='{.items[0].metadata.name}' 2>/dev/null);
+    result=$?;
+    if [ $result -ne 0 ]; then
+        echo "could not get pods for $app";
+        return $result;
+    fi;
+    kubectl exec -it $p
+}
+
+alias miex="iex -S mix phx.server"
+alias today="date -u +%Y-%m-%d"
+
 alias zsrc="source $HOME/.zshrc"
 

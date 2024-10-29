@@ -15,6 +15,7 @@ keymap("n", "g;", "g;zvzz")
 keymap("n", "<leader>t", "<cmd>tabe<cr>")
 keymap("n", "<leader>tn", "<cmd>tabn<cr>")
 keymap("n", "<leader>tp", "<cmd>tabp<cr>")
+keymap("n", "<leader>tq", "<cmd>tabclose<cr>")
 
 -- Terminal Maps
 keymap("i", "jj", "<ESC>")
