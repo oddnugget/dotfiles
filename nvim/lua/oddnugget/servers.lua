@@ -2,17 +2,6 @@ local utils = require("oddnugget.utils")
 local M = {}
 
 M.list = {
-	rust_analyzer = {
-		settings = {
-			["rust-analyzer"] = {
-				cargo = { allFeatures = true },
-				checkOnSave = {
-					command = "cargo clippy",
-					extraArgs = { "--no-deps" },
-				},
-			},
-		},
-	},
 	astro = {
 		settings = {
 			astro = {
@@ -159,14 +148,12 @@ M.unofficial = {
 		local path = os.getenv("NVIM_LEXICAL_PATH")
 
 		if not path then
-			vim.notify("NVIM_LEXICAL_PATH not set, skipping")
 			return
 		end
 		local configs = require("lspconfig.configs")
 		local exists = utils.file_exists(path)
 
 		if not exists then
-			vim.notify("Lexical server not found, skipping setup")
 			return
 		end
 

@@ -1,5 +1,9 @@
 local indent = 2
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
+
 vim.opt.clipboard = "unnamedplus"
 vim.o.formatoptions = "jcroqlnt"
 vim.o.shortmess = "filnxtToOFWIcC"
@@ -40,7 +44,3 @@ vim.opt.timeoutlen = 500
 vim.opt.undofile = true
 vim.opt.updatetime = 500
 vim.opt.wildmode = "longest:full,full"
-
-vim.g.mapleader = " "
-vim.g.maplocalleader = ","
-vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })

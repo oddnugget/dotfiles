@@ -92,8 +92,6 @@ return {
 			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
 			{ "folke/neodev.nvim", config = true },
 			{ "j-hui/fidget.nvim", config = true },
-			"simrat39/rust-tools.nvim",
-			"rust-lang/rust.vim",
 			"williamboman/mason-lspconfig.nvim",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
@@ -155,5 +153,10 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+	},
+	{
+		"mrcjkb/rustaceanvim",
+		version = "^5",
+		lazy = false,
 	},
 }

@@ -35,6 +35,10 @@
       if: 
       force: true
 
+    ~/.aerospace.toml: 
+      path: .aerospace.toml
+      if: "[ `uname` = Darwin ]"
+
     ~/.config/ranger: ranger
     ~/.config/yabai: 
       path: yabai
