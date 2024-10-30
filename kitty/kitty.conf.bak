@@ -64,10 +64,7 @@ macos_thicken_font 0
 # Launch commands
 # map cmd+, launch --type=overlay --cwd="~/dotfiles/" nvim "kitty/kitty.conf"
 
-
-
-
 # BEGIN_KITTY_THEME
-# Catppuccin-Frappe
+# Catppuccin-Mocha
 include current-theme.conf
 # END_KITTY_THEME

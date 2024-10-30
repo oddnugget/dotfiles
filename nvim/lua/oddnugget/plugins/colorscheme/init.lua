@@ -2,6 +2,7 @@ return {
 	{
 		"catppuccin/nvim",
 		lazy = false,
+		enabled = false,
 		name = "catppuccin",
 		priority = 1000,
 		config = function()
@@ -13,7 +14,7 @@ return {
 		"rebelot/kanagawa.nvim",
 		lazy = false,
 		priority = 1000,
-		enabled = false,
+		enabled = true,
 		config = function()
 			require("kanagawa").setup({
 				theme = "wave",
