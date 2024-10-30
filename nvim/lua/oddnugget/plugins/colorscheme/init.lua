@@ -17,7 +17,7 @@ return {
 		enabled = true,
 		config = function()
 			require("kanagawa").setup({
-				theme = "wave",
+				theme = "dragon",
 				transparent = "true",
 				overrides = function(colors)
 					return {
@@ -34,7 +34,7 @@ return {
 					},
 				},
 			})
-			vim.cmd("colorscheme kanagawa")
+			vim.cmd.colorscheme("kanagawa")
 		end,
 	},
 }
