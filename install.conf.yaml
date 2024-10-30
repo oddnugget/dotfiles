@@ -1,68 +1,60 @@
 - clean:
     ~/:
       force: true
-
-
 - link:
     ~/.ripgreprc: .ripgreprc
-    ~/.gitconfig: gitconfig
-    ~/.work.gitconfig: .work.gitconfig
-    ~/.tmux.conf: 
-      path: .tmux.conf
+    ~/.gitconfig: 
+      path: gitconfig
       force: true
-      
-    ~/.zshrc: 
+    ~/.work.gitconfig: .work.gitconfig
+    ~/.tmux.conf:
+      path: tmux.conf
+      force: true
+    ~/.zshrc:
       path: zshrc
       force: true
     ~/.zsh/aliases: .zsh/aliases
-
-    ~/.zsh/wezterm-shell-integration: 
+    ~/.zsh/wezterm-shell-integration:
       path: .zsh/wezterm-shell-integration
       if: "[ `uname` = Darwin ]"
-
-    ~/.config/bat/config: bat/config
-
-    ~/.wezterm.lua: 
+    ~/.config/bat/config:
+      path: bat/config
+      create: true
+    ~/.wezterm.lua:
       path: .wezterm.lua
       if: "[ `uname` = Darwin ]"
       create: true
-    
-    ~/.config/nvim: 
+    ~/.config/nvim:
       path: nvim
       force: true
     ~/.config/kitty:
       path: kitty
-      if: 
+      if: "[`uname` = Darwin ]"
       force: true
-
-    ~/.aerospace.toml: 
+    ~/.config/lsd/config.yaml:
+      path: lsd.yaml
+      create: true
+      force: true
+    ~/.aerospace.toml:
       path: .aerospace.toml
       if: "[ `uname` = Darwin ]"
-
     ~/.config/ranger: ranger
-    ~/.config/yabai: 
+    ~/.config/yabai:
       path: yabai
       if: "[ `uname` = Darwin ]"
-    ~/.config/skhd: 
+    ~/.config/skhd:
       path: skhd
       if: "[ `uname` = Darwin ]"
     ~/.config/raycast:
       path: raycast
       if: "[ `uname` = Darwin ]"
-
-# {{{ Obsidian
     ~/notebook/.obsidian.vimrc:
       path: .obsidian.vimrc
       create: true
       if: "[ `uname` = Darwin ]"
-
     ~/dev/auctionet/megavault/.obsidian.vimrc:
       path: .obsidian.vimrc
       create: true
       if: "[ `uname` = Darwin ]"
-# }}}
-
 - shell:
-  - [git submodule update --init --recursive, Installing Submodules]
-
-
+    - [git submodule update --init --recursive, Installing Submodules]

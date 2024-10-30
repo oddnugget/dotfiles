@@ -1,7 +1,7 @@
 # vim: set ft=zsh
 
 alias ncfg='nvim --cmd "cd $HOME/.config/nvim"'
-alias ls='exa -1 -F --icons $1'
+alias ls='lsd'
 alias dot='cd $HOME/dotfiles'
 alias cat='bat $1'
 alias devssh='kitten ssh devbox'
