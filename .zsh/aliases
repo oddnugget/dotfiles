@@ -1,4 +1,8 @@
 # vim: set ft=zsh
+#
+# GIT 
+alias gd='git show'
+alias gst='git status'
 
 alias ncfg='nvim --cmd "cd $HOME/.config/nvim"'
 alias ls='lsd'
@@ -27,4 +31,3 @@ alias miex="iex -S mix phx.server"
 alias today="date -u +%Y-%m-%d"
 
 alias zsrc="source $HOME/.zshrc"
-
