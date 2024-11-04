@@ -18,7 +18,7 @@ return {
 		config = function()
 			require("kanagawa").setup({
 				theme = "dragon",
-				transparent = "true",
+				transparent = true,
 				overrides = function(colors)
 					return {
 						["@module.elixir"] = { fg = colors.palette.waveAqua2 },
@@ -34,7 +34,7 @@ return {
 					},
 				},
 			})
-			vim.cmd.colorscheme("kanagawa")
+			vim.cmd.colorscheme("kanagawa-dragon")
 		end,
 	},
 }
