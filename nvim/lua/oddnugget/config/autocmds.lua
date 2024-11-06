@@ -60,16 +60,22 @@ vim.api.nvim_create_autocmd("TermOpen", {
 local win_focus_grp = vim.api.nvim_create_augroup("WindowFocusedEvents", { clear = true })
 local win_blur_grp = vim.api.nvim_create_augroup("WindowBlurredEvents", { clear = true })
 
-vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter" }, {
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
 	group = win_focus_grp,
 	callback = function()
-		if vim.bo.filetype ~= "help" and vim.bo.filetype ~= "TelescopePrompt" then
-			vim.wo.cursorline = true
-		end
+		vim.wo.cursorline = true
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "VimLeave", "WinLeave" }, {
+vim.api.nvim_create_autocmd("FileType", {
+	group = win_focus_grp,
+	pattern = { "Telescope*", "help" },
+	callback = function()
+		vim.wo.cursorline = false
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "VimLeave", "WinLeave", "BufWinEnter" }, {
 	group = win_blur_grp,
 	callback = function()
 		vim.wo.cursorline = false

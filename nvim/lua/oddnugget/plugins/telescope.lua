@@ -78,8 +78,8 @@ return {
 					live_grep_args = {
 						mappings = {
 							i = {
-								["<S-C-k>"] = lga_actions.quote_prompt(),
-								["<S-C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+								["<C-k>"] = lga_actions.quote_prompt(),
+								["<C-n>s"] = lga_actions.quote_prompt({ postfix = " -i '!spec' " }),
 							},
 						},
 					},

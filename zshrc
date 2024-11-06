@@ -38,3 +38,5 @@ unsetopt autocd
 source $HOME/.zsh/user-env
 export PATH="$PATH:/usr/lib/python3/"
 
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
