@@ -20,6 +20,7 @@ fi
 if [[ -n "${DEVBOX}" ]]; then
   source /home/odyrag/.config/broot/launcher/bash/br
 else
+  export PATH=/opt/homebrew/bin:$PATH
   eval "$(rbenv init -)"
 fi
 
