@@ -75,7 +75,7 @@ return {
 						},
 					},
 				},
-				highlight = { enable = true },
+				highlight = { enable = true, additional_vim_regex_highlights = false },
 				indent = { enable = true, disable = { "python" } },
 				incremental_selection = {
 					enable = true,
