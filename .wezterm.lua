@@ -1,10 +1,10 @@
+local os = require("os")
 local wezterm = require("wezterm")
 local act = wezterm.action
-local os = require("os")
 
 local config = {
 	font = wezterm.font("JetBrains Mono Regular"),
-	font_size = 18.0,
+	font_size = 17.0,
 	hide_tab_bar_if_only_one_tab = false,
 	tab_bar_at_bottom = false,
 	use_dead_keys = false,
@@ -17,32 +17,51 @@ local config = {
 	color_scheme = "Catppuccin Macchiato",
 }
 
-local move_around = function(window, pane, direction_wez, direction_nvim)
-	local result = os.execute(
-		"env NVIM_LISTEN_ADDRESS=/tmp/nvim" .. pane:pane_id() .. " wezterm.nvim.navigator " .. direction_nvim
-	)
-	if result then
-		window:perform_action(wezterm.action({ SendString = "\x17" .. direction_nvim }), pane)
-	else
-		window:perform_action(wezterm.action({ ActivatePaneDirection = direction_wez }), pane)
-	end
-end
+-- config.ssh_domains = {
+-- 	{ name = "devbox", remote_address = "devbox", username = "odyrag" },
+-- }
 
-wezterm.on("move-left", function(window, pane)
-	move_around(window, pane, "Left", "h")
-end)
+-- ###########################################################
+-- #                                                         #
+-- #  for the time being this doesn't work over ssh,         #
+-- #  I probably need to setup the domain somehow            #
+-- #                                                         #
+-- ###########################################################
 
-wezterm.on("move-right", function(window, pane)
-	move_around(window, pane, "Right", "l")
-end)
+-- local move_around = function(window, pane, direction_wez, direction_nvim)
+-- 	local result = os.execute(
+-- 		"env NVIM_LISTEN_ADDRESS=/tmp/nvim"
+-- 			.. pane:pane_id()
+-- 			.. " "
+-- 			.. wezterm.home_dir
+-- 			.. "/go/bin/wezterm.nvim.navigator"
+-- 			.. " "
+-- 			.. direction_nvim
+-- 	)
+-- 	if result then
+-- 		print("Sending to nvim")
+-- 		window:perform_action(wezterm.action({ SendString = "\x17" .. direction_nvim }), pane)
+-- 	else
+-- 		print("Sending to wezterm")
+-- 		window:perform_action(wezterm.action({ ActivatePaneDirection = direction_wez }), pane)
+-- 	end
+-- end
 
-wezterm.on("move-up", function(window, pane)
-	move_around(window, pane, "Up", "k")
-end)
+-- wezterm.on("move-left", function(window, pane)
+-- 	move_around(window, pane, "Left", "h")
+-- end)
 
-wezterm.on("move-down", function(window, pane)
-	move_around(window, pane, "Down", "j")
-end)
+-- wezterm.on("move-right", function(window, pane)
+-- 	move_around(window, pane, "Right", "l")
+-- end)
+
+-- wezterm.on("move-up", function(window, pane)
+-- 	move_around(window, pane, "Up", "k")
+-- end)
+
+-- wezterm.on("move-down", function(window, pane)
+-- 	move_around(window, pane, "Down", "j")
+-- end)
 
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
 
@@ -125,26 +144,25 @@ config.keys = {
 			size = { Percent = 50 },
 		}),
 	},
-	-- CTRL + (h,j,k,l) to move between panes
 	{
 		key = "h",
-		mods = "CTRL",
-		action = act({ EmitEvent = "move-left" }),
+		mods = "LEADER",
+		action = act({ ActivatePaneDirection = "Left" }),
 	},
 	{
 		key = "j",
-		mods = "CTRL",
-		action = act({ EmitEvent = "move-down" }),
+		mods = "LEADER",
+		action = act({ ActivatePaneDirection = "Down" }),
 	},
 	{
 		key = "k",
-		mods = "CTRL",
-		action = act({ EmitEvent = "move-up" }),
+		mods = "LEADER",
+		action = act({ ActivatePaneDirection = "Up" }),
 	},
 	{
 		key = "l",
-		mods = "CTRL",
-		action = act({ EmitEvent = "move-right" }),
+		mods = "LEADER",
+		action = act({ ActivatePaneDirection = "Right" }),
 	},
 	-- ALT + (h,j,k,l) to resize panes
 	{
@@ -196,10 +214,17 @@ config.keys = {
 		mods = "LEADER",
 		action = act.ActivatePaneDirection("Prev"),
 	},
+	-- Rotate panes
 	{
 		key = "o",
 		mods = "LEADER",
 		action = act.ActivatePaneDirection("Next"),
 	},
+	{
+		key = "b",
+		mods = "CTRL",
+		action = act.RotatePanes("CounterClockwise"),
+	},
+	{ key = "n", mods = "CTRL", action = act.RotatePanes("Clockwise") },
 }
 return config

@@ -9,8 +9,7 @@
 #
 
 # Wezterm.nvim navigator
-[ -n "$WEZTERM_PANE" ] && export NVIM_LISTEN_ADDRESS="/tmp/nvim$WEZTERM_PANE"
-
+# [ -n "$WEZTERM_PANE" ] && export NVIM_LISTEN_ADDRESS="/tmp/nvim$WEZTERM_PANE"
 
 
 export EDITOR="$VISUAL"
@@ -19,7 +18,7 @@ PATH=$PATH:$HOME/.local/bin/
 
 source ~/.zsh/aliases
 alias luamake=/home/odyrag/.local/lua-language-server/3rd/luamake/luamake
-source .zsh/wezterm-shell-integration
+source ~/.zsh/wezterm-shell-integration
 source <(fzf --zsh)
 
 eval "$(starship init zsh)"
