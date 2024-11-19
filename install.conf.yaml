@@ -60,4 +60,4 @@
       if: "[ `uname` = Darwin ]"
 - shell:
     - [git submodule update --init --recursive, Installing Submodules]
-    - [git clone -b v2.1.1 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux]
+    - [git clone -b v2.1.1 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux, Installing Catppuccin]
