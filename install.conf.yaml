@@ -1,6 +1,9 @@
 - clean:
     ~/:
       force: true
+- create:
+  - ~/.config/tmux/plugins
+
 - link:
     ~/.ripgreprc: .ripgreprc
     ~/.gitconfig: 
@@ -8,7 +11,7 @@
       force: true
     ~/.work.gitconfig: .work.gitconfig
     ~/.tmux.conf:
-      path: tmux.conf
+      path: tmux/tmux.conf
       force: true
     ~/.zshenv:
       path: zsh/zshenv.zsh
@@ -57,3 +60,4 @@
       if: "[ `uname` = Darwin ]"
 - shell:
     - [git submodule update --init --recursive, Installing Submodules]
+    - [git clone -b v2.1.1 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux]
