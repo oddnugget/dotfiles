@@ -10,13 +10,19 @@
     ~/.tmux.conf:
       path: tmux.conf
       force: true
-    ~/.zshrc:
-      path: zshrc
+    ~/.zshenv:
+      path: zsh/zshenv.zsh
       force: true
-    ~/.zsh/aliases: .zsh/aliases
-    ~/.zsh/wezterm-shell-integration:
-      path: .zsh/wezterm-shell-integration
-      if: "[ `uname` = Darwin ]"
+    ~/.config/zsh/.zshrc:
+      path: zsh/zshrc.zsh
+      force: true
+    ~/.config/zsh/aliases: zsh/aliases.zsh
+    ~/.config/zsh/completions.zsh: zsh/completions.zsh
+    ~/.config/zsh/wezterm-shell-integration:
+      path: zsh/wezterm-shell-integration.zsh
+    ~/.config/zsh/plugins/cursor_mode:
+      path: zsh/plugins/cursor_mode.zsh
+      create: true
     ~/.config/bat/config:
       path: bat/config
       create: true
@@ -37,13 +43,6 @@
       force: true
     ~/.aerospace.toml:
       path: .aerospace.toml
-      if: "[ `uname` = Darwin ]"
-    ~/.config/ranger: ranger
-    ~/.config/yabai:
-      path: yabai
-      if: "[ `uname` = Darwin ]"
-    ~/.config/skhd:
-      path: skhd
       if: "[ `uname` = Darwin ]"
     ~/.config/raycast:
       path: raycast

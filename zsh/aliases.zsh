@@ -1,5 +1,5 @@
 # vim: set ft=zsh
-#
+
 # GIT 
 alias gd='git show'
 alias gst='git status'
@@ -7,27 +7,27 @@ alias gst='git status'
 alias ncfg='nvim --cmd "cd $HOME/.config/nvim"'
 alias ls='lsd'
 alias dot='cd $HOME/dotfiles'
-alias cat='bat $1'
-alias devssh='kitten ssh devbox'
+
 alias fugit="nvim -c \"G\" -c \"only\""
+alias today="date -u +%Y-%m-%d"
 
-function psg() { 
-  ps aux | grep $1 | sed G
-}
+function cat() { bat "$1"; }
 
+# Devbox
 function ksh ()
 {
     app=$1;
-    pod=$(kubectl get pods -l app=$app -o=jsonpath='{.items[0].metadata.name}' 2>/dev/null);
+    pod=$(kubectl get pods -l app="$app" -o=jsonpath='{.items[0].metadata.name}' 2>/dev/null);
     result=$?;
     if [ $result -ne 0 ]; then
         echo "could not get pods for $app";
         return $result;
     fi;
-    kubectl exec -it $p
+    kubectl exec -it "$pod"
 }
 
-alias miex="iex -S mix phx.server"
-alias today="date -u +%Y-%m-%d"
+alias devssh='kitten ssh devbox'
 
-alias zsrc="source $HOME/.zshrc"
+# Elixir
+alias miex="iex -S mix phx.server"
+
