@@ -13,21 +13,6 @@ return {
 	},
 	{ "tpope/vim-fugitive", lazy = false },
 	{
-		"mrjones2014/smart-splits.nvim",
-		build = "./kitty/install-kittens.bash",
-		dev = false,
-		lazy = false,
-		keys = {
-			{ "<C-j>", "<cmd>lua require('smart-splits').move_cursor_down()<CR>" },
-			{ "<C-k>", "<cmd>lua require('smart-splits').move_cursor_up()<CR>" },
-			{ "<C-h>", "<cmd>lua require('smart-splits').move_cursor_left()<CR>" },
-			{ "<C-l>", "<cmd>lua require('smart-splits').move_cursor_right()<CR>" },
-		},
-		config = function(opts)
-			require("smart-splits").setup(opts)
-		end,
-	},
-	{
 		"tpope/vim-projectionist",
 		lazy = false,
 		config = function()
