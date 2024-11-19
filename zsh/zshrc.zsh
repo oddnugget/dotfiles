@@ -41,6 +41,3 @@ setopt HIST_SAVE_NO_DUPS
 bindkey -v
 export KEYTIMEOUT=1
 source "$ZDOTDIR/plugins/cursor_mode"
-
-
-
