@@ -4,7 +4,7 @@ local wezterm = require("wezterm")
 
 local config = {
 	font = wezterm.font("JetBrains Mono Regular"),
-	font_size = 17.0,
+	font_size = 16.0,
 	hide_tab_bar_if_only_one_tab = false,
 	tab_bar_at_bottom = false,
 	use_dead_keys = false,
@@ -18,7 +18,12 @@ local config = {
 
 config.keys = {
   -- CTRL-SHIFT-l activates the debug overlay
-  { key = 'L', mods = 'CMD|CTRL', action = wezterm.action.ShowDebugOverlay },
+  { key = 'L', mods = 'SUPER|CTRL', action = wezterm.action.ShowDebugOverlay },
+  { key = 't', mods = 'SUPER', action = wezterm.action.SpawnTab 'DefaultDomain' },
+  { key = 'n', mods = 'SUPER', action = wezterm.action.SpawnWindow  },
+  { key = 'w', mods = 'SUPER', action = wezterm.action.CloseCurrentTab { confirm = true} },
+  { key = 'v', mods = 'SUPER', action = wezterm.action.PasteFrom "Clipboard"},
+  { key = 'c', mods = 'SUPER', action = wezterm.action.CopyTo "Clipboard"},
 }
 
 

@@ -54,10 +54,10 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 [gaps]
 inner.horizontal = 8
 inner.vertical = 8
-outer.left = 8
-outer.bottom = 8
+outer.left = [{ monitor.secondary =  0} ,8]
+outer.bottom = [{ monitor.secondary = 0 }, 8]
 outer.top = 0
-outer.right = 8
+outer.right = [{ monitor.secondary = 0 }, 8]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -119,6 +119,7 @@ alt-4 = 'workspace 4'
 alt-5 = 'workspace 5'
 alt-6 = 'workspace 6'
 alt-7 = 'workspace 7'
+alt-t = 'workspace secondary'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-1 = 'move-node-to-workspace 1'
@@ -128,6 +129,7 @@ alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-6 = 'move-node-to-workspace 6'
 alt-shift-7 = 'move-node-to-workspace 7'
+alt-shift-t = 'move-node-to-workspace secondary'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
@@ -155,9 +157,15 @@ alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
 
+# Workspace to monitor
+[workspace-to-monitor-force-assignment]
+secondary = 'secondary'
+
+
+# App heuristics
 [[on-window-detected]]
 if.app-name-regex-substring = 'discord'
-run = ["layout floating", "move-node-to-workspace 6"]
+run = ["layout floating", "move-node-to-workspace secondary"]
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'music'
@@ -165,7 +173,7 @@ run = ["layout floating", "move-node-to-workspace 6"]
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Slack'
-run = ["move-node-to-workspace 8"]
+run = ["move-node-to-workspace secondary"]
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Linear'
