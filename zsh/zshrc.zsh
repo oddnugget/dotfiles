@@ -19,6 +19,7 @@ fi
 
 if [[ -n "${DEVBOX}" ]]; then
   source /home/odyrag/.config/broot/launcher/bash/br
+  export DEV_HOST=devbox
 else
   export PATH=/opt/homebrew/bin:$PATH
   eval "$(rbenv init -)"
@@ -41,4 +42,5 @@ setopt HIST_SAVE_NO_DUPS
 # Vim mode
 bindkey -v
 export KEYTIMEOUT=1
+bindkey "^?" backward-delete-char
 source "$ZDOTDIR/plugins/cursor_mode"
