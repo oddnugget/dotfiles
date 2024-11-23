@@ -23,7 +23,7 @@ config.keys = {
   { key = 'n', mods = 'SUPER', action = wezterm.action.SpawnWindow  },
   { key = 'w', mods = 'SUPER', action = wezterm.action.CloseCurrentTab { confirm = true} },
   { key = 'v', mods = 'SUPER', action = wezterm.action.PasteFrom "Clipboard"},
-  { key = 'c', mods = 'SUPER', action = wezterm.action.CopyTo "Clipboard"},
+  { key = 'c', mods = 'SUPER', action = wezterm.action.PasteFrom "Clipboard"},
 }
 
 
