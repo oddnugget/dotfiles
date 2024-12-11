@@ -140,9 +140,6 @@ return {
 					on_attach = function(client, bufnr)
 						setup_formatting(client, bufnr)
 						setup_keymaps()
-						-- vim.keymap.set("n", "<space>fp", ":ElixirFromPipe<cr>", { buffer = true, noremap = true })
-						-- vim.keymap.set("n", "<space>tp", ":ElixirToPipe<cr>", { buffer = true, noremap = true })
-						-- vim.keymap.set("v", "<space>em", ":ElixirExpandMacro<cr>", { buffer = true, noremap = true })
 					end,
 				},
 				projectionist = {

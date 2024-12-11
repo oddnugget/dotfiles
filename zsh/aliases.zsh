@@ -23,7 +23,7 @@ function ksh ()
         echo "could not get pods for $app";
         return $result;
     fi;
-    kubectl exec -it "$pod"
+    kubectl exec -it "$pod" -- sh
 }
 
 alias devssh='kitten ssh devbox'
