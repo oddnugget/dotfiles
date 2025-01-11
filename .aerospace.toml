@@ -54,7 +54,7 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 [gaps]
 inner.horizontal = 8
 inner.vertical = 8
-outer.left = [{ monitor.secondary =  0} ,8]
+outer.left = [{ monitor.secondary = 0 }, 8]
 outer.bottom = [{ monitor.secondary = 0 }, 8]
 outer.top = 0
 outer.right = [{ monitor.secondary = 0 }, 8]
@@ -107,9 +107,6 @@ alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#resize
-alt-shift-minus = 'resize smart -50'
-alt-shift-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-1 = 'workspace 1'
@@ -136,8 +133,20 @@ alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#mode
+
+alt-shift-f = 'fullscreen'
+
+alt-shift-r = 'mode resize'
 alt-shift-p = 'mode service'
+
+[mode.resize.binding]
+esc = 'mode main'
+equal = 'balance-sizes'
+shift-equal = 'resize smart +50'
+minus = 'resize smart -50'
+
+
+# See: https://nikitabobko.github.io/AeroSpace/commands#mode
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes

@@ -6,6 +6,16 @@ return {
 		build = ":TSUpdate",
 		event = "BufReadPost",
 		config = function()
+			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+			parser_config.plantuml = {
+				install_info = {
+					url = "~/dev/neovim/tree-sitter-plantuml",
+					files = { "src/parser.c" },
+					branch = "main",
+				},
+				filetype = "plantuml",
+			}
+
 			require("nvim-treesitter.configs").setup({
 				ensure_installed = {
 					"bash",

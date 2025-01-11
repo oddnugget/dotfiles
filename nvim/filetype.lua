@@ -18,6 +18,7 @@ vim.filetype.add({
 		["NEOGIT_COMMIT_EDITMSG"] = "NeogitCommitMessage",
 	},
 	extension = {
+		puml = "plantuml",
 		json = "jsonc",
 		kitty = "bash",
 		eslintrc = "jsonc",

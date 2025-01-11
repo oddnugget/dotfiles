@@ -7,6 +7,8 @@
 
 
 export PATH=$PATH:$HOME/.local/bin
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH=$HOME/.cargo/bin:$PATH
 
 source "$ZDOTDIR/aliases"
 source "$ZDOTDIR/wezterm-shell-integration"

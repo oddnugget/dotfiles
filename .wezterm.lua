@@ -13,20 +13,18 @@ local config = {
 	window_decorations = "RESIZE",
 	audible_bell = "Disabled",
 	color_scheme = "Catppuccin Macchiato",
-	disable_default_key_bindings = true
+	disable_default_key_bindings = true,
 }
 
 config.keys = {
-  -- CTRL-SHIFT-l activates the debug overlay
-  { key = 'L', mods = 'SUPER|CTRL', action = wezterm.action.ShowDebugOverlay },
-  { key = 't', mods = 'SUPER', action = wezterm.action.SpawnTab 'DefaultDomain' },
-  { key = 'n', mods = 'SUPER', action = wezterm.action.SpawnWindow  },
-  { key = 'w', mods = 'SUPER', action = wezterm.action.CloseCurrentTab { confirm = true} },
-  { key = 'v', mods = 'SUPER', action = wezterm.action.PasteFrom "Clipboard"},
-  { key = 'c', mods = 'SUPER', action = wezterm.action.PasteFrom "Clipboard"},
+	-- CTRL-SHIFT-l activates the debug overlay
+	{ key = "L", mods = "SUPER|CTRL", action = wezterm.action.ShowDebugOverlay },
+	{ key = "t", mods = "SUPER", action = wezterm.action.SpawnTab("DefaultDomain") },
+	{ key = "n", mods = "SUPER", action = wezterm.action.SpawnWindow },
+	{ key = "w", mods = "SUPER", action = wezterm.action.CloseCurrentTab({ confirm = true }) },
+	{ key = "v", mods = "SUPER", action = wezterm.action.PasteFrom("Clipboard") },
+	{ key = "c", mods = "SUPER", action = wezterm.action.PasteFrom("Clipboard") },
 }
-
-
 
 -- config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
 
