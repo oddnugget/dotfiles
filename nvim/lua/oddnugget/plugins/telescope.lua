@@ -46,6 +46,7 @@ return {
 		config = function()
 			local lga_actions = require("telescope-live-grep-args.actions")
 			local telescope = require("telescope")
+			local actions = require("telescope.actions")
 
 			local function navigate_to_directory(path)
 				local files = require("oil")
@@ -62,6 +63,13 @@ return {
 									local entry = require("telescope.actions.state").get_selected_entry()
 									navigate_to_directory(entry.path)
 								end,
+							},
+						},
+					},
+					buffers = {
+						mappings = {
+							n = {
+								["<c-d>"] = actions.delete_buffer + actions.move_to_top,
 							},
 						},
 					},

@@ -89,7 +89,7 @@ return {
 					require("mason-lspconfig").setup({ automatic_installation = true })
 				end,
 			},
-			{ "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+			-- { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
 			{ "folke/neodev.nvim", config = true },
 			{ "j-hui/fidget.nvim", config = true },
 			"williamboman/mason-lspconfig.nvim",

@@ -46,3 +46,5 @@ bindkey -v
 export KEYTIMEOUT=1
 bindkey "^?" backward-delete-char
 source "$ZDOTDIR/plugins/cursor_mode"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
