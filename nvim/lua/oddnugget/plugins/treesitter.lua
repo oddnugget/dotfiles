@@ -75,15 +75,6 @@ return {
 							["[]"] = "@class.outer",
 						},
 					},
-					swap = {
-						enable = true,
-						swap_next = {
-							["<leader>a"] = "@parameter.inner",
-						},
-						swap_previous = {
-							["<leader>A"] = "@parameter.inner",
-						},
-					},
 				},
 				highlight = { enable = true, additional_vim_regex_highlights = false },
 				indent = { enable = true, disable = { "python" } },
