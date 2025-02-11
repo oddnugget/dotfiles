@@ -6,8 +6,8 @@
 
 - link:
     ~/.ripgreprc: .ripgreprc
-    ~/.config/ghosty/config:
-      path: ghosty/config
+    ~/.config/ghostty/config:
+      path: ghostty/config
       create: true
     ~/.gitconfig: 
       path: gitconfig

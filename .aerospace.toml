@@ -141,8 +141,8 @@ alt-shift-p = 'mode service'
 
 [mode.resize.binding]
 esc = 'mode main'
-equal = 'balance-sizes'
-shift-equal = 'resize smart +50'
+shift-equal = 'balance-sizes'
+equal = 'resize smart +50'
 minus = 'resize smart -50'
 
 
