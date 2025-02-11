@@ -18,7 +18,7 @@ local dev_path = vim.g.is_devbox and "~/projects/oddnugget" or "~/dev/projects/n
 -- Configure lazy.nvim
 require("lazy").setup("oddnugget.plugins", {
 	defaults = { lazy = true, version = nil },
-	install = { missing = true, colorscheme = { "kanagawa" } },
+	install = { missing = true, colorscheme = { "catppuccin" } },
 	checker = { enabled = true },
 	change_detection = { enabled = false },
 	dev = {
