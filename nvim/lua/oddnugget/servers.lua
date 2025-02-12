@@ -35,21 +35,22 @@ M.list = {
 		},
 	},
 	lua_ls = {
-		settings = {
-			Lua = {
-				workspace = {
-					checkThirdParty = false,
-				},
-				globals = {
-					"vim",
-				},
-				completion = { callSnippet = "Replace" },
-				telemetry = { enable = false },
-				hint = {
-					enable = false,
-				},
-			},
-		},
+		-- settings = {
+		-- 	Lua = {
+		-- 		workspace = {
+		-- 			checkThirdParty = false,
+		-- 		},
+		-- 		globals = {
+		-- 			"vim",
+		-- 			"Snacks",
+		-- 		},
+		-- 		completion = { callSnippet = "Replace" },
+		-- 		telemetry = { enable = false },
+		-- 		hint = {
+		-- 			enable = false,
+		-- 		},
+		-- 	},
+		-- },
 	},
 	pyright = {},
 	ts_ls = {

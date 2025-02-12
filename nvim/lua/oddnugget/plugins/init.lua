@@ -1,6 +1,5 @@
 return {
 	"nvim-lua/plenary.nvim",
-	"MunifTanjim/nui.nvim",
 	{ "tpope/vim-fugitive", lazy = false },
 	{
 		"tpope/vim-projectionist",

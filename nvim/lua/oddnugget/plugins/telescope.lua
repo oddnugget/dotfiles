@@ -1,6 +1,7 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
+		enabled = true,
 		cmd = "Telescope",
 		dependencies = {
 			{
@@ -10,38 +11,38 @@ return {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 		keys = {
-			{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-			{ "<leader>fF", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
-			{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
-			{ "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
-			{
-				"<leader>fw",
-				function()
-					require("telescope").extensions.live_grep_args.live_grep_args()
-				end,
-				desc = "Grep",
-			},
-			{
-				"<leader>zc",
-				function()
-					require("telescope.builtin").colorscheme({ enable_preview = true })
-				end,
-				desc = "Colorscheme",
-			},
-			{
-				"<leader>gw",
-				function()
-					require("telescope-live-grep-args.shortcuts").grep_word_under_cursor()
-				end,
-			},
-			{
-				"<leader>f<leader>",
-				"<cmd> Telescope resume<cr>",
-			},
-			{
-				"<leader>do",
-				"<cmd> Telescope diagnostics<cr>",
-			},
+			-- { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
+			-- { "<leader>fF", "<cmd>Telescope find_files hidden=true<cr>", desc = "Find Files" },
+			-- { "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent" },
+			-- { "<leader>fb", "<cmd>Telescope buffers<cr>", desc = "Buffers" },
+			-- {
+			-- 	"<leader>fw",
+			-- 	function()
+			-- 		require("telescope").extensions.live_grep_args.live_grep_args()
+			-- 	end,
+			-- 	desc = "Grep",
+			-- },
+			-- {
+			-- 	"<leader>zc",
+			-- 	function()
+			-- 		require("telescope.builtin").colorscheme({ enable_preview = true })
+			-- 	end,
+			-- 	desc = "Colorscheme",
+			-- },
+			-- {
+			-- 	"<leader>gw",
+			-- 	function()
+			-- 		require("telescope-live-grep-args.shortcuts").grep_word_under_cursor()
+			-- 	end,
+			-- },
+			-- {
+			-- 	"<leader>f<leader>",
+			-- 	"<cmd> Telescope resume<cr>",
+			-- },
+			-- {
+			-- 	"<leader>do",
+			-- 	"<cmd> Telescope diagnostics<cr>",
+			-- },
 		},
 		config = function()
 			local lga_actions = require("telescope-live-grep-args.actions")
