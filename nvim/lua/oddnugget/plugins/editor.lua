@@ -23,16 +23,18 @@ return {
 		"ThePrimeagen/harpoon",
 		keys = {
 			{
-				"<Leader>bb",
+				"<Leader>hh",
 				function()
 					require("harpoon.ui").toggle_quick_menu()
 				end,
+				desc = "Harpoon quick menu",
 			},
 			{
-				"<Leader>ba",
+				"<Leader>ha",
 				function()
 					require("harpoon.mark").add_file()
 				end,
+				desc = "Harpoon add mark",
 			},
 			{
 				"<Leader><Leader>1",
