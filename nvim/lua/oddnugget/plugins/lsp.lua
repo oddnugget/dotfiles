@@ -1,8 +1,8 @@
 local function get_server_capabilities()
   local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-  local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+  -- local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-  return vim.tbl_deep_extend("force", lsp_capabilities, cmp_capabilities)
+  return lsp_capabilities
 end
 
 local function setup_formatting(_, bufnr)
@@ -103,8 +103,6 @@ return {
       },
       { "j-hui/fidget.nvim", config = true },
       "williamboman/mason-lspconfig.nvim",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = config,
   },
