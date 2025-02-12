@@ -51,7 +51,7 @@ keymap("n", "<S-Left>", "<cmd>vertical resize -2<CR>")
 keymap("n", "<S-Right>", "<cmd>vertical resize +2<CR>")
 
 keymap("n", "<Leader>uf", function()
-	utils.copy_to_system_clipboard()
+  utils.copy_to_system_clipboard()
 end)
 keymap("n", "<Leader>cn", ":cnext<CR>")
 keymap("n", "<Leader>cp", ":cprev<CR>")
