@@ -48,7 +48,8 @@ return {
             },
           },
         },
-        highlight = { enable = true, additional_vim_regex_highlights = false },
+        highlight = { enable = true, additional_vim_regex_highlights = { "ruby" } },
+        indent = { enable = true, disable = { "ruby" } },
       })
     end,
   },

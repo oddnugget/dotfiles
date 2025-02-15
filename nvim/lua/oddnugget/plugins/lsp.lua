@@ -1,8 +1,7 @@
 local function get_server_capabilities()
   local lsp_capabilities = vim.lsp.protocol.make_client_capabilities()
-  -- local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-  return lsp_capabilities
+  return require("blink.cmp").get_lsp_capabilities(lsp_capabilities)
 end
 
 local function setup_formatting(_, bufnr)

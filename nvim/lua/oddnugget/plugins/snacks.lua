@@ -44,7 +44,14 @@ return {
   },
   keys = {
     {
-      "<leader><space>",
+      "<leader>f<leader>",
+      function()
+        Snacks.picker.resume()
+      end,
+      desc = "Resume picker",
+    },
+    {
+      "<leader>ff",
       function()
         Snacks.picker.smart()
       end,
@@ -58,13 +65,6 @@ return {
       desc = "Buffers",
     },
     {
-      "<leader>fw",
-      function()
-        Snacks.picker.grep()
-      end,
-      desc = "Grep",
-    },
-    {
       "<leader>fe",
       function()
         Snacks.explorer()
@@ -72,13 +72,6 @@ return {
       desc = "File Explorer",
     },
     -- find
-    {
-      "<leader>ff",
-      function()
-        Snacks.picker.files()
-      end,
-      desc = "Find Files",
-    },
     {
       "<leader>fr",
       function()
@@ -152,11 +145,18 @@ return {
       desc = "Grep Open Buffers",
     },
     {
-      "<leader>sg",
+      "<leader>fw",
       function()
-        Snacks.picker.grep()
+        Snacks.picker.grep({ picker = "rg" })
       end,
       desc = "Grep",
+    },
+    {
+      "<leader>gw",
+      function()
+        Snacks.picker.grep_word({ picker = "rg" })
+      end,
+      mode = { "n", "x" },
     },
     -- search
     {

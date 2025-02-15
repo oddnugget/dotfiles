@@ -1,28 +1,34 @@
 return {
   {
-    "akinsho/bufferline.nvim",
-    event = "VeryLazy",
-    keys = {
-      { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin" },
-      { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers" },
-      { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right" },
-      { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left" },
-      { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev Buffer" },
-      { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next Buffer" },
-    },
-    opts = {
-      options = {
-        -- stylua: ignore
-        close_command = function(n) Snacks.bufdelete(n) end,
-        -- stylua: ignore
-        right_mouse_command = function(n) Snacks.bufdelete(n) end,
-      },
-    },
-  },
-  {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     opts = {},
+  },
+  {
+    "MunifTanjim/nougat.nvim",
+    event = "VeryLazy",
+    config = function()
+      local nougat = require("nougat")
+      local Bar = require("nougat.bar")
+      local sep = require("nougat.separator")
+      local color = require("nougat.color").get()
+
+      local nut = {
+        buf = {
+          filename = require("nougat.nut.buf.filename").create,
+        },
+        spacer = require("nougat.nut.spacer").create,
+      }
+
+      local winbar = Bar("winbar")
+
+      winbar:add_item(nut.buf.filename({
+        prefix = " ",
+        suffix = " ",
+      }))
+
+      nougat.set_winbar(winbar, { global = true })
+    end,
   },
 }

@@ -12,23 +12,10 @@ keymap("n", "g,", "g,zvzz")
 keymap("n", "g;", "g;zvzz")
 
 -- Tab nav maps
-keymap("n", "<leader>t", "<cmd>tabe<cr>")
+keymap("n", "<leader>tt", "<cmd>tabe<cr>")
 keymap("n", "<leader>tn", "<cmd>tabn<cr>")
 keymap("n", "<leader>tp", "<cmd>tabp<cr>")
 keymap("n", "<leader>tq", "<cmd>tabclose<cr>")
-
--- Terminal Maps
-keymap("i", "jj", "<ESC>")
-keymap("t", "<ESC>", "<C-\\><C-n>")
-keymap("t", "<C-h>", [[<Cmd>wincmd h<CR>]])
-keymap("t", "<C-j>", [[<Cmd>wincmd j<CR>]])
-keymap("t", "<C-k>", [[<Cmd>wincmd k<CR>]])
-keymap("t", "<C-l>", [[<Cmd>wincmd l<CR>]])
-
-keymap("t", "<C-h>", "<C-\\><C-n><C-w>h")
-keymap("t", "<C-j>", "<C-\\><C-n><C-w>j")
-keymap("t", "<C-k>", "<C-\\><C-n><C-w>k")
-keymap("t", "<C-l>", "<C-\\><C-n><C-w>l")
 
 -- jump buflist
 keymap("n", "<Leader>o", "<cmd>bprevious<CR>")
