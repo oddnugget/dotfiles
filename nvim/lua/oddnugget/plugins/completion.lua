@@ -22,7 +22,7 @@ return {
       -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
       -- See the full "keymap" documentation for information on defining your own keymap.
       keymap = { preset = "enter" },
-      cmdline = { keymap = { preset = "super-tab" } },
+      cmdline = { keymap = { preset = "super-tab" }, completion = { menu = { auto_show = true } } },
 
       appearance = {
         -- Sets the fallback highlight groups to nvim-cmp's highlight groups
