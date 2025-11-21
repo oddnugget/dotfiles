@@ -9,4 +9,4 @@ export SAVEHIST=10000
 
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"

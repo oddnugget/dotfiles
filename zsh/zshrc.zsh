@@ -8,7 +8,7 @@
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-export PATH=$HOME/.cargo/bin:$PATH
+# export PATH=$HOME/.cargo/bin:$PATH
 
 source "$ZDOTDIR/aliases"
 source "$ZDOTDIR/wezterm-shell-integration"
@@ -39,7 +39,7 @@ _comp_options+=(globdots) # hidden files
 source "$ZDOTDIR/completions.zsh"
 
 unsetopt autocd
-setopt HIST_SAVE_NO_DUPS 
+setopt HIST_SAVE_NO_DUPS
 
 # Vim mode
 bindkey -v
