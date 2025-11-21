@@ -129,7 +129,7 @@ alt-shift-7 = 'move-node-to-workspace 7'
 alt-shift-t = 'move-node-to-workspace secondary'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
-alt-tab = 'workspace-back-and-forth'
+# alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
@@ -174,11 +174,8 @@ secondary = 'secondary'
 # App heuristics
 [[on-window-detected]]
 if.app-name-regex-substring = 'discord'
-run = ["layout floating", "move-node-to-workspace secondary"]
+run = ["layout floating"]
 
-[[on-window-detected]]
-if.app-name-regex-substring = 'music'
-run = ["layout floating", "move-node-to-workspace 6"]
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Slack'
@@ -198,8 +195,24 @@ run = ["move-node-to-workspace 5"]
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Obsidian'
-run = ["move-node-to-workspace 5"]
+run = ["layout floating", "move-node-to-workspace 5"]
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'Finder'
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Messages'
+run = ["layout floating", "move-node-to-workspace 6"]
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Spotify'
+run = ["layout floating", "move-node-to-workspace 6"]
+
+[[on-window-detected]]
+if.app-name-regex-substring = '1Password'
+run = ["layout floating"]
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'Antinote'
 run = ["layout floating"]

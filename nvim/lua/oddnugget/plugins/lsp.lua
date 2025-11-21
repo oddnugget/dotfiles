@@ -122,6 +122,7 @@ return {
         jsonc = { "prettier", "fixjson" },
         html = { "prettier" },
         ruby = { "rubocop" },
+        python = { "ruff_format", "ruff_organize_imports" },
       },
     },
     config = function(_, opts)

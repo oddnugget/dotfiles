@@ -52,7 +52,27 @@ M.list = {
     -- 	},
     -- },
   },
-  pyright = {},
+  basedpyright = {
+    settings = {
+      python = {
+        analysis = {
+          autoSearchPaths = true,
+          useLibraryCodeForTypes = true,
+          diagnosticMode = "workspace",
+        },
+      },
+    },
+    before_init = function(_, config)
+      -- Try to find the Python interpreter from uv
+      local venv_path = vim.fn.getcwd() .. "/.venv"
+      local uv_python = vim.fn.getcwd() .. "/.venv/bin/python"
+
+      -- Check if .venv exists (uv project)
+      if vim.fn.isdirectory(venv_path) == 1 then
+        config.settings.python.pythonPath = uv_python
+      end
+    end,
+  },
   ts_ls = {
     disable_formatting = false,
   },
