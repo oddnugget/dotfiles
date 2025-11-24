@@ -10,6 +10,7 @@ alias dot='cd $HOME/dotfiles'
 
 alias fugit="nvim -c \"G\" -c \"only\""
 alias today="date -u +%Y-%m-%d"
+alias zshso="source ~/.config/zsh/.zshrc"
 
 function cat() { bat "$1"; }
 
@@ -26,7 +27,11 @@ function ksh ()
     kubectl exec -it "$pod" -- sh
 }
 
-alias devssh='kitten ssh devbox'
+function unlock_devbox () {
+    key=$(op read "op://Employee/Devbox Root/root password")
+    ssh root@devbox-recovery "echo -n $key | cryptroot-unlock"
+}
+
 
 # Elixir
 alias miex="iex -S mix phx.server"

@@ -21,13 +21,12 @@ fi
 
 if [[ -n "${DEVBOX}" ]]; then
   source /home/odyrag/.config/broot/launcher/bash/br
+  eval "$(shadowenv init zsh)"
   export DEV_HOST=devbox
 else
   export PATH=/opt/homebrew/bin:$PATH
-  eval "$(rbenv init -)"
 fi
 
-eval "$(shadowenv init zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd --hook prompt)"
 # shellcheck disable=SC1090
@@ -41,10 +40,7 @@ source "$ZDOTDIR/completions.zsh"
 unsetopt autocd
 setopt HIST_SAVE_NO_DUPS
 
-# Vim mode
-bindkey -v
-export KEYTIMEOUT=1
-bindkey "^?" backward-delete-char
-source "$ZDOTDIR/plugins/cursor_mode"
+bindkey -e
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

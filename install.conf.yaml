@@ -36,8 +36,9 @@
       path: .wezterm.lua
       if: "[ `uname` = Darwin ]"
       create: true
-    ~/.config/zed:
-      path: zed
+    ~/.config/zed/settings.json:
+      path: zed/settings.json
+      force: true
     ~/.config/nvim:
       path: nvim
       force: true
@@ -56,10 +57,6 @@
       path: raycast
       if: "[ `uname` = Darwin ]"
     ~/notebook/.obsidian.vimrc:
-      path: .obsidian.vimrc
-      create: true
-      if: "[ `uname` = Darwin ]"
-    ~/dev/auctionet/megavault/.obsidian.vimrc:
       path: .obsidian.vimrc
       create: true
       if: "[ `uname` = Darwin ]"
