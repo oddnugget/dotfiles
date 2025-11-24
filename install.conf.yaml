@@ -39,6 +39,9 @@
     ~/.config/zed/settings.json:
       path: zed/settings.json
       force: true
+    ~/.config/zed/keymap.json:
+      path: zed/keymap.json
+      force: true
     ~/.config/nvim:
       path: nvim
       force: true
