@@ -1,0 +1,19 @@
+{
+  "edit_predictions": { "mode": "subtle" },
+  "icon_theme": "Catppuccin Macchiato",
+  "theme": "Catppuccin Macchiato",
+  "terminal": {
+    "copy_on_select": true
+  },
+  "vim_mode": true,
+  "active_pane_modifiers": {
+    "border_size": 0.0,
+    "inactive_opacity": 0.85
+  },
+  "search": {
+    "whole_word": false,
+    "case_sensitive": false,
+    "include_ignored": false,
+    "regex": true
+  }
+}

@@ -36,6 +36,8 @@
       path: .wezterm.lua
       if: "[ `uname` = Darwin ]"
       create: true
+    ~/.config/zed:
+      path: zed
     ~/.config/nvim:
       path: nvim
       force: true
