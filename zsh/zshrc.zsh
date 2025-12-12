@@ -30,6 +30,7 @@ fi
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd --hook prompt)"
+eval "$(~/.local/bin/mise activate)"
 # shellcheck disable=SC1090
 source <(fzf --zsh)
 
