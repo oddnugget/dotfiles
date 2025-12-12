@@ -10,7 +10,8 @@ alias dot='cd $HOME/dotfiles'
 
 alias fugit="nvim -c \"G\" -c \"only\""
 alias today="date -u +%Y-%m-%d"
-alias zshso="source ~/.config/zsh/.zshrc"
+alias zso="source ~/.config/zsh/.zshrc"
+alias zcfg="nvim ~/.config/zsh/.zshrc"
 
 function cat() { bat "$1"; }
 

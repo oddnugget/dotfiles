@@ -24,6 +24,7 @@ if [[ -n "${DEVBOX}" ]]; then
   eval "$(shadowenv init zsh)"
   export DEV_HOST=devbox
 else
+  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
   export PATH=/opt/homebrew/bin:$PATH
 fi
 
