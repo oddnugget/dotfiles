@@ -7,37 +7,63 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent_servers": {
+    "claude-acp": {
+      "type": "registry"
+    }
+  },
+  "diff_view_style": "unified",
+  "languages": {
+    "HTML": {
+      "preferred_line_length": 81,
+    },
+    "HEEX": {
+      "language_servers": ["!tailwindcss-language-server"],
+    },
+    "Elixir": {
+      "language_servers": ["expert", "!elixir-ls", "!next-ls", "!lexical"],
+      "format_on_save": "on",
+    },
+  },
+  "use_on_type_format": false,
+  "format_on_save": "on",
   "ssh_connections": [
     {
       "host": "devbox",
       "args": [],
       "projects": [
         {
-          "paths": ["/home/odyrag/projects/barsoom/logan"]
-        }
-      ]
-    }
+          "paths": ["/home/odyrag/projects/barsoom/auctionet"],
+        },
+        {
+          "paths": ["/home/odyrag/projects/barsoom/logan"],
+        },
+        {
+          "paths": ["/home/odyrag/projects/barsoom/skipper"],
+        },
+      ],
+    },
   ],
   "edit_predictions": { "mode": "subtle" },
   "terminal": {
-    "copy_on_select": true
+    "copy_on_select": true,
   },
   "vim_mode": true,
   "ui_font_size": 14.0,
   "buffer_font_size": 12.0,
   "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark"
+    "mode": "dark",
+    "light": "Tokyo Night Light",
+    "dark": "One Dark",
   },
   "active_pane_modifiers": {
     "border_size": 0.0,
-    "inactive_opacity": 0.85
+    "inactive_opacity": 0.85,
   },
   "search": {
     "whole_word": false,
     "case_sensitive": false,
     "include_ignored": false,
-    "regex": true
-  }
+    "regex": true,
+  },
 }

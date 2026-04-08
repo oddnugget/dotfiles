@@ -10,8 +10,8 @@
       "space f f ": "file_finder::Toggle",
       "space f w": "workspace::NewSearch",
       "space e": "project_panel::ToggleFocus",
-      "space u f": "workspace::CopyRelativePath"
-    }
+      "space u f": "workspace::CopyRelativePath",
+    },
   },
   {
     "context": "Dock",
@@ -19,17 +19,17 @@
       "ctrl-h": "workspace::ActivatePaneLeft",
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
-      "ctrl-j": "workspace::ActivatePaneDown"
+      "ctrl-j": "workspace::ActivatePaneDown",
 
       // ... or other keybindings
-    }
+    },
   },
   {
     "context": "Pane",
     "bindings": {
       "ctrl-tab": "pane::ActivateNextItem",
-      "ctrl-shift-tab": "pane::ActivatePreviousItem"
-    }
+      "ctrl-shift-tab": "pane::ActivatePreviousItem",
+    },
   },
   {
     "context": "Terminal",
@@ -38,7 +38,8 @@
       "ctrl-l": "workspace::ActivatePaneRight",
       "ctrl-k": "workspace::ActivatePaneUp",
       "ctrl-j": "workspace::ActivatePaneDown",
-      "ctrl-shift-f": "buffer_search::Deploy"
-    }
-  }
+      "ctrl-shift-f": "buffer_search::Deploy",
+      "shift-enter": ["terminal::SendText", "\u001b\r"],
+    },
+  },
 ]

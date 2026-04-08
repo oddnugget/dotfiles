@@ -8,7 +8,7 @@
 
 export PATH=$PATH:$HOME/.local/bin
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
-# export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
 
 source "$ZDOTDIR/aliases"
 source "$ZDOTDIR/wezterm-shell-integration"
@@ -46,3 +46,4 @@ bindkey -e
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
