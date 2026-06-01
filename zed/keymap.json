@@ -11,6 +11,7 @@
       "space f w": "workspace::NewSearch",
       "space e": "project_panel::ToggleFocus",
       "space u f": "workspace::CopyRelativePath",
+      "g w": "vim::HelixJumpToWord",
     },
   },
   {
@@ -40,6 +41,16 @@
       "ctrl-j": "workspace::ActivatePaneDown",
       "ctrl-shift-f": "buffer_search::Deploy",
       "shift-enter": ["terminal::SendText", "\u001b\r"],
+    },
+  },
+  {
+    "context": "vim_mode == visual",
+    "bindings": {
+      ">": ["action::Sequence", ["vim::Indent", "vim::RestoreVisualSelection"]],
+      "<": [
+        "action::Sequence",
+        ["vim::Outdent", "vim::RestoreVisualSelection"],
+      ],
     },
   },
 ]

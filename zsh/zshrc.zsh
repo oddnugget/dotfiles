@@ -11,7 +11,6 @@ export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 export PATH=$HOME/.cargo/bin:$PATH
 
 source "$ZDOTDIR/aliases"
-source "$ZDOTDIR/wezterm-shell-integration"
 
 alias luamake=/home/odyrag/.local/lua-language-server/3rd/luamake/luamake
 
@@ -30,7 +29,7 @@ fi
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd --hook prompt)"
-eval "$(~/.local/bin/mise activate)"
+# eval "$(~/.local/bin/mise activate)"
 # shellcheck disable=SC1090
 source <(fzf --zsh)
 
@@ -47,3 +46,7 @@ bindkey -e
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
+
+if [[ -z "$PROFILE_SOURCED" ]]; then
+    source ~/.zprofile
+fi
