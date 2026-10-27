@@ -28,19 +28,31 @@
 	side-by-side = true
 
 [merge]
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 
 [diff]
+	algorithm = histogram
 	colorMoved = default
 
 [pull]
 	rebase = true
 
+[rebase]
+	autoStash = true
+
+[fetch]
+	prune = true
+
 [push]
+	default = current
 	autoSetupRemote = true
 
-[rerere] 
+[branch]
+	sort = -committerdate
+
+[rerere]
 	enabled = true
+	autoupdate = true
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/

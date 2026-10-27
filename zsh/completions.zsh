@@ -10,11 +10,6 @@
 # | General |
 # +---------+
 
-# source ./gambit.zsh
-
-# Load more completions
-fpath=($DOTFILES/zsh/plugins/zsh-completions/src $fpath)
-
 # Should be called before compinit
 zmodload zsh/complist
 
@@ -31,12 +26,18 @@ bindkey -M menuselect '^xh' accept-and-hold                # Hold
 bindkey -M menuselect '^xn' accept-and-infer-next-history  # Next
 bindkey -M menuselect '^xu' undo                           # Undo
 
-autoload -U compinit; compinit
+# Full compinit security check at most once a day, otherwise reuse the dump
+autoload -U compinit
+_stale_dump=("$ZDOTDIR"/.zcompdump(N.mh+24))
+if (( $#_stale_dump )); then
+  compinit
+  # compinit only rewrites the dump when completions change, so bump its mtime
+  touch "$ZDOTDIR/.zcompdump"
+else
+  compinit -C
+fi
+unset _stale_dump
 _comp_options+=(globdots) # With hidden files
-
-# Only work with the Zsh function vman
-# See $DOTFILES/zsh/scripts.zsh
-compdef vman="man"
 
 # +---------+
 # | Options |

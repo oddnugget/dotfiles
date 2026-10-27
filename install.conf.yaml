@@ -19,6 +19,8 @@
     ~/.zshenv:
       path: zsh/zshenv.zsh
       force: true
+    # Nested shells inherit ZDOTDIR and read this one instead of ~/.zshenv
+    ~/.config/zsh/.zshenv: zsh/zshenv.zsh
     ~/.config/zsh/.zshrc:
       path: zsh/zshrc.zsh
       force: true
@@ -47,7 +49,7 @@
       force: true
     ~/.config/kitty:
       path: kitty
-      if: "[`uname` = Darwin ]"
+      if: "[ `uname` = Darwin ]"
       force: true
     ~/.config/lsd/config.yaml:
       path: lsd.yaml
@@ -64,5 +66,5 @@
       create: true
       if: "[ `uname` = Darwin ]"
 - shell:
-    - [git submodule update --init --recursive, Installing Submodules]
-    - [git clone -b v2.1.1 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux, Installing Catppuccin]
+    - command: "[ -d ~/.config/tmux/plugins/catppuccin/tmux ] || git clone -b v2.1.1 https://github.com/catppuccin/tmux.git ~/.config/tmux/plugins/catppuccin/tmux"
+      description: Installing Catppuccin

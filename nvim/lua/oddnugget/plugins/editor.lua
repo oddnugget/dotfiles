@@ -1,25 +1,5 @@
 return {
   {
-    "luckasRanarison/nvim-devdocs",
-    event = "VeryLazy",
-    keys = {
-      {
-        "<leader>dd",
-        "<cmd> DevdocsOpenFloat <cr>",
-      },
-      {
-        "<leader>dt",
-        "<cmd> DevdocsToggle <cr>",
-      },
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-telescope/telescope.nvim",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {},
-  },
-  {
     "ThePrimeagen/harpoon",
     keys = {
       {
@@ -102,13 +82,6 @@ return {
           require("spectre").toggle()
         end,
       },
-    },
-  },
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    opts = {
-      -- add any custom options here
     },
   },
   {

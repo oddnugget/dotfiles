@@ -1,6 +1,6 @@
 --- Install lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system({
     "git",
     "clone",
@@ -19,7 +19,7 @@ local dev_path = vim.g.is_devbox and "~/projects/oddnugget" or "~/dev/projects/n
 require("lazy").setup("oddnugget.plugins", {
   defaults = { lazy = true, version = nil },
   install = { missing = true, colorscheme = { "catppuccin" } },
-  checker = { enabled = true },
+  checker = { enabled = true, notify = false },
   change_detection = { enabled = false },
   dev = {
     path = dev_path,

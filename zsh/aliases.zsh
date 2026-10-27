@@ -13,7 +13,7 @@ alias today="date -u +%Y-%m-%d"
 alias zso="source ~/.config/zsh/.zshrc"
 alias zcfg="nvim ~/.config/zsh/.zshrc"
 
-function cat() { bat "$1"; }
+alias cat='bat'
 
 # Devbox
 function ksh ()

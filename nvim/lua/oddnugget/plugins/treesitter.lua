@@ -1,57 +1,64 @@
----@diagnostic disable missing-fields
+local parsers = {
+  "bash",
+  "html",
+  "javascript",
+  "json",
+  "lua",
+  "markdown",
+  "markdown_inline",
+  "python",
+  "query",
+  "regex",
+  "rust",
+  "tsx",
+  "typescript",
+  "vim",
+  "yaml",
+  "heex",
+  "elixir",
+}
+
+local no_indent = { ruby = true }
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+    branch = "main",
     build = ":TSUpdate",
-    event = "BufReadPost",
-    branch = "master",
+    lazy = false,
     config = function()
-      local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.plantuml = {
-        install_info = {
-          url = "~/dev/neovim/tree-sitter-plantuml",
-          files = { "src/parser.c" },
-          branch = "main",
-        },
-        filetype = "plantuml",
-      }
+      require("nvim-treesitter").install(parsers)
 
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          "bash",
-          "html",
-          "javascript",
-          "json",
-          "lua",
-          "markdown",
-          "markdown_inline",
-          "python",
-          "query",
-          "regex",
-          "rust",
-          "tsx",
-          "typescript",
-          "vim",
-          "yaml",
-          "heex",
-          "elixir",
-        },
-        textobjects = {
-          move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-              ["gnf"] = "@function.outer",
-            },
-            goto_previous_start = {
-              ["gpf"] = "@function.outer",
-            },
-          },
-        },
-        highlight = { enable = true, additional_vim_regex_highlights = { "ruby" } },
-        indent = { enable = true, disable = { "ruby" } },
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("TreesitterStart", { clear = true }),
+        callback = function(event)
+          -- Silently skip filetypes without an installed parser
+          if not pcall(vim.treesitter.start, event.buf) then
+            return
+          end
+
+          if not no_indent[event.match] then
+            vim.bo[event.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end
+        end,
       })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    lazy = false,
+    config = function()
+      require("nvim-treesitter-textobjects").setup({ move = { set_jumps = true } })
+
+      local move = require("nvim-treesitter-textobjects.move")
+
+      vim.keymap.set({ "n", "x", "o" }, "gnf", function()
+        move.goto_next_start("@function.outer", "textobjects")
+      end, { desc = "Next function start" })
+      vim.keymap.set({ "n", "x", "o" }, "gpf", function()
+        move.goto_previous_start("@function.outer", "textobjects")
+      end, { desc = "Previous function start" })
     end,
   },
 }

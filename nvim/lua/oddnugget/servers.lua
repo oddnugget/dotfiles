@@ -25,12 +25,10 @@ M.list = {
     },
   },
   bashls = {
-    filetypes = { "sh", "zsh", "zshrc", ".zshrc" },
+    filetypes = { "sh", "zsh" },
     settings = {
-      {
-        bashIde = {
-          globPattern = "*@(.sh|.inc|.zsh|.bash|.command)",
-        },
+      bashIde = {
+        globPattern = "*@(.sh|.inc|.zsh|.bash|.command)",
       },
     },
   },
@@ -144,7 +142,7 @@ M.list = {
   },
   solargraph = {
     cmd = { "./tmp/devbox/binwrappers/solargraph", "stdio" },
-    root_dir = require("lspconfig").util.root_pattern("Gemfile", ".git"),
+    root_markers = { "Gemfile", ".git" },
     settings = {
       solargraph = {
         autoformat = false,
@@ -157,44 +155,15 @@ M.list = {
       },
     },
   },
-  -- lexical = {
-  -- 	settings = {
-  -- 		dialyzerEnabled = true,
-  -- 	},
-  -- },
-}
-
-M.unofficial = {
   lexical = function()
     local path = os.getenv("NVIM_LEXICAL_PATH")
 
-    if not path then
-      return
-    end
-    local configs = require("lspconfig.configs")
-    local exists = utils.file_exists(path)
-
-    if not exists then
+    if not path or not utils.file_exists(path) then
       return
     end
 
-    if not configs.lexical then
-      configs.lexical = {
-        default_config = {
-          cmd = { path },
-          filetypes = { "elixir", "eelixir", "heex", "surface" },
-          root_dir = require("lspconfig").util.root_pattern("mix.exs", ".git"),
-          settings = {},
-        },
-      }
-    end
+    return { cmd = { path } }
   end,
 }
-
-M.load_unofficial = function()
-  for _, loader in pairs(M.unofficial) do
-    loader()
-  end
-end
 
 return M

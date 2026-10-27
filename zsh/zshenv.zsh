@@ -7,6 +7,9 @@ export HISTFILE="$ZDOTDIR/.zhistory"
 export HISTSIZE=10000
 export SAVEHIST=10000
 
+# Ubuntu's /etc/zsh/zshrc runs its own compinit; completions.zsh handles it
+skip_global_compinit=1
+
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
 # . "$HOME/.cargo/env"

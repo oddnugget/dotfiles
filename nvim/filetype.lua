@@ -15,7 +15,6 @@ vim.filetype.add({
     ["Brewfile"] = "ruby",
     ["Brewfile.mas"] = "ruby",
     ["Brewfile.cask"] = "ruby",
-    ["NEOGIT_COMMIT_EDITMSG"] = "NeogitCommitMessage",
   },
   extension = {
     puml = "plantuml",
@@ -25,13 +24,7 @@ vim.filetype.add({
     prettierrc = "jsonc",
     conf = "conf",
     mdx = "markdown",
-    md = "markdown",
     lexs = "elixir",
-    exs = "elixir",
-    eex = "eelixir",
     keymap = "keymap",
-    cts = "typescript",
-    mts = "typescript",
-    zsh = "zsh",
   },
 })

@@ -12,14 +12,10 @@ vim.api.nvim_create_autocmd("FileType", {
     "neotest-output",
     "neotest-summary",
     "qf",
-    "query",
     "spectre_panel",
     "startuptime",
     "toggleterm",
     "term",
-    "tsplayground",
-    "vim",
-    "oil",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -31,14 +27,14 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
 })
 
 local win_focus_grp = vim.api.nvim_create_augroup("WindowFocusedEvents", { clear = true })
 local win_blur_grp = vim.api.nvim_create_augroup("WindowBlurredEvents", { clear = true })
 
-vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter", "BufWinEnter" }, {
+vim.api.nvim_create_autocmd({ "VimEnter", "WinEnter" }, {
   group = win_focus_grp,
   callback = function()
     vim.wo.cursorline = true
@@ -53,7 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "VimLeave", "WinLeave", "BufWinEnter" }, {
+vim.api.nvim_create_autocmd({ "VimLeave", "WinLeave" }, {
   group = win_blur_grp,
   callback = function()
     vim.wo.cursorline = false
