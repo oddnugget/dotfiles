@@ -1,0 +1,10 @@
+{{- /* The work devbox provides its own toolchain through /devbox binwrappers */ -}}
+{{- $devbox := false -}}
+{{- if stat "/devbox" -}}
+{{-   $devbox = true -}}
+{{- end -}}
+
+sourceDir = {{ .chezmoi.workingTree | quote }}
+
+[data]
+  devbox = {{ $devbox }}

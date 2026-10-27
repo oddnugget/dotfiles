@@ -39,11 +39,15 @@ if [[ -n "${DEVBOX}" ]]; then
   source "$XDG_CONFIG_HOME/broot/launcher/bash/br"
   eval "$(shadowenv init zsh)"
   export DEV_HOST=devbox
-else
-  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-  if [[ $OSTYPE == darwin* ]]; then
-    path=(/opt/homebrew/bin $path)
-  fi
+elif [[ $OSTYPE == darwin* ]]; then
+  path=(/opt/homebrew/bin $path)
+fi
+
+# mise manages tool versions (only language servers on the devbox)
+if (( $+commands[mise] )); then
+  eval "$(mise activate zsh)"
+elif [[ -z "${DEVBOX}" ]]; then
+  path=("${ASDF_DATA_DIR:-$HOME/.asdf}/shims" $path)
 fi
 
 eval "$(starship init zsh)"

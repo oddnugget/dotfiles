@@ -1,0 +1,18 @@
+[tools]
+{{- if not .devbox }}
+# CLI tools; on the devbox these come from /devbox binwrappers instead
+neovim = "latest"
+tree-sitter = "latest"
+ripgrep = "latest"
+bat = "latest"
+delta = "latest"
+lsd = "latest"
+fzf = "latest"
+starship = "latest"
+zoxide = "latest"
+{{- end }}
+
+# Language servers shared by nvim and Zed
+"github:elixir-lang/expert" = { version = "latest", bin = "expert" }
+# "latest" resolves to prereleases for gems, so pin the stable series
+"gem:ruby-lsp" = "0.26"

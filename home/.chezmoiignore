@@ -1,0 +1,7 @@
+{{ if ne .chezmoi.os "darwin" }}
+.aerospace.toml
+.wezterm.lua
+.config/kitty
+.config/raycast
+notebook
+{{ end }}
