@@ -5,6 +5,7 @@ return {
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     build = ":TSUpdate",
     event = "BufReadPost",
+    branch = "master",
     config = function()
       local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
       parser_config.plantuml = {

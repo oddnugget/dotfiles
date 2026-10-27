@@ -2,7 +2,6 @@
 # REF: https://jvns.ca/blog/2024/02/16/popular-git-config-options/#push-default-simple-push-default-current
 
 [core]
-	hooksPath = /devbox/support/default_githooks
 	pager = delta
 
 [user]
@@ -42,3 +41,7 @@
 
 [rerere] 
 	enabled = true
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
