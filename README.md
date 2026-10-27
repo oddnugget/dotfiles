@@ -15,6 +15,8 @@ chezmoi init --apply --source ~/dotfiles
 
 Run `chezmoi apply` after pulling to pick up new links and tools.
 
+See [GUIDE.md](GUIDE.md) for how everything fits together, the keybinds and troubleshooting.
+
 ## Machine types
 `home/.chezmoi.toml.tmpl` sets `devbox = true` when `/devbox` exists.
 - **devbox**: CLI tools come from the devbox binwrappers; mise only installs the language servers.
