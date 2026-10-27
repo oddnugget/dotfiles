@@ -1,34 +1,32 @@
+local filename = { "filename", path = 1 }
+
 return {
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {},
-  },
-  {
-    "MunifTanjim/nougat.nvim",
-    event = "VeryLazy",
-    config = function()
-      local nougat = require("nougat")
-      local Bar = require("nougat.bar")
-      local sep = require("nougat.separator")
-      local color = require("nougat.color").get()
-
-      local nut = {
-        buf = {
-          filename = require("nougat.nut.buf.filename").create,
-        },
-        spacer = require("nougat.nut.spacer").create,
-      }
-
-      local winbar = Bar("winbar")
-
-      winbar:add_item(nut.buf.filename({
-        prefix = " ",
-        suffix = " ",
-      }))
-
-      nougat.set_winbar(winbar, { global = true })
+    init = function()
+      -- Repaint so LSP progress in the statusline updates live
+      vim.api.nvim_create_autocmd("LspProgress", {
+        group = vim.api.nvim_create_augroup("LualineLspProgress", { clear = true }),
+        command = "redrawstatus",
+      })
     end,
+    opts = {
+      options = {
+        disabled_filetypes = { winbar = { "snacks_dashboard" } },
+      },
+      sections = {
+        lualine_x = {
+          function()
+            return vim.lsp.status()
+          end,
+          "encoding",
+          "fileformat",
+          "filetype",
+        },
+      },
+      winbar = { lualine_c = { filename } },
+      inactive_winbar = { lualine_c = { filename } },
+    },
   },
 }

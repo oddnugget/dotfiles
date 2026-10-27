@@ -1,15 +1,20 @@
 return {
-  "nvim-lua/plenary.nvim",
   { "tpope/vim-fugitive", lazy = false },
   {
     "tpope/vim-projectionist",
     lazy = false,
     config = function() end,
   },
-  { "tpope/vim-dispatch", lazy = false },
   { "tpope/vim-sleuth", event = "BufReadPost" },
   {
-    "nvim-tree/nvim-web-devicons",
-    config = { default = true },
+    "nvim-mini/mini.icons",
+    opts = {},
+    init = function()
+      -- Serve plugins that still require nvim-web-devicons from mini.icons
+      package.preload["nvim-web-devicons"] = function()
+        require("mini.icons").mock_nvim_web_devicons()
+        return package.loaded["nvim-web-devicons"]
+      end
+    end,
   },
 }

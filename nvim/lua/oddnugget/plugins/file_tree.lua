@@ -13,7 +13,7 @@ return {
       default_file_explorer = true,
     },
     -- Optional dependencies
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "nvim-mini/mini.icons" },
     config = true,
   },
 }

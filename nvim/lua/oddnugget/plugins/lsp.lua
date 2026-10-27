@@ -57,9 +57,6 @@ return {
     -- Only provides the default server configs under lsp/*.lua
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-      { "j-hui/fidget.nvim", config = true },
-    },
     config = config,
   },
   {
@@ -95,22 +92,11 @@ return {
     version = "*",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      local elixir = require("elixir")
-      local elixirls = require("elixir.elixirls")
-
-      -- Keymaps come from the LspAttach autocmd, format on save from conform
-      elixir.setup({
+      -- Only used for its Phoenix projectionist heuristics; expert (servers.lua) is the LSP
+      require("elixir").setup({
         nextls = { enable = false },
-        elixirls = {
-          enable = true,
-          settings = elixirls.settings({
-            dialyzerEnabled = false,
-            enableTestLenses = true,
-          }),
-        },
-        projectionist = {
-          enable = true,
-        },
+        elixirls = { enable = false },
+        projectionist = { enable = true },
       })
     end,
     dependencies = {

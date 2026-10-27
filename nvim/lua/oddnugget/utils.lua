@@ -11,12 +11,7 @@ M.file_exists = function(path)
 end
 
 M.copy_to_system_clipboard = function()
-  if vim.g.is_devbox then
-    local osc52 = require("osc52")
-    osc52.copy(vim.fn.expand("%:."))
-  else
-    vim.fn.setreg("+", vim.fn.expand("%:."))
-  end
+  vim.fn.setreg("+", vim.fn.expand("%:."))
 end
 
 return M

@@ -3,6 +3,22 @@ vim.g.maplocalleader = ","
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
 vim.opt.clipboard = "unnamedplus"
+
+-- Copy through the terminal over SSH, but paste from the unnamed register:
+-- most terminals (and tmux) ignore OSC 52 paste requests, which stalls `p`
+if vim.g.is_devbox then
+  local osc52 = require("vim.ui.clipboard.osc52")
+
+  local function paste()
+    return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
+  end
+
+  vim.g.clipboard = {
+    name = "osc52",
+    copy = { ["+"] = osc52.copy("+"), ["*"] = osc52.copy("*") },
+    paste = { ["+"] = paste, ["*"] = paste },
+  }
+end
 vim.o.formatoptions = "jcroqlnt"
 vim.o.shortmess = "filnxtToOFWIcC"
 vim.opt.breakindent = true

@@ -12,7 +12,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "neotest-output",
     "neotest-summary",
     "qf",
-    "spectre_panel",
+    "grug-far",
     "startuptime",
     "toggleterm",
     "term",

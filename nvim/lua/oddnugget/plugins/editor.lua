@@ -1,49 +1,55 @@
 return {
   {
     "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("harpoon"):setup()
+    end,
     keys = {
       {
         "<Leader>hh",
         function()
-          require("harpoon.ui").toggle_quick_menu()
+          local harpoon = require("harpoon")
+          harpoon.ui:toggle_quick_menu(harpoon:list())
         end,
         desc = "Harpoon quick menu",
       },
       {
         "<Leader>ha",
         function()
-          require("harpoon.mark").add_file()
+          require("harpoon"):list():add()
         end,
         desc = "Harpoon add mark",
       },
       {
         "<Leader><Leader>1",
         function()
-          require("harpoon.ui").nav_file(1)
+          require("harpoon"):list():select(1)
         end,
       },
       {
         "<Leader><Leader>2",
         function()
-          require("harpoon.ui").nav_file(2)
+          require("harpoon"):list():select(2)
         end,
       },
       {
         "<Leader><Leader>3",
         function()
-          require("harpoon.ui").nav_file(3)
+          require("harpoon"):list():select(3)
         end,
       },
       {
         "<Leader><Leader>4",
         function()
-          require("harpoon.ui").nav_file(4)
+          require("harpoon"):list():select(4)
         end,
       },
       {
         "<Leader><Leader>5",
         function()
-          require("harpoon.ui").nav_file(5)
+          require("harpoon"):list():select(5)
         end,
       },
     },
@@ -68,19 +74,18 @@ return {
     event = { "BufReadPost", "BufNewFile" },
   },
   {
-    "nvim-pack/nvim-spectre",
-    cmd = "Spectre",
-    config = true,
+    "MagicDuck/grug-far.nvim",
+    cmd = "GrugFar",
     opts = {
-      open_cmd = "vertical aboveleft 80new",
+      windowCreationCommand = "vertical aboveleft 80new",
     },
     keys = {
       {
         "<leader>rw",
         function()
-          -- open left side as a 60 widht panel
-          require("spectre").toggle()
+          require("grug-far").toggle_instance({ instanceName = "far", staticTitle = "Find and Replace" })
         end,
+        desc = "Search and replace",
       },
     },
   },

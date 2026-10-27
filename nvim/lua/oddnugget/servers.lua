@@ -140,21 +140,9 @@ M.list = {
       provideFormatter = false,
     },
   },
-  solargraph = {
-    cmd = { "./tmp/devbox/binwrappers/solargraph", "stdio" },
-    root_markers = { "Gemfile", ".git" },
-    settings = {
-      solargraph = {
-        autoformat = false,
-        completion = true,
-        diagnostic = true,
-        folding = true,
-        references = true,
-        rename = true,
-        symbols = true,
-      },
-    },
-  },
+  -- Same servers as Zed; both are installed through mise
+  expert = {},
+  ruby_lsp = {},
   lexical = function()
     local path = os.getenv("NVIM_LEXICAL_PATH")
 
