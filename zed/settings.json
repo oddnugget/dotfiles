@@ -7,6 +7,13 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "seed_search_query_from_cursor": "selection",
+  "use_smartcase_search": true,
+  "minimap": {
+    "show": "auto",
+  },
+  "buffer_line_height": "standard",
+  "soft_wrap": "prefer_line",
   "cli_default_open_behavior": "new_window",
   "vim": {
     "use_smartcase_find": true,
@@ -26,6 +33,7 @@
     "model_parameters": [],
   },
   "git_panel": {
+    "tree_view": true,
     "dock": "left",
   },
   "sticky_scroll": {
@@ -38,6 +46,14 @@
   },
   "agent_servers": {
     "claude-acp": {
+      "favorite_config_option_values": {
+        "mode": ["plan"],
+      },
+      "default_config_options": {
+        "mode": "auto",
+        "effort": "default",
+        "model": "default",
+      },
       "type": "registry",
     },
   },
@@ -50,11 +66,41 @@
       "language_servers": ["!tailwindcss-language-server"],
     },
     "Elixir": {
-      "language_servers": ["expert", "!elixir-ls", "!next-ls", "!lexical"],
+      "language_servers": [
+        "expert",
+        "codebook",
+        "!elixir-ls",
+        "!next-ls",
+        "!lexical",
+      ],
       "format_on_save": "on",
     },
     "Ruby": {
       "language_servers": ["ruby-lsp", "!solargraph"],
+    },
+    "SQL": {
+      "formatter": {
+        "external": {
+          "command": "sql-formatter",
+          "arguments": ["--language", "postgresql"],
+        },
+      },
+    },
+  },
+  "lsp": {
+    "css-variables": {
+      "settings": {
+        "cssVariables": {
+          "lookupFiles": ["**/*.css", "**/*.scss"],
+          "blacklistFolders": [
+            "**/dist/**",
+            "**/node_modules/**",
+            "**/deps/**",
+          ],
+          "undefinedVarFallback": "info",
+          "eagerJs": true,
+        },
+      },
     },
   },
   "use_on_type_format": false,
@@ -64,6 +110,9 @@
       "host": "devbox",
       "args": [],
       "projects": [
+        {
+          "paths": ["/home/odyrag"],
+        },
         {
           "paths": ["/home/odyrag/projects/barsoom/auctionet"],
         },
@@ -80,17 +129,24 @@
           "paths": ["/home/odyrag/projects/barsoom/neopris/./"],
         },
         {
+          "paths": ["/home/odyrag/projects/barsoom/porter"],
+        },
+        {
           "paths": ["/home/odyrag/projects/barsoom/skipper"],
+        },
+        {
+          "paths": ["/projects/categorizer"],
         },
       ],
     },
   ],
   "edit_predictions": { "mode": "subtle" },
   "terminal": {
+    "font_size": 12.0,
     "copy_on_select": true,
   },
   "vim_mode": true,
-  "ui_font_size": 13.0,
+  "ui_font_size": 14.0,
   "buffer_font_size": 11.0,
   "theme": {
     "mode": "dark",
@@ -102,6 +158,8 @@
     "inactive_opacity": 0.85,
   },
   "search": {
+    "center_on_match": true,
+    "search_on_type": false,
     "whole_word": false,
     "case_sensitive": false,
     "include_ignored": false,

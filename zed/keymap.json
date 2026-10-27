@@ -12,6 +12,8 @@
       "space e": "project_panel::ToggleFocus",
       "space u f": "workspace::CopyRelativePath",
       "g w": "vim::HelixJumpToWord",
+      "s": "vim::PushSneak",
+      "S": "vim::PushSneakBackward",
     },
   },
   {
