@@ -52,6 +52,7 @@ There are two machine types, decided once by whether `/devbox` exists. chezmoi w
 | --- | --- | --- |
 | CLI tools (nvim, rg, bat, delta, lsd, starship, zoxide, tree-sitter) | Devbox binwrappers in `/devbox/tmp/devbox/binwrappers` | mise |
 | Language servers (expert, ruby-lsp) | mise | mise |
+| Ruby that ruby-lsp installs into | Devbox binwrapper | mise |
 | Mac-only configs (kitty, wezterm, aerospace, raycast, obsidian) | Skipped | Linked on macOS only |
 | Clipboard in Neovim | OSC 52 copy through the terminal, paste from nvim's own register | System clipboard |
 | zsh extras | Sources the devbox profile, broot and shadowenv, sets `DEV_HOST=devbox` | Homebrew paths on macOS |
@@ -118,6 +119,7 @@ mise installs every tool listed in `home/dot_config/mise/config.toml.tmpl`. chez
 | neovim, tree-sitter, ripgrep, bat, delta, lsd, fzf, starship, zoxide | Non-devbox machines | `latest` |
 | expert (Elixir LSP), from `github:elixir-lang/expert` | All machines | `latest` |
 | ruby-lsp, from `gem:ruby-lsp` | All machines | `0.26`. `latest` picks gem prereleases, so it's pinned to the stable series. |
+| ruby | Non-devbox machines | `latest`. The `gem:` backend needs it, because macOS's system Ruby (2.6) is too old for ruby-lsp. |
 
 mise also reads a project's `.tool-versions` and `mise.toml`, so per-project Ruby, Elixir or Node versions keep working as they did with asdf.
 
@@ -277,7 +279,8 @@ After the first apply:
 ### Switching this machine from dotbot
 
 1. Install chezmoi, for example with `sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin`.
-2. Run `chezmoi init --apply --source ~/dotfiles`. It replaces dotbot's symlinks with identical ones, adds `~/.config/zsh/.zshenv`, installs mise, and installs expert and ruby-lsp.
+   Without `-b`, the installer puts chezmoi in `./bin` under whatever directory you run it from.
+2. Run `chezmoi init --apply --source ~/dotfiles`, with no `oddnugget` argument. With a repo argument, chezmoi clones a second copy into its default location and links everything to that copy instead. It replaces dotbot's symlinks with identical ones, adds `~/.config/zsh/.zshenv`, installs mise, and installs expert and ruby-lsp.
 3. Open a new shell and check `which expert ruby-lsp`. Then open an Elixir and a Ruby file in nvim.
 4. Once both machines work, remove dotbot: `git rm -r dotbot install install.conf.yaml .gitmodules`, then delete the dotbot section from the README.
 
@@ -299,6 +302,8 @@ The first apply installs the full CLI tool list through mise, and those copies c
 | New command completions don't show | The completion dump is reused for up to 24 h | `rm ~/.config/zsh/.zcompdump && exec zsh` |
 | A tmux pane misses settings from zshenv | `~/.config/zsh/.zshenv` link missing | `chezmoi apply`, or `ln -s ~/dotfiles/zsh/zshenv.zsh ~/.config/zsh/.zshenv` |
 | `chezmoi apply` asks to overwrite a file | A real file exists where a symlink should go | `chezmoi diff` to compare, then accept, or move the file into the repo first |
+| Links point into `~/.config/local/share/chezmoi` | `chezmoi init` got a repo argument and cloned a second copy | `chezmoi init --apply --source ~/dotfiles`, check the links, then `rm -rf ~/.config/local/share/chezmoi` |
+| `gem:ruby-lsp` fails with `requires Ruby version >= ...` | Only the system Ruby is on PATH | Check that `ruby` is in the mise config (non-devbox), then `chezmoi apply` |
 | mise install script doesn't run | The rendered mise config didn't change | `chezmoi state delete-bucket --bucket=scriptState` re-runs scripts, or run `mise install` directly |
 | A plugin update broke something | New plugin version | `git checkout nvim/lazy-lock.json`, then `:Lazy restore` |
 
