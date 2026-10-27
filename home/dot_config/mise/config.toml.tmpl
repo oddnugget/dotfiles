@@ -10,11 +10,20 @@ lsd = "latest"
 fzf = "latest"
 starship = "latest"
 zoxide = "latest"
-# Ruby for gem-backed tools (ruby-lsp); the devbox uses its binwrapper ruby
+# Default Ruby; the devbox uses its binwrapper ruby
 ruby = "latest"
 {{- end }}
 
 # Language servers shared by nvim and Zed
 "github:elixir-lang/expert" = { version = "latest", bin = "expert" }
+{{- if .devbox }}
 # "latest" resolves to prereleases for gems, so pin the stable series
 "gem:ruby-lsp" = "0.26"
+{{- else }}
+# ruby-lsp has to run on the project's Ruby, so every mise Ruby gets its own
+# copy from ~/.default-gems instead of one gem:ruby-lsp pinned to one Ruby
+
+# Use a project's .ruby-version like asdf did
+[settings]
+idiomatic_version_file_enable_tools = ["ruby"]
+{{- end }}

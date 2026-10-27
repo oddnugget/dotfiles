@@ -19,7 +19,7 @@ flowchart LR
     chezmoi["<b>chezmoi apply</b><br/>devbox = /devbox exists<br/>skips Mac-only on Linux<br/>fetches catppuccin tmux"]
     home["<b>Home directory</b><br/>~/.config/nvim to repo<br/>~/.zshenv, ~/.tmux.conf<br/>nvim, zsh, Zed read here"]
     script["<b>install-tools script</b><br/>re-runs on tool changes<br/>installs mise if missing"]
-    mise["<b>mise install</b><br/>devbox: expert, ruby-lsp<br/>elsewhere: + CLI tools"]
+    mise["<b>mise install</b><br/>devbox: expert, ruby-lsp<br/>elsewhere: + CLI tools, ruby"]
 
     repo -- reads --> chezmoi
     chezmoi -- links --> home
@@ -41,6 +41,7 @@ You edit and commit in the repo. `chezmoi apply` keeps the home directory's link
 | `tmux/tmux.conf` | tmux config | `~/.tmux.conf` |
 | `gitconfig`, `.work.gitconfig` | git config; the work one is used under `~/projects/barsoom/` | `~/.gitconfig`, `~/.work.gitconfig` |
 | `bat/`, `lsd.yaml`, `ghostty/`, `.ripgreprc` | Small tool configs | `~/.config/...`, `~/.ripgreprc` |
+| `ruby/default-gems` | Gems mise installs into every new Ruby (ruby-lsp) | `~/.default-gems`, not on the devbox |
 | `kitty/`, `.wezterm.lua`, `.aerospace.toml`, `.obsidian.vimrc` | Mac-only configs | Linked only on macOS |
 | `dotbot/`, `install`, `install.conf.yaml` | Legacy installer | — |
 
@@ -51,8 +52,9 @@ There are two machine types, decided once by whether `/devbox` exists. chezmoi w
 | | Devbox (work, Linux) | Everything else (Mac, plain Linux) |
 | --- | --- | --- |
 | CLI tools (nvim, rg, bat, delta, lsd, starship, zoxide, tree-sitter) | Devbox binwrappers in `/devbox/tmp/devbox/binwrappers` | mise |
-| Language servers (expert, ruby-lsp) | mise | mise |
-| Ruby that ruby-lsp installs into | Devbox binwrapper | mise |
+| expert | mise | mise |
+| ruby-lsp | mise (`gem:ruby-lsp`) | Installed into each mise Ruby from `~/.default-gems` |
+| Ruby | Devbox binwrapper | mise: `latest`, or the project's `.ruby-version` |
 | Mac-only configs (kitty, wezterm, aerospace, raycast, obsidian) | Skipped | Linked on macOS only |
 | Clipboard in Neovim | OSC 52 copy through the terminal, paste from nvim's own register | System clipboard |
 | zsh extras | Sources the devbox profile, broot and shadowenv, sets `DEV_HOST=devbox` | Homebrew paths on macOS |
@@ -118,10 +120,11 @@ mise installs every tool listed in `home/dot_config/mise/config.toml.tmpl`. chez
 | --- | --- | --- |
 | neovim, tree-sitter, ripgrep, bat, delta, lsd, fzf, starship, zoxide | Non-devbox machines | `latest` |
 | expert (Elixir LSP), from `github:elixir-lang/expert` | All machines | `latest` |
-| ruby-lsp, from `gem:ruby-lsp` | All machines | `0.26`. `latest` picks gem prereleases, so it's pinned to the stable series. |
-| ruby | Non-devbox machines | `latest`. The `gem:` backend needs it, because macOS's system Ruby (2.6) is too old for ruby-lsp. |
+| ruby-lsp, from `gem:ruby-lsp` | Devbox | `0.26`. `latest` picks gem prereleases, so it's pinned to the stable series. |
+| ruby | Non-devbox machines | `latest` as the default. macOS's system Ruby (2.6) is too old for ruby-lsp. |
+| ruby-lsp, from `~/.default-gems` | Non-devbox machines | Newest stable. mise runs `gem install` for each line of `ruby/default-gems` whenever it installs a Ruby. |
 
-mise also reads a project's `.tool-versions` and `mise.toml`, so per-project Ruby, Elixir or Node versions keep working as they did with asdf.
+mise also reads a project's `.tool-versions` and `mise.toml`, so per-project Ruby, Elixir or Node versions keep working as they did with asdf. On non-devbox machines it reads `.ruby-version` too (`idiomatic_version_file_enable_tools` in the mise config), so `cd` into a project and run `mise install` to get its Ruby.
 
 ### Adding, removing or pinning a tool
 
@@ -133,7 +136,7 @@ Other commands: `mise ls` shows what's installed and active, `mise upgrade` upda
 
 ### Language servers
 
-Neovim and Zed use the same servers: expert for Elixir and ruby-lsp for Ruby. Both are on PATH through mise, so nvim starts them by name from `servers.lua`. ruby-lsp runs with whichever Ruby is on PATH in the project, and on the devbox that's the project's binwrapper Ruby.
+Neovim and Zed use the same servers: expert for Elixir and ruby-lsp for Ruby. Both are on PATH through mise, so nvim starts them by name from `servers.lua`. ruby-lsp has to run on the project's own Ruby, because it runs bundler against the project's Gemfile. mise's `gem:` backend ties a gem to the Ruby it was installed with, so outside the devbox ruby-lsp is installed into every mise Ruby instead, and PATH finds the copy for the project's Ruby. On the devbox it's the `gem:ruby-lsp` install, which works as long as the project uses the binwrapper Ruby it was installed with.
 
 ## zsh
 
@@ -303,7 +306,9 @@ The first apply installs the full CLI tool list through mise, and those copies c
 | A tmux pane misses settings from zshenv | `~/.config/zsh/.zshenv` link missing | `chezmoi apply`, or `ln -s ~/dotfiles/zsh/zshenv.zsh ~/.config/zsh/.zshenv` |
 | `chezmoi apply` asks to overwrite a file | A real file exists where a symlink should go | `chezmoi diff` to compare, then accept, or move the file into the repo first |
 | Links point into `~/.config/local/share/chezmoi` | `chezmoi init` got a repo argument and cloned a second copy | `chezmoi init --apply --source ~/dotfiles`, check the links, then `rm -rf ~/.config/local/share/chezmoi` |
-| `gem:ruby-lsp` fails with `requires Ruby version >= ...` | Only the system Ruby is on PATH | Check that `ruby` is in the mise config (non-devbox), then `chezmoi apply` |
+| ruby-lsp install fails with `requires Ruby version >= ...` | Only the system Ruby is on PATH | Check that `ruby` is in the mise config (non-devbox), then `chezmoi apply` |
+| ruby-lsp exits with `Your Ruby version is X, but your Gemfile specified Y` | ruby-lsp is running on a different Ruby than the project | In the project: `mise current ruby` should match the Gemfile. Run `mise install`, delete `.ruby-lsp/`, restart nvim |
+| No ruby-lsp in a Ruby installed before `~/.default-gems` existed | Default gems only go into newly installed Rubies | `gem install ruby-lsp` in that project |
 | mise install script doesn't run | The rendered mise config didn't change | `chezmoi state delete-bucket --bucket=scriptState` re-runs scripts, or run `mise install` directly |
 | A plugin update broke something | New plugin version | `git checkout nvim/lazy-lock.json`, then `:Lazy restore` |
 

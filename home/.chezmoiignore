@@ -5,3 +5,6 @@
 .config/raycast
 notebook
 {{ end }}
+{{ if .devbox }}
+.default-gems
+{{ end }}
