@@ -81,7 +81,7 @@ return {
     },
     keys = {
       {
-        "<leader>rw",
+        "g/",
         function()
           require("grug-far").toggle_instance({ instanceName = "far", staticTitle = "Find and Replace" })
         end,

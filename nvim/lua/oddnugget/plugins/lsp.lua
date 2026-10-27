@@ -1,14 +1,25 @@
+-- Like Zed's `g h`: show the line's diagnostics if there are any, otherwise hover
+local function hover_or_diagnostic()
+  local lnum = vim.api.nvim_win_get_cursor(0)[1] - 1
+
+  if #vim.diagnostic.get(0, { lnum = lnum }) > 0 then
+    vim.diagnostic.open_float()
+  else
+    vim.lsp.buf.hover()
+  end
+end
+
 local function setup_keymaps(bufnr)
   local opts_with_desc = function(desc)
     return { silent = true, buffer = bufnr, desc = desc }
   end
 
-  -- References live on the built-in `grr` (0.11+); mapping `gr` would shadow grn/gra/grr/gri
+  -- Keys follow Zed's vim mode defaults (gA, gh, g.)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts_with_desc("Go to definition"))
-  vim.keymap.set("n", "gh", vim.lsp.buf.hover, opts_with_desc("Hover"))
+  vim.keymap.set("n", "gA", vim.lsp.buf.references, opts_with_desc("Go to references"))
+  vim.keymap.set("n", "gh", hover_or_diagnostic, opts_with_desc("Diagnostics or hover"))
   vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, opts_with_desc("Signature Help"))
-  vim.keymap.set("n", "<Leader>de", vim.diagnostic.open_float, opts_with_desc("Open Diagnostics"))
-  vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, opts_with_desc("Code Action"))
+  vim.keymap.set("n", "g.", vim.lsp.buf.code_action, opts_with_desc("Code Action"))
   vim.keymap.set("n", "<Leader>rt", vim.lsp.codelens.run, opts_with_desc("Code lens"))
 
   vim.keymap.set("n", "<Leader>fm", function()

@@ -53,10 +53,11 @@ return {
 
       local move = require("nvim-treesitter-textobjects.move")
 
-      vim.keymap.set({ "n", "x", "o" }, "gnf", function()
+      -- ]m / [m match Zed's next/previous method motions
+      vim.keymap.set({ "n", "x", "o" }, "]m", function()
         move.goto_next_start("@function.outer", "textobjects")
       end, { desc = "Next function start" })
-      vim.keymap.set({ "n", "x", "o" }, "gpf", function()
+      vim.keymap.set({ "n", "x", "o" }, "[m", function()
         move.goto_previous_start("@function.outer", "textobjects")
       end, { desc = "Previous function start" })
     end,
