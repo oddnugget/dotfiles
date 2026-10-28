@@ -11,7 +11,6 @@ The moving parts:
 - **zsh**: shell config, split into env, rc, aliases and completions.
 - **Neovim**: lazy.nvim plugin setup, native LSP, treesitter on its `main` branch.
 - **Zed**: its own settings and keymap. Neovim's keys follow Zed's for the actions both have.
-- **dotbot**: the old installer. It still works and creates the same links, until you remove it.
 
 ```mermaid
 flowchart LR
@@ -43,7 +42,6 @@ You edit and commit in the repo. `chezmoi apply` keeps the home directory's link
 | `bat/`, `lsd.yaml`, `ghostty/`, `.ripgreprc` | Small tool configs | `~/.config/...`, `~/.ripgreprc` |
 | `ruby/default-gems` | Gems mise installs into every new Ruby (ruby-lsp) | `~/.default-gems`, not on the devbox |
 | `kitty/`, `.wezterm.lua`, `.aerospace.toml`, `.obsidian.vimrc` | Mac-only configs | Linked only on macOS |
-| `dotbot/`, `install`, `install.conf.yaml` | Legacy installer | — |
 
 ## Machine types
 
@@ -280,13 +278,12 @@ After the first apply:
 2. Open nvim. lazy.nvim installs the plugins, and treesitter builds the parsers.
 3. Run `:checkhealth vim.lsp nvim-treesitter`.
 
-### Switching this machine from dotbot
+### A machine that already has the repo cloned
 
 1. Install chezmoi, for example with `sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin`.
    Without `-b`, the installer puts chezmoi in `./bin` under whatever directory you run it from.
-2. Run `chezmoi init --apply --source ~/dotfiles`, with no `oddnugget` argument. With a repo argument, chezmoi clones a second copy into its default location and links everything to that copy instead. It replaces dotbot's symlinks with identical ones, adds `~/.config/zsh/.zshenv`, installs mise, and installs expert and ruby-lsp.
+2. Run `chezmoi init --apply --source ~/dotfiles`, with no `oddnugget` argument. With a repo argument, chezmoi clones a second copy into its default location and links everything to that copy instead. It replaces any existing links with identical ones, installs mise, and installs expert and ruby-lsp.
 3. Open a new shell and check `which expert ruby-lsp`. Then open an Elixir and a Ruby file in nvim.
-4. Once both machines work, remove dotbot: `git rm -r dotbot install install.conf.yaml .gitmodules`, then delete the dotbot section from the README.
 
 ### On the Mac specifically
 

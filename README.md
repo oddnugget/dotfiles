@@ -30,6 +30,3 @@ macOS-only configs (aerospace, kitty, wezterm, raycast, obsidian) are skipped el
 `mise install` whenever that list changes.
 
 Still needed from the system or Homebrew: zsh, tmux >= 3.2, git, a C compiler (for treesitter parsers).
-
-## Legacy: dotbot
-`./install` (dotbot) still works and links the same files. It will be removed once chezmoi is verified.
