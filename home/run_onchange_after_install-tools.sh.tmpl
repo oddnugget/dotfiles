@@ -1,6 +1,6 @@
 #!/bin/sh
 # Re-runs whenever the rendered mise config changes:
-# {{ includeTemplate "dot_config/mise/config.toml.tmpl" . | sha256sum }}
+# {{ includeTemplate "private_dot_config/mise/config.toml.tmpl" . | sha256sum }}
 set -eu
 
 if ! command -v mise >/dev/null 2>&1 && [ ! -x "$HOME/.local/bin/mise" ]; then

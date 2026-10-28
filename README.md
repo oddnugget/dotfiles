@@ -25,7 +25,7 @@ See [GUIDE.md](GUIDE.md) for how everything fits together, the keybinds and trou
 macOS-only configs (aerospace, kitty, wezterm, raycast, obsidian) are skipped elsewhere via `home/.chezmoiignore`.
 
 ## Tools
-[mise](https://mise.jdx.dev) installs the tools listed in `home/dot_config/mise/config.toml.tmpl`.
+[mise](https://mise.jdx.dev) installs the tools listed in `home/private_dot_config/mise/config.toml.tmpl`.
 `home/run_onchange_after_install-tools.sh.tmpl` installs mise if needed and re-runs
 `mise install` whenever that list changes.
 

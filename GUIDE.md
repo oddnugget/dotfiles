@@ -69,13 +69,14 @@ The devbox sets `$DEVBOX` itself, so you never set it by hand.
 
 ## chezmoi
 
-chezmoi only reads `home/`, and almost every file there is a one-line symlink entry. For example, `home/dot_config/symlink_nvim.tmpl` contains `{{ .chezmoi.workingTree }}/nvim`, which becomes the symlink `~/.config/nvim → ~/dotfiles/nvim`. Because they're symlinks, editing a config through `~/.config/...` edits the repo directly.
+chezmoi only reads `home/`, and almost every file there is a one-line symlink entry. For example, `home/private_dot_config/symlink_nvim.tmpl` contains `{{ .chezmoi.workingTree }}/nvim`, which becomes the symlink `~/.config/nvim → ~/dotfiles/nvim`. Because they're symlinks, editing a config through `~/.config/...` edits the repo directly.
 
 ### How names map to paths
 
 | In `home/` | Becomes |
 | --- | --- |
 | `dot_` prefix | A leading `.` (`dot_config` → `.config`) |
+| `private_` prefix | Permissions 700 (`private_dot_config` keeps `~/.config` private) |
 | `symlink_` prefix | A symlink. The file's content is the link target. |
 | `.tmpl` suffix | Rendered as a Go template first (`{{ if .devbox }}`, `{{ .chezmoi.os }}`) |
 | `run_onchange_after_` prefix | A script, run after files are written, and re-run only when its rendered content changes |
@@ -85,7 +86,7 @@ chezmoi only reads `home/`, and almost every file there is a one-line symlink en
 - **`.chezmoi.toml.tmpl`**: detects the devbox and points chezmoi at `~/dotfiles`.
 - **`.chezmoiignore`**: skips the Mac-only configs when the OS isn't `darwin`.
 - **`.chezmoiexternal.toml`**: downloads catppuccin tmux v2.1.1 into `~/.config/tmux/plugins/catppuccin/tmux`.
-- **`dot_config/mise/config.toml.tmpl`**: the tool list. It's written as a real file, not a symlink, because it differs per machine.
+- **`private_dot_config/mise/config.toml.tmpl`**: the tool list. It's written as a real file, not a symlink, because it differs per machine.
 - **`run_onchange_after_install-tools.sh.tmpl`**: installs mise if it's missing and runs `mise install`. A hash of the rendered mise config sits in a comment, so the script re-runs only when the tool list changes.
 
 ### Daily workflow
@@ -106,7 +107,7 @@ Useful commands:
 Say you want to link `~/dotfiles/foo/config.toml` to `~/.config/foo/config.toml`:
 
 1. Put the file in the repo, in a tool folder.
-2. Create `home/dot_config/foo/symlink_config.toml.tmpl` containing `{{ .chezmoi.workingTree }}/foo/config.toml`.
+2. Create `home/private_dot_config/foo/symlink_config.toml.tmpl` containing `{{ .chezmoi.workingTree }}/foo/config.toml`.
 3. Mac only? Add `.config/foo` to the `{{ if ne .chezmoi.os "darwin" }}` block in `home/.chezmoiignore`.
 4. Run `chezmoi apply`.
 
@@ -114,7 +115,7 @@ To link a whole folder, use the folder as the target, as with `symlink_nvim.tmpl
 
 ## mise
 
-mise installs every tool listed in `home/dot_config/mise/config.toml.tmpl`. chezmoi writes the rendered result to `~/.config/mise/config.toml`. zsh runs `mise activate zsh` when mise is installed, which puts those tools first in PATH. Without mise, zsh falls back to the asdf shims (non-devbox machines only).
+mise installs every tool listed in `home/private_dot_config/mise/config.toml.tmpl`. chezmoi writes the rendered result to `~/.config/mise/config.toml`. zsh runs `mise activate zsh` when mise is installed, which puts those tools first in PATH. Without mise, zsh falls back to the asdf shims (non-devbox machines only).
 
 | Tool | Installed on | Version |
 | --- | --- | --- |
@@ -128,7 +129,7 @@ mise also reads a project's `.tool-versions` and `mise.toml`, so per-project Rub
 
 ### Adding, removing or pinning a tool
 
-1. Edit `home/dot_config/mise/config.toml.tmpl`. Inside the `{{- if not .devbox }}` block, the tool is skipped on the devbox. Outside it, every machine gets it.
+1. Edit `home/private_dot_config/mise/config.toml.tmpl`. Inside the `{{- if not .devbox }}` block, the tool is skipped on the devbox. Outside it, every machine gets it.
 2. Use a registry name (`jq = "latest"`) or a backend (`"github:owner/repo"`, `"gem:name"`, `"npm:name"`). Pin with a prefix like `"1.7"` or an exact version.
 3. Run `chezmoi apply`. The rendered config changes, so the install script runs `mise install` by itself.
 
