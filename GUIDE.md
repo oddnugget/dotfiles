@@ -6,7 +6,7 @@ All config lives in `~/dotfiles`, and your home directory only holds symlinks in
 
 The moving parts:
 
-- **chezmoi**: creates the symlinks, skips Mac-only configs on Linux, fetches the catppuccin tmux theme, and runs the tool install script.
+- **chezmoi**: creates the symlinks, skips Mac-only configs on Linux, fetches the catppuccin tmux theme and the zsh plugins, and runs the tool install script.
 - **mise**: installs CLI tools and the two language servers. It replaces asdf.
 - **zsh**: shell config, split into env, rc, aliases and completions.
 - **Neovim**: lazy.nvim plugin setup, native LSP, treesitter on its `main` branch.
@@ -15,7 +15,7 @@ The moving parts:
 ```mermaid
 flowchart LR
     repo["<b>~/dotfiles (git repo)</b><br/>nvim/ zsh/ zed/ tmux/ ...<br/>home/: chezmoi source<br/>edit and commit here"]
-    chezmoi["<b>chezmoi apply</b><br/>devbox = /devbox exists<br/>skips Mac-only on Linux<br/>fetches catppuccin tmux"]
+    chezmoi["<b>chezmoi apply</b><br/>devbox = /devbox exists<br/>skips Mac-only on Linux<br/>fetches catppuccin tmux, zsh plugins"]
     home["<b>Home directory</b><br/>~/.config/nvim to repo<br/>~/.zshenv, ~/.tmux.conf<br/>nvim, zsh, Zed read here"]
     script["<b>install-tools script</b><br/>re-runs on tool changes<br/>installs mise if missing"]
     mise["<b>mise install</b><br/>devbox: expert, ruby-lsp<br/>elsewhere: + CLI tools, ruby"]
@@ -35,7 +35,7 @@ You edit and commit in the repo. `chezmoi apply` keeps the home directory's link
 | `home/` | chezmoi's source: symlink entries, templates, the install script | (read by chezmoi) |
 | `.chezmoiroot` | Tells chezmoi to look only in `home/` | — |
 | `nvim/` | Neovim config | `~/.config/nvim` |
-| `zsh/` | `zshenv.zsh`, `zshrc.zsh`, `aliases.zsh`, `completions.zsh`, `plugins/` | `~/.zshenv`, `~/.config/zsh/*` |
+| `zsh/` | `zshenv.zsh`, `zshrc.zsh`, `aliases.zsh`, `completions.zsh` | `~/.zshenv`, `~/.config/zsh/*` |
 | `zed/` | `settings.json`, `keymap.json` | `~/.config/zed/*` |
 | `tmux/tmux.conf` | tmux config | `~/.tmux.conf` |
 | `gitconfig`, `.work.gitconfig` | git config; the work one is used under `~/projects/barsoom/` | `~/.gitconfig`, `~/.work.gitconfig` |
@@ -83,7 +83,7 @@ chezmoi only reads `home/`, and almost every file there is a one-line symlink en
 
 - **`.chezmoi.toml.tmpl`**: detects the devbox and points chezmoi at `~/dotfiles`.
 - **`.chezmoiignore`**: skips the Mac-only configs when the OS isn't `darwin`.
-- **`.chezmoiexternal.toml`**: downloads catppuccin tmux v2.1.1 into `~/.config/tmux/plugins/catppuccin/tmux`.
+- **`.chezmoiexternal.toml`**: downloads catppuccin tmux v2.1.1 into `~/.config/tmux/plugins/catppuccin/tmux`, and zsh-autosuggestions and fast-syntax-highlighting into `~/.config/zsh/plugins/`. Bump the version in the URL to update one.
 - **`private_dot_config/mise/config.toml.tmpl`**: the tool list. It's written as a real file, not a symlink, because it differs per machine.
 - **`run_onchange_after_install-tools.sh.tmpl`**: installs mise if it's missing and runs `mise install`. A hash of the rendered mise config sits in a comment, so the script re-runs only when the tool list changes.
 
@@ -153,7 +153,7 @@ zsh reads `~/.zshenv` first, which sets `ZDOTDIR=~/.config/zsh`. Everything afte
     6. Activates mise.
     7. Initialises starship and zoxide (`cd` is zoxide).
     8. Sources `completions.zsh`, then fzf (through `~/.fzf.zsh` if present, otherwise `fzf --zsh`).
-    9. Sets the history options. History lives in `$XDG_STATE_HOME/zsh/history` (`~/.local/state/zsh/history`) and is shared between running shells.
+    9. Sources zsh-autosuggestions and fast-syntax-highlighting, then sets the history options. History lives in `$XDG_STATE_HOME/zsh/history` (`~/.local/state/zsh/history`) and is shared between running shells.
     10. Adds Homebrew postgres on macOS, sources `~/.zprofile` if it exists, and adds pnpm to PATH.
 
 ### Files
@@ -164,7 +164,6 @@ zsh reads `~/.zshenv` first, which sets `ZDOTDIR=~/.config/zsh`. Everything afte
 | `zsh/zshrc.zsh` | Interactive setup: PATH, tool init, the order above |
 | `zsh/aliases.zsh` | Aliases and small functions: `gst`, `cat` = `bat`, `ls` = `lsd`, `dot`, `zso` (reload), `zcfg` (edit), `ksh`, `unlock_devbox`, `miex` |
 | `zsh/completions.zsh` | compinit, menu selection with hjkl, matching rules, completion styles |
-| `zsh/plugins/cursor_mode.zsh` | Cursor shape helper |
 
 ### Completions
 
@@ -204,7 +203,7 @@ Active servers: astro, taplo, bashls, lua_ls, basedpyright, ts_ls, dockerls, css
 | --- | --- |
 | Core | lazy.nvim, snacks.nvim (picker, dashboard, notifier, indent, scope, scroll, words), which-key |
 | Editing | blink.cmp + friendly-snippets, nvim-autopairs, nvim-surround, vim-sleuth, built-in `gc` comments |
-| Navigation | oil.nvim, harpoon (harpoon2), vim-tmux-navigator, vim-projectionist |
+| Navigation | oil.nvim, harpoon (harpoon2), smart-splits (with its tmux backend), vim-projectionist |
 | Search | snacks picker, grug-far.nvim (find and replace) |
 | Code | nvim-treesitter + textobjects, nvim-lspconfig, conform.nvim, lazydev, rustaceanvim, elixir-tools (projections only), vim-slim |
 | Git | vim-fugitive, diffview.nvim, snacks git pickers |
@@ -227,7 +226,7 @@ Where Neovim and Zed both have an action, nvim uses Zed's vim-mode key, so the s
 | Next / previous function | `]m` / `[m` | |
 | Project find and replace | `g/` | nvim opens grug-far in a left split |
 | Next / previous diagnostic | `]d` / `[d` | Built into both |
-| Move between panes | `Ctrl-h/j/k/l` | Also moves between tmux panes in the terminal |
+| Move between panes | `Ctrl-h/j/k/l` | Also moves between tmux panes in the terminal. smart-splits sets the tmux pane option `@pane-is-vim` while nvim runs, and `tmux.conf` sends the keys to nvim only when it's set |
 | Find files | `<leader>ff` | |
 | Search the project | `<leader>fw` | |
 | File explorer | `<leader>e` | oil in nvim, the project panel in Zed |

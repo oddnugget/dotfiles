@@ -60,6 +60,14 @@ else
   source <(fzf --zsh)
 fi
 
+# Plugins come from home/.chezmoiexternal.toml. fast-syntax-highlighting has to
+# load after compinit and the other widgets.
+for _plugin in zsh-autosuggestions/zsh-autosuggestions.zsh \
+  fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh; do
+  [[ -f $ZDOTDIR/plugins/$_plugin ]] && source "$ZDOTDIR/plugins/$_plugin"
+done
+unset _plugin
+
 unsetopt autocd
 
 # zsh doesn't create the history file's directory. The old history lived in
