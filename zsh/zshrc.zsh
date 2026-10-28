@@ -70,6 +70,17 @@ setopt HIST_SAVE_NO_DUPS
 
 bindkey -e
 
+# A dropped ssh connection to a remote tmux never sends the sequences that
+# turn mouse/focus reporting back off, so mouse movement spews escape codes
+# into the local prompt. Reset those modes before every prompt.
+if [[ -z "$TMUX" ]]; then
+  __reset_mouse_reporting() {
+    printf '\e[?1000l\e[?1002l\e[?1003l\e[?1005l\e[?1006l\e[?1015l\e[?1004l'
+  }
+  autoload -Uz add-zsh-hook
+  add-zsh-hook precmd __reset_mouse_reporting
+fi
+
 if [[ $OSTYPE == darwin* ]]; then
   path=(/opt/homebrew/opt/postgresql@18/bin $path)
 fi
