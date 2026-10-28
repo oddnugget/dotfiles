@@ -17,6 +17,9 @@ ruby = "latest"
 # Language servers shared by nvim and Zed
 "github:elixir-lang/expert" = { version = "latest", bin = "expert" }
 {{- if .devbox }}
+# Sentry CLI for sentry.auctionet.com
+sentry-cli = "latest"
+
 # "latest" resolves to prereleases for gems, so pin the stable series
 "gem:ruby-lsp" = "0.26"
 {{- else }}

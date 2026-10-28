@@ -18,7 +18,7 @@ flowchart LR
     chezmoi["<b>chezmoi apply</b><br/>devbox = /devbox exists<br/>skips Mac-only on Linux<br/>fetches catppuccin tmux, zsh plugins"]
     home["<b>Home directory</b><br/>~/.config/nvim to repo<br/>~/.zshenv, ~/.tmux.conf<br/>nvim, zsh, Zed read here"]
     script["<b>install-tools script</b><br/>re-runs on tool changes<br/>installs mise if missing"]
-    mise["<b>mise install</b><br/>devbox: expert, ruby-lsp<br/>elsewhere: + CLI tools, ruby"]
+    mise["<b>mise install</b><br/>devbox: expert, ruby-lsp, sentry-cli<br/>elsewhere: + CLI tools, ruby"]
 
     repo -- reads --> chezmoi
     chezmoi -- links --> home
@@ -119,6 +119,7 @@ mise installs every tool listed in `home/private_dot_config/mise/config.toml.tmp
 | --- | --- | --- |
 | neovim, tree-sitter, ripgrep, bat, delta, lsd, fzf, starship, zoxide | Non-devbox machines | `latest` |
 | expert (Elixir LSP), from `github:elixir-lang/expert` | All machines | `latest` |
+| sentry-cli | Devbox | `latest` |
 | ruby-lsp, from `gem:ruby-lsp` | Devbox | `0.26`. `latest` picks gem prereleases, so it's pinned to the stable series. |
 | ruby | Non-devbox machines | `latest` as the default. macOS's system Ruby (2.6) is too old for ruby-lsp. |
 | ruby-lsp, from `~/.default-gems` | Non-devbox machines | Newest stable. mise runs `gem install` for each line of `ruby/default-gems` whenever it installs a Ruby. |
