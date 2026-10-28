@@ -1,0 +1,2 @@
+# Targets of configs that were removed from the repo
+.config/zsh/wezterm-shell-integration

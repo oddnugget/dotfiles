@@ -113,7 +113,7 @@ To link a whole folder, use the folder as the target, as with `symlink_nvim.tmpl
 
 ## mise
 
-mise installs every tool listed in `home/private_dot_config/mise/config.toml.tmpl`. chezmoi writes the rendered result to `~/.config/mise/config.toml`. zsh runs `mise activate zsh` when mise is installed, which puts those tools first in PATH. Without mise, zsh falls back to the asdf shims (non-devbox machines only).
+mise installs every tool listed in `home/private_dot_config/mise/config.toml.tmpl`. chezmoi writes the rendered result to `~/.config/mise/config.toml`. zsh runs `mise activate zsh` when mise is installed, which puts those tools first in PATH.
 
 | Tool | Installed on | Version |
 | --- | --- | --- |
@@ -150,10 +150,11 @@ zsh reads `~/.zshenv` first, which sets `ZDOTDIR=~/.config/zsh`. Everything afte
     3. Sources the devbox profile, if it exists.
     4. Sources `~/.env`, if it exists. Use it for machine-local secrets; it isn't in the repo.
     5. On the devbox: broot, shadowenv, `DEV_HOST`. On macOS: `/opt/homebrew/bin`.
-    6. Activates mise, or falls back to the asdf shims on non-devbox machines.
+    6. Activates mise.
     7. Initialises starship and zoxide (`cd` is zoxide).
     8. Sources `completions.zsh`, then fzf (through `~/.fzf.zsh` if present, otherwise `fzf --zsh`).
-    9. Adds Homebrew postgres on macOS, sources `~/.zprofile` if it exists, and adds pnpm to PATH.
+    9. Sets the history options. History lives in `$XDG_STATE_HOME/zsh/history` (`~/.local/state/zsh/history`) and is shared between running shells.
+    10. Adds Homebrew postgres on macOS, sources `~/.zprofile` if it exists, and adds pnpm to PATH.
 
 ### Files
 
@@ -195,7 +196,7 @@ nvim-treesitter is on the `main` branch. Highlighting and indent come from Neovi
 
 Servers use Neovim's native `vim.lsp.config` / `vim.lsp.enable`, with defaults from nvim-lspconfig. `servers.lua` holds only the overrides. To add a server, add `name = { ... }` to `M.list`, using the name from nvim-lspconfig's `lsp/` folder. Keymaps are set per buffer in an `LspAttach` autocmd. conform.nvim formats on save, but only in buffers that have an LSP client attached. Formatters are set per filetype in `plugins/lsp.lua`, with LSP formatting as the fallback.
 
-Active servers: astro, taplo, bashls, lua_ls, basedpyright, ts_ls, dockerls, cssls, emmet_ls, html, expert, ruby_lsp, plus lexical when `NVIM_LEXICAL_PATH` is set. rustaceanvim handles Rust on its own. elixir-tools stays loaded with its LSP turned off, only for its Phoenix alternate-file rules behind `:A`.
+Active servers: astro, taplo, bashls, lua_ls, basedpyright, ts_ls, dockerls, cssls, emmet_ls, html, expert, ruby_lsp. rustaceanvim handles Rust on its own. elixir-tools stays loaded with its LSP turned off, only for its Phoenix alternate-file rules behind `:A`.
 
 ### Plugins
 

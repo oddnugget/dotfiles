@@ -1,4 +1,3 @@
-local utils = require("oddnugget.utils")
 local M = {}
 
 M.list = {
@@ -32,24 +31,7 @@ M.list = {
       },
     },
   },
-  lua_ls = {
-    -- settings = {
-    -- 	Lua = {
-    -- 		workspace = {
-    -- 			checkThirdParty = false,
-    -- 		},
-    -- 		globals = {
-    -- 			"vim",
-    -- 			"Snacks",
-    -- 		},
-    -- 		completion = { callSnippet = "Replace" },
-    -- 		telemetry = { enable = false },
-    -- 		hint = {
-    -- 			enable = false,
-    -- 		},
-    -- 	},
-    -- },
-  },
+  lua_ls = {},
   basedpyright = {
     settings = {
       python = {
@@ -61,19 +43,15 @@ M.list = {
       },
     },
     before_init = function(_, config)
-      -- Try to find the Python interpreter from uv
-      local venv_path = vim.fn.getcwd() .. "/.venv"
-      local uv_python = vim.fn.getcwd() .. "/.venv/bin/python"
+      -- Use the project's uv virtualenv when there is one
+      local venv_path = (config.root_dir or vim.fn.getcwd()) .. "/.venv"
 
-      -- Check if .venv exists (uv project)
       if vim.fn.isdirectory(venv_path) == 1 then
-        config.settings.python.pythonPath = uv_python
+        config.settings.python.pythonPath = venv_path .. "/bin/python"
       end
     end,
   },
-  ts_ls = {
-    disable_formatting = false,
-  },
+  ts_ls = {},
   dockerls = {},
   cssls = {},
   emmet_ls = {
@@ -108,7 +86,6 @@ M.list = {
     },
     filetypes = {
       "html",
-      "react",
       "typescriptreact",
       "html.heex",
       "heex",
@@ -143,15 +120,6 @@ M.list = {
   -- Same servers as Zed; both are installed through mise
   expert = {},
   ruby_lsp = {},
-  lexical = function()
-    local path = os.getenv("NVIM_LEXICAL_PATH")
-
-    if not path or not utils.file_exists(path) then
-      return
-    end
-
-    return { cmd = { path } }
-  end,
 }
 
 return M

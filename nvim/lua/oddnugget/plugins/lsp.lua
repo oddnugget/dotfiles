@@ -42,14 +42,8 @@ local config = function()
   })
 
   for name, cfg in pairs(servers.list) do
-    if type(cfg) == "function" then
-      cfg = cfg()
-    end
-
-    if cfg ~= nil then
-      vim.lsp.config(name, cfg)
-      vim.lsp.enable(name)
-    end
+    vim.lsp.config(name, cfg)
+    vim.lsp.enable(name)
   end
 end
 
@@ -74,7 +68,6 @@ return {
     "stevearc/conform.nvim",
     event = { "BufReadPre", "BufNewFile", "BufWritePre" },
     opts = {
-      log_level = vim.log.levels.DEBUG,
       notify_on_error = true,
       -- Only format on save in buffers with an attached LSP client
       format_on_save = function(bufnr)

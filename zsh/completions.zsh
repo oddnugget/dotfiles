@@ -101,4 +101,5 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 
 zstyle ':completion:*' keep-prefix true
 
-zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${=${${(f)"$(cat {/etc/ssh_,~/.ssh/known_}hosts(|2)(N) /dev/null)"}%%[# ]*}//,/ })'
+# known_hosts is hashed (HashKnownHosts), so complete the Host aliases from ~/.ssh/config
+zstyle -e ':completion:*:(ssh|scp|sftp|rsh|rsync):hosts' hosts 'reply=(${${=${(M)${(f)"$(cat ~/.ssh/config(N) /dev/null)"}:#[Hh]ost *}#[Hh]ost }:#*[*?]*})'

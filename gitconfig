@@ -54,6 +54,7 @@
 	enabled = true
 	autoupdate = true
 
+# Fetch over https (works without keys, e.g. on a fresh machine), push over ssh
 [url "git@github.com:"]
-	insteadOf = https://github.com/
+	pushInsteadOf = https://github.com/
 

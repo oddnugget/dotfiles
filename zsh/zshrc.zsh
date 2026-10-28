@@ -17,8 +17,6 @@ fi
 
 source "$ZDOTDIR/aliases"
 
-alias luamake="$HOME/.local/lua-language-server/3rd/luamake/luamake"
-
 if [[ -f /devbox/script/support/profile ]]; then
   source /devbox/script/support/profile
 fi
@@ -46,13 +44,10 @@ fi
 # mise manages tool versions (only language servers on the devbox)
 if (( $+commands[mise] )); then
   eval "$(mise activate zsh)"
-elif [[ -z "${DEVBOX}" ]]; then
-  path=("${ASDF_DATA_DIR:-$HOME/.asdf}/shims" $path)
 fi
 
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh --cmd cd --hook prompt)"
-# eval "$(~/.local/bin/mise activate)"
 
 # Completions (compinit runs in completions.zsh)
 source "$ZDOTDIR/completions.zsh"
@@ -66,7 +61,19 @@ else
 fi
 
 unsetopt autocd
-setopt HIST_SAVE_NO_DUPS
+
+# zsh doesn't create the history file's directory. The old history lived in
+# $ZDOTDIR, so carry it over the first time.
+[[ -d ${HISTFILE:h} ]] || mkdir -p "${HISTFILE:h}"
+if [[ ! -e $HISTFILE && -f $ZDOTDIR/.zhistory ]]; then
+  mv "$ZDOTDIR/.zhistory" "$HISTFILE"
+fi
+
+setopt SHARE_HISTORY          # Share history between running shells (e.g. tmux panes)
+setopt EXTENDED_HISTORY       # Save timestamps and durations
+setopt HIST_IGNORE_ALL_DUPS   # Drop older copies of a repeated command
+setopt HIST_IGNORE_SPACE      # Don't save commands that start with a space
+setopt HIST_REDUCE_BLANKS
 
 bindkey -e
 
