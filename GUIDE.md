@@ -38,6 +38,7 @@ You edit and commit in the repo. `chezmoi apply` keeps the home directory's link
 | `zsh/` | `zshenv.zsh`, `zshrc.zsh`, `aliases.zsh`, `completions.zsh` | `~/.zshenv`, `~/.config/zsh/*` |
 | `zed/` | `settings.json`, `keymap.json` | `~/.config/zed/*` |
 | `tmux/tmux.conf` | tmux config | `~/.tmux.conf` |
+| `herdr/config.toml` | herdr config (tmux-style keys, `ctrl-a` prefix) | `~/.config/herdr/config.toml` |
 | `gitconfig`, `.work.gitconfig` | git config; the work one is used under `~/projects/barsoom/` | `~/.gitconfig`, `~/.work.gitconfig` |
 | `bat/`, `lsd.yaml`, `ghostty/`, `.ripgreprc` | Small tool configs | `~/.config/...`, `~/.ripgreprc` |
 | `ruby/default-gems` | Gems mise installs into every new Ruby (ruby-lsp) | `~/.default-gems`, not on the devbox |
